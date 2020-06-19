@@ -1,8 +1,16 @@
 import React from 'react'
-
-function App () {
+import Home from './Components/Home/Home/Home'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import './App.scss'
+import ProviderRegister from './Components/Register/Provider/ProviderRegister'
+const App = () => {
   return (
-    null
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/providerRegister' component={ProviderRegister} />
+      </Switch>
+    </Router>
   )
 }
 
