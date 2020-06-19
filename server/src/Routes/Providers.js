@@ -1,7 +1,6 @@
 const router = require('express').Router()
+const imageUpload = require('../Controller/Providers/ImageUpload')
 
-router.get('/providers/register', (req, res) => {
-  res.send({ name: 'Isral' })
-})
+router.post('/post/profileImage', imageUpload)
 
 module.exports = router

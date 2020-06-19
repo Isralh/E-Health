@@ -46,13 +46,13 @@ const ProviderRegister = () => {
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
   }
 
-  // onchange function to select profile image
+  // onchange function to get profile image selected
   const imageUpload = (e) => {
     const imageValue = e.target.files[0].name
     validateImageFiles(imageValue, setFormInput)
   }
 
-  // onchange function to select profile image
+  // onchange function to get resume file selected
   const resumeUpload = (e) => {
     const resumeValue = e.target.files[0].name
     validateResumeFiles(resumeValue, setFormInput)
@@ -80,14 +80,12 @@ const ProviderRegister = () => {
     console.log(errors)
     console.log(formInput)
   }, [formInput, errors])
-  useEffect(() => {
-    setFirstFormComplete(true)
-  }, [])
+
   return (
     <div className='container'>
       <NavBar />
       <div className='content-container'>
-        <Heading data-testid='top-heading' />
+        <Heading />
         {firstFormComplete
           ? <SecondForm
             handleChange={handleFormInput}
