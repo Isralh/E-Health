@@ -60,6 +60,20 @@
           }
         }
       }
+      .upload-button {
+        width: 90px;
+        height: 30px;
+        cursor: pointer;
+      }
+      .upload-button:hover {
+        background: $fontColor;
+        color: white;
+      }
+      .upload-text {
+        margin-left: 3px;
+        font-size: 14px;
+        font-weight: bolder;
+      }
     }
   }
 }

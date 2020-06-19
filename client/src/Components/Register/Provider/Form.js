@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './Styles.scss'
 export const FirstForm = ({
   handleChange, handleNext, firstNameError, lastNameError,
@@ -7,12 +7,11 @@ export const FirstForm = ({
 }) => {
   return (
     <div className='form-container'>
-      <form className='first-form' data-testid='form-control'>
+      <form className='first-form'>
         <div className='input-wrapper'>
-          <p data-testid='firstNameError'>{firstNameError}</p>
+          <p>{firstNameError}</p>
           <input
             type='text'
-            data-testid='firstName'
             name='firstName'
             placeholder='First Name'
             required
@@ -24,7 +23,6 @@ export const FirstForm = ({
           <p>{lastNameError}</p>
           <input
             type='text'
-            data-testid='lastName'
             name='lastName'
             placeholder='Last Name'
             required
@@ -36,7 +34,6 @@ export const FirstForm = ({
           <p>{emailError}</p>
           <input
             type='text'
-            data-testid='email'
             name='email'
             placeholder='E-mail'
             required
@@ -48,7 +45,6 @@ export const FirstForm = ({
           <p>{passwordError}</p>
           <input
             type='text'
-            data-testid='password'
             name='password'
             placeholder='Password'
             required value={password}
@@ -59,7 +55,6 @@ export const FirstForm = ({
           <p>{confirmPasswordError}</p>
           <input
             type='text'
-            data-testid='confirmPassword'
             name='confirmPassword'
             placeholder='Confirm Password'
             required value={confirmPassword}
@@ -70,7 +65,6 @@ export const FirstForm = ({
       <div className='button-container'>
         <p>Existing user? <span>Login</span></p>
         <button
-          data-testid='first-form-button'
           type='button'
           onClick={handleNext}
         >Next
@@ -80,7 +74,21 @@ export const FirstForm = ({
   )
 }
 
-export const SecondForm = ({ handleChange, previousForm, handleSubmit }) => {
+export const SecondForm = ({
+  handleChange, previousForm, handleSubmit, handleResumeUpload,
+  resumeFile, handleImageUpload, imageFile
+}) => {
+  const resumeRef = useRef(null)
+  const imageRef = useRef(null)
+
+  const handleResumeClick = () => {
+    resumeRef.current.click()
+  }
+
+  const handleImageClick = () => {
+    imageRef.current.click()
+  }
+
   return (
     <div className='form-container'>
       <form className='second-form'>
@@ -115,22 +123,33 @@ export const SecondForm = ({ handleChange, previousForm, handleSubmit }) => {
         <div className='input-wrapper'>
           <input
             type='file'
+            ref={resumeRef}
+            accept='.pdf, .doc'
+            hidden='hidden'
+            className='resume-file'
             name='resume'
             placeholder='Resume'
             required
-            onChange={handleChange}
+            onChange={handleResumeUpload}
           />
+          <button className='upload-button' type='button' onClick={handleResumeClick}>Resume</button>
+          <span className='upload-text'>{resumeFile.length > 0 ? resumeFile : 'No File Chosen'}</span>
         </div>
         <div className='input-wrapper'>
           <input
             type='file'
-            accept='.jpeg .png .jpg'
+            ref={imageRef}
+            hidden='hidden'
+            className='image-file'
+            accept='.jpeg, .png, .jpg'
             name='profilePicture'
             placeholder='Profile Picture'
             required
-            onChange={handleChange}
+            onChange={handleImageUpload}
           />
         </div>
+        <button className='upload-button' type='button' onClick={handleImageClick}>Profile Pic</button>
+        <span className='upload-text'>{imageFile.length > 0 ? imageFile : 'No Image Chosen'}</span>
       </form>
       <div className='button-container'>
         <button

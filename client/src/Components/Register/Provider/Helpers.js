@@ -30,3 +30,15 @@ export const validateErrors = (firstName, lastName, email, password, confirmPass
     state(true)
   } else state(false)
 }
+
+export const validateImageFiles = (fileValue, state) => {
+  if (!fileValue.includes('.jpg') && !fileValue.includes('.png') && !fileValue.includes('.jpeg')) {
+    return window.alert('please select correct file type')
+  } else state(prev => { return { ...prev, profilePicture: fileValue } })
+}
+
+export const validateResumeFiles = (fileValue, state) => {
+  if (!fileValue.includes('.pdf') && !fileValue.includes('.doc')) {
+    return window.alert('please select correct file type')
+  } else state(prev => { return { ...prev, resume: fileValue } })
+}

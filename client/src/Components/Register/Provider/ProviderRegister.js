@@ -3,7 +3,10 @@ import './Styles.scss'
 import NavBar from '../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import { FirstForm, SecondForm } from './Form'
-import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateErrors } from './Helpers'
+import {
+  validateFirstName, validateLastName, validatePassWord,
+  validateConfirmPassword, validateErrors, validateResumeFiles, validateImageFiles
+} from './Helpers'
 const ProviderRegister = () => {
   // forminput state for the registration page
   const [formInput, setFormInput] = useState({
@@ -43,6 +46,17 @@ const ProviderRegister = () => {
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
   }
 
+  // onchange function to select profile image
+  const imageUpload = (e) => {
+    const imageValue = e.target.files[0].name
+    validateImageFiles(imageValue, setFormInput)
+  }
+
+  // onchange function to select profile image
+  const resumeUpload = (e) => {
+    const resumeValue = e.target.files[0].name
+    validateResumeFiles(resumeValue, setFormInput)
+  }
   // go to the previous form section
   const handlePrevious = () => {
     setFirstFormComplete(false)
@@ -66,6 +80,9 @@ const ProviderRegister = () => {
     console.log(errors)
     console.log(formInput)
   }, [formInput, errors])
+  useEffect(() => {
+    setFirstFormComplete(true)
+  }, [])
   return (
     <div className='container'>
       <NavBar />
@@ -75,6 +92,10 @@ const ProviderRegister = () => {
           ? <SecondForm
             handleChange={handleFormInput}
             previousForm={handlePrevious}
+            resumeFile={formInput.resume}
+            imageFile={formInput.profilePicture}
+            handleImageUpload={imageUpload}
+            handleResumeUpload={resumeUpload}
           />
           : <FirstForm
             firstName={formInput.firstName}
