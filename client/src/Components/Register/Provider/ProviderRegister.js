@@ -4,13 +4,18 @@ import NavBar from '../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import { FirstForm, SecondForm } from './Form'
 import {
-  validateFirstName, validateLastName, validatePassWord,
-  validateConfirmPassword, validateErrors, validateResumeFiles, validateImageFiles
+  validateFirstName, validateLastName, validatePassWord, validateResume, validateSecondForm,
+  validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
+  valiadateEducation, validateExperience, validateSummary, validateRates, validateImages
 } from './errorValidation'
 import { s3Uploader, Registeration } from './Services'
 const ProviderRegister = () => {
-  const [selectedResume, setSelectedResume] = useState()
-  const [selectedImage, setSelectedImage] = useState()
+  const [selectedResume, setSelectedResume] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState({
+    aws: false,
+    server: false
+  })
   const [fileName, setFileName] = useState({
     resume: '',
     image: ''
@@ -24,11 +29,10 @@ const ProviderRegister = () => {
     confirmPassword: '',
     education: '',
     experience: '',
-    summary: '',
+    summary: ' ',
     rate: '',
     resume: '',
-    profilePicture: '',
-    isSubmitting: false
+    profilePicture: ''
   })
 
   // input errors state for the registration
@@ -39,10 +43,11 @@ const ProviderRegister = () => {
     password: '',
     confirmPassword: '',
     education: '',
-    experience: '',
+    experience: ' ',
     summary: '',
-    resume: '',
-    profilePicture: ''
+    resume: ' ',
+    rate: '',
+    profilePicture: ' '
   })
 
   // toggle between first and second form based on completion and error handling
@@ -64,20 +69,25 @@ const ProviderRegister = () => {
     formInput.email.length < 3 ? setErrors(prev => { return { ...prev, email: 'Invalide email-address' } }) : setErrors(prev => { return { ...prev, email: null } })
   }
 
-  /* onchange function to get resume file selected then check if it's a correct file type, if not send an alert.
-  if it is update the input text for the resume input in the form then set selected resume state to upload the file
+  // change the formview based on error state changes, if error with the first form don't move to the next form view
+  useEffect(() => {
+    validateFirstForm(errors, setFirstFormComplete)
+  }, [errors])
+
+  /* onchange function to get image file selected then check if it's a correct file type, if not send an alert.
+  if it is update the input text for the image input in the form then setSelectedImage state we use to upload the image file
   to AWS S3 */
   const imageUpload = (e) => {
     const imageFile = e.target.files[0]
-    validateImageFiles(imageFile, setFileName, setSelectedImage)
+    validateImageFiles(imageFile, setFileName, setSelectedImage, setErrors)
   }
 
   /* onchange function to get image file selected then check if it's a correct file type, if not send an alert.
-  if it is update the input text for the image input in the form then set selected image state to upload the file
+  if it is update the input text for the image input in the form then set thes selected image state we use to upload the resume file
   to AWS S3 */
   const resumeUpload = (e) => {
     const resumeValue = e.target.files[0]
-    validateResumeFiles(resumeValue, setFileName, setSelectedResume)
+    validateResumeFiles(resumeValue, setFileName, setSelectedResume, setErrors)
   }
 
   // go to the previous form section
@@ -85,41 +95,62 @@ const ProviderRegister = () => {
     setFirstFormComplete(false)
   }
 
-  // change the formview based on error state changes
-  useEffect(() => {
-    validateErrors(errors.firstName, errors.lastName, errors.email, errors.password, errors.confirmPassword, setFirstFormComplete)
-  }, [errors])
-
-  /* submits the image and resume to the server to be submitted to AWS and update the form inputs for
-  the image and resume url with the response we get AWS */
+  // On form submit check if all inputs have been filled correctly
   const submitRegisteration = async (e) => {
     e.preventDefault()
-    const fileData = new FormData()
-    const data = [selectedImage, selectedResume]
-    if (data) {
-      for (let i = 0; i < data.length; i++) {
-        fileData.append('uploadFiles', data[i], data[i].name)
-      }
-    }
-    s3Uploader(fileData)
-      .then(data => {
-        setFormInput(prev => { return { ...prev, profilePicture: data[0], resume: data[1], isSubmitting: true } })
-      })
-      .catch(e => console.log(e))
+    valiadateEducation(formInput.education, setErrors)
+    validateExperience(formInput.experience, setErrors)
+    validateSummary(formInput.summary, setErrors)
+    validateRates(formInput.rate, setErrors)
+    validateImages(selectedImage, setErrors)
+    validateResume(selectedResume, setErrors)
   }
 
-  /* upload form data to the server after we get response from AWS to set the image and resume url location
-  in the form input state */
+  /* validate if all necessary inputs in the second form has been submitted if not show errors in the form else setIsSubmitting to
+  AWS true, in order to upload the image and resume files to AWS s3. */
   useEffect(() => {
-    if (formInput.isSubmitting === true) {
+    validateSecondForm(errors, setIsSubmitting)
+  }, [errors])
+
+  /* if all inputs have been submitted upload to aws our resume and images and with the response we get update the form values for
+  the image and resume with the url sent from AWS to upload to our server. setIsSubmitting to server true to submit all form info
+  to the server */
+  useEffect(() => {
+    if (isSubmitting.aws === true) {
+      const fileData = new FormData()
+      const data = [selectedImage, selectedResume]
+      for (let i = 0; i < data.length; i++) {
+        fileData.append('uploadFiles', data[i], data[i].name)
+        s3Uploader(fileData)
+          .then(data => {
+            if (data[0] && data[1]) {
+              setFormInput(prev => { return { ...prev, profilePicture: data[0], resume: data[1] } })
+              setIsSubmitting(prev => { return { ...prev, aws: false, server: true } })
+            }
+          })
+          .catch(e => console.log(e))
+      }
+    }
+  }, [isSubmitting.aws])
+
+  // upload form data to the server after we get response from AWS with image and resume url location
+  useEffect(() => {
+    if (isSubmitting.server === true) {
       Registeration(formInput)
         .then(data => {
-          console.log(data)
-          setFormInput(prev => { return { ...prev, isSubmitting: false } })
+          if (data) {
+            console.log(data)
+            setIsSubmitting(prev => { return { ...prev, server: false } })
+          }
         }).catch(e => console.log(e))
     }
-  }, [formInput.isSubmitting])
+  }, [isSubmitting.server])
 
+  useEffect(() => {
+    console.log(formInput)
+    console.log(errors)
+    console.log(isSubmitting)
+  }, [formInput, errors, isSubmitting])
   return (
     <div className='container'>
       <NavBar />
@@ -129,26 +160,34 @@ const ProviderRegister = () => {
           ? <SecondForm
             handleChange={handleFormInput}
             previousForm={handlePrevious}
-            resumeFile={fileName.resume}
-            imageFile={fileName.image}
             handleImageUpload={imageUpload}
             handleResumeUpload={resumeUpload}
             handleSubmit={submitRegisteration}
-          />
+            resumeFile={fileName.resume}
+            imageFile={fileName.image}
+            educationError={errors.education}
+            summaryError={errors.summary}
+            ratesError={errors.rate}
+            experienceError={errors.experience}
+            userEducation={formInput.education}
+            userExperience={formInput.experience}
+            userRates={formInput.rate}
+            userSummary={formInput.summary}
+            />
           : <FirstForm
+            handleChange={handleFormInput}
+            handleNext={goToNextForm}
             firstName={formInput.firstName}
             lastName={formInput.lastName}
             email={formInput.email}
             password={formInput.password}
             confirmPassword={formInput.confirmPassword}
-            handleChange={handleFormInput}
-            handleNext={goToNextForm}
             firstNameError={errors.firstName}
             lastNameError={errors.lastName}
             emailError={errors.email}
             passwordError={errors.password}
             confirmPasswordError={errors.confirmPassword}
-          />}
+            />}
       </div>
     </div>
   )

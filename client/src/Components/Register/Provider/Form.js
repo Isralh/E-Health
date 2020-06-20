@@ -47,7 +47,8 @@ export const FirstForm = ({
             type='text'
             name='password'
             placeholder='Password'
-            required value={password}
+            required
+            value={password}
             onChange={handleChange}
           />
         </div>
@@ -57,7 +58,8 @@ export const FirstForm = ({
             type='text'
             name='confirmPassword'
             placeholder='Confirm Password'
-            required value={confirmPassword}
+            required
+            value={confirmPassword}
             onChange={handleChange}
           />
         </div>
@@ -76,7 +78,9 @@ export const FirstForm = ({
 
 export const SecondForm = ({
   handleChange, previousForm, handleSubmit, handleResumeUpload,
-  resumeFile, handleImageUpload, imageFile
+  resumeFile, handleImageUpload, imageFile, educationError, experienceError,
+  summaryError, ratesError, userExperience, userEducation, userImage, userRates,
+  userSummary, userResume
 }) => {
   const resumeRef = useRef(null)
   const imageRef = useRef(null)
@@ -93,39 +97,47 @@ export const SecondForm = ({
     <div className='form-container'>
       <form className='second-form'>
         <div className='input-wrapper'>
+          <p>{educationError}</p>
           <input
             type='text'
             name='education'
             placeholder='College or University'
             required
+            value={userEducation}
             onChange={handleChange}
           />
         </div>
         <div className='input-wrapper'>
+          <p>{experienceError}</p>
           <input
             type='number'
             name='experience'
             placeholder='Years of experience'
             required
+            value={userExperience}
             onChange={handleChange}
           />
         </div>
         <div className='input-wrapper'>
+          <p>{summaryError}</p>
           <input
             className='summary'
             type='text'
             name='summary'
             placeholder='Professional Summary'
             required
+            value={userSummary}
             onChange={handleChange}
           />
         </div>
         <div className='input-wrapper'>
+          <p>{ratesError}</p>
           <input
             type='number'
             name='rate'
             placeholder='$ Hourly rate'
             required
+            value={userRates}
             onChange={handleChange}
           />
         </div>

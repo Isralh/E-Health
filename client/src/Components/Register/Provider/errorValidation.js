@@ -25,8 +25,8 @@ export const validateConfirmPassword = (password, confirmPassword, state) => {
   )
 }
 
-export const validateErrors = (firstName, lastName, email, password, confirmPassword, state) => {
-  if ((!firstName) && (!lastName) && (!email) && (!password) && (!confirmPassword)) {
+export const validateFirstForm = (error, state) => {
+  if ((!error.firstName) && (!error.lastName) && (!error.email) && (!error.password) && (!error.confirmPassword)) {
     state(true)
   } else state(false)
 }
@@ -38,14 +38,32 @@ export const valiadateEducation = (education, state) => {
 }
 export const validateExperience = (experience, state) => {
   return (
-    experience.length < 0 ? state(prev => { return { ...prev, experience: 'Experience required' } })
+    (!experience) ? state(prev => { return { ...prev, experience: 'Experience required' } })
       : state(prev => { return { ...prev, experience: null } })
+  )
+}
+export const validateRates = (rate, state) => {
+  return (
+    (!rate) ? state(prev => { return { ...prev, rate: 'rates required' } })
+      : state(prev => { return { ...prev, rate: null } })
   )
 }
 export const validateSummary = (summary, state) => {
   return (
     summary.length < 20 ? state(prev => { return { ...prev, summary: 'Required 20 characters or more' } })
       : state(prev => { return { ...prev, summary: null } })
+  )
+}
+export const validateImages = (image, state) => {
+  return (
+    image === null ? window.alert('please upload profile picture')
+      : state(prev => { return { ...prev, profilePicture: null } })
+  )
+}
+export const validateResume = (resume, state) => {
+  return (
+    resume === null ? window.alert('please upload resume')
+      : state(prev => { return { ...prev, resume: null } })
   )
 }
 export const validateImageFiles = (file, fileNameState, fileState) => {
@@ -67,5 +85,14 @@ export const validateResumeFiles = (file, fileNameState, fileState) => {
   } else {
     fileNameState(prev => { return { ...prev, resume: file.name } })
     fileState(file)
+  }
+}
+
+// if (!errors.education && !errors.experience && !errors.profilePicture && !errors.rate && !errors.resume && !errors.summary) {
+// setIsSubmitting(prev => { return { ...prev, aws: true } })
+
+export const validateSecondForm = (error, state) => {
+  if (!error.education && !error.experience && !error.profilePicture && !error.rate && !error.resume && !error.summary) {
+    state(prev => { return { ...prev, aws: true } })
   }
 }

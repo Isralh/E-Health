@@ -11,9 +11,7 @@ export const s3Uploader = async (formData) => {
 to see if the length of the resume and profilePicture is more than one if not it means we haven't gotten
 response from AWS yet */
 export const Registeration = async (data) => {
-  if ((data.resume.length > 0) && (data.profilePicture.length > 0)) {
-    const registerationData = await axios.post('http://localhost:3002/api/post/provider/register', data)
+  const registerationData = await axios.post('http://localhost:3002/api/post/provider/register', data)
 
-    return registerationData
-  }
+  return registerationData
 }
