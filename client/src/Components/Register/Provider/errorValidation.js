@@ -30,7 +30,7 @@ export const validateFirstForm = (error, state) => {
     state(true)
   } else state(false)
 }
-export const valiadateEducation = (education, state) => {
+export const validateEducation = (education, state) => {
   return (
     education.length < 5 ? state(prev => { return { ...prev, education: 'Required 5 characters or more' } })
       : state(prev => { return { ...prev, education: null } })

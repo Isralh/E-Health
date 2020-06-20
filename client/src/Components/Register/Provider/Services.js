@@ -10,8 +10,8 @@ export const s3Uploader = async (formData) => {
 /* After we get response from AWS upload all of the form data to the server, first check the form input
 to see if the length of the resume and profilePicture is more than one if not it means we haven't gotten
 response from AWS yet */
-export const Registeration = async (data) => {
-  const registerationData = await axios.post('http://localhost:3002/api/post/provider/register', data)
+export const Registration = async (data) => {
+  const registrationData = await axios.post('http://localhost:3002/api/post/provider/register', data)
 
-  return registerationData
+  return registrationData
 }

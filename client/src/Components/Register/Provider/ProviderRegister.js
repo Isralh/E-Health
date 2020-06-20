@@ -6,9 +6,9 @@ import { FirstForm, SecondForm } from './Form'
 import {
   validateFirstName, validateLastName, validatePassWord, validateResume, validateSecondForm,
   validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
-  valiadateEducation, validateExperience, validateSummary, validateRates, validateImages
+  validateEducation, validateExperience, validateSummary, validateRates, validateImages
 } from './errorValidation'
-import { s3Uploader, Registeration } from './Services'
+import { s3Uploader, Registration } from './Services'
 const ProviderRegister = () => {
   const [selectedResume, setSelectedResume] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -56,7 +56,7 @@ const ProviderRegister = () => {
   // get input values onChange and update our form state
   const handleFormInput = (e) => {
     e.persist()
-    const value = e.target.value.trim()
+    const value = e.target.value
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
   }
 
@@ -66,7 +66,7 @@ const ProviderRegister = () => {
     validateLastName(formInput.lastName, setErrors)
     validatePassWord(formInput.password, setErrors)
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
-    formInput.email.length < 3 ? setErrors(prev => { return { ...prev, email: 'Invalide email-address' } }) : setErrors(prev => { return { ...prev, email: null } })
+    formInput.email.length < 3 ? setErrors(prev => { return { ...prev, email: 'Invalid email-address' } }) : setErrors(prev => { return { ...prev, email: null } })
   }
 
   // change the formview based on error state changes, if error with the first form don't move to the next form view
@@ -96,9 +96,9 @@ const ProviderRegister = () => {
   }
 
   // On form submit check if all inputs have been filled correctly
-  const submitRegisteration = async (e) => {
+  const submitRegistration = async (e) => {
     e.preventDefault()
-    valiadateEducation(formInput.education, setErrors)
+    validateEducation(formInput.education, setErrors)
     validateExperience(formInput.experience, setErrors)
     validateSummary(formInput.summary, setErrors)
     validateRates(formInput.rate, setErrors)
@@ -136,10 +136,14 @@ const ProviderRegister = () => {
   // upload form data to the server after we get response from AWS with image and resume url location
   useEffect(() => {
     if (isSubmitting.server === true) {
-      Registeration(formInput)
+      Registration(formInput)
         .then(data => {
           if (data) {
             console.log(data)
+            if (data.status === 201) {
+              window.alert('success')
+              setIsSubmitting(prev => { return { ...prev, server: false } })
+            }
             setIsSubmitting(prev => { return { ...prev, server: false } })
           }
         }).catch(e => console.log(e))
@@ -162,7 +166,7 @@ const ProviderRegister = () => {
             previousForm={handlePrevious}
             handleImageUpload={imageUpload}
             handleResumeUpload={resumeUpload}
-            handleSubmit={submitRegisteration}
+            handleSubmit={submitRegistration}
             resumeFile={fileName.resume}
             imageFile={fileName.image}
             educationError={errors.education}

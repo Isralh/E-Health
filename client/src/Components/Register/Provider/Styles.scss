@@ -1,5 +1,6 @@
 @import '../../../Assets/Sass/Variables';
 @import '../../../Assets/Sass/Mixins';
+
 .container {
   height: $fullHeight;
   width: $fullWidth;
@@ -10,41 +11,52 @@
   color: $fontColor;
   position: $relativePosition;
   margin-top: 5vh;
+
   @media (min-width: 320px) {
     .heading {
       margin-right: 10vw;
+
       h1 {
         font-size: 25px;
         text-align: $textCenter;
         margin-left: 3vw;
       }
     }
+
     .form-container {
       margin: 5vh 0 0 7vw;
       width: 80%;
+
       .input-wrapper {
         margin-top: 5vh;
       }
+
       input {
         height: 30px;
         width: 97%;
       }
+
       .summary {
         padding-bottom: 100px;
+        width: 97%;
       }
+
       .button-container {
         margin-top: 5vh;
         width: 100%;
         @include flex(row, nowrap, space-between);
+
         p {
           font-weight: bolder;
           color: $fontColor;
           font-size: 15px;
+
           span {
             cursor: pointer;
             font-weight: bolder;
           }
         }
+
         button {
           background: $fontColor;
           color: white;
@@ -53,6 +65,7 @@
           height: 45px;
           // border-radius: 5px;
           cursor: pointer;
+
           :hover {
             color: $fontColor;
             background: white;
@@ -60,15 +73,18 @@
           }
         }
       }
+
       .upload-button {
         width: 90px;
         height: 30px;
         cursor: pointer;
       }
+
       .upload-button:hover {
         background: $fontColor;
         color: white;
       }
+
       .upload-text {
         margin-left: 3px;
         font-size: 14px;

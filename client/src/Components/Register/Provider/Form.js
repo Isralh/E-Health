@@ -120,7 +120,7 @@ export const SecondForm = ({
         </div>
         <div className='input-wrapper'>
           <p>{summaryError}</p>
-          <input
+          <textarea
             className='summary'
             type='text'
             name='summary'
