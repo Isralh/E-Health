@@ -122,6 +122,15 @@ export const SecondForm = ({
         </div>
         <div className='input-wrapper'>
           <input
+            type='number'
+            name='rate'
+            placeholder='$ Hourly rate'
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <div className='input-wrapper'>
+          <input
             type='file'
             ref={resumeRef}
             accept='.pdf, .doc'
@@ -150,19 +159,19 @@ export const SecondForm = ({
         </div>
         <button className='upload-button' type='button' onClick={handleImageClick}>Profile Pic</button>
         <span className='upload-text'>{imageFile.length > 0 ? imageFile : 'No Image Chosen'}</span>
+        <div className='button-container'>
+          <button
+            type='button'
+            onClick={previousForm}
+          >Previous
+          </button>
+          <button
+            type='submit'
+            onClick={handleSubmit}
+          >Register
+          </button>
+        </div>
       </form>
-      <div className='button-container'>
-        <button
-          type='button'
-          onClick={previousForm}
-        >Previous
-        </button>
-        <button
-          type='submit'
-          onClick={handleSubmit}
-        >Register
-        </button>
-      </div>
     </div>
   )
 }

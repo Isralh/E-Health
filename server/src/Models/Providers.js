@@ -1,7 +1,7 @@
 const DbConnection = require('../Database/mysqlDB')
 const { DataTypes } = require('sequelize')
 
-const database = DbConnection.define('providers', {
+module.exports = DbConnection.define('providers', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -39,23 +39,15 @@ const database = DbConnection.define('providers', {
     allowNull: false
   },
   resume: {
-    type: DataTypes.JSON,
+    type: DataTypes.STRING,
     allowNull: false
   },
   image: {
-    type: DataTypes.JSON,
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  rate: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 })
-
-// const test = async () => {
-//   const table = await ProviderRegister.sync()
-
-//   try {
-//     if (table) console.log('success')
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
-// test()
-module.exports = database

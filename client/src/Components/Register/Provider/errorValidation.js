@@ -18,9 +18,9 @@ export const validatePassWord = (password, state) => {
       : state(prev => { return { ...prev, password: null } })
   )
 }
-export const validateConfirmPassword = (confirmPassword, state) => {
+export const validateConfirmPassword = (password, confirmPassword, state) => {
   return (
-    confirmPassword.length < 6 ? state(prev => { return { ...prev, confirmPassword: 'Passwords must match' } })
+    password !== confirmPassword ? state(prev => { return { ...prev, confirmPassword: 'Passwords must match' } })
       : state(prev => { return { ...prev, confirmPassword: null } })
   )
 }
@@ -31,14 +31,24 @@ export const validateErrors = (firstName, lastName, email, password, confirmPass
   } else state(false)
 }
 
-export const validateImageFiles = (fileValue, state) => {
-  if (!fileValue.includes('.jpg') && !fileValue.includes('.png') && !fileValue.includes('.jpeg')) {
+export const validateImageFiles = (file, fileNameState, fileState) => {
+  if (!file.name.includes('.jpg') && !file.name.includes('.png') && !file.name.includes('.jpeg')) {
     return window.alert('please select correct file type')
-  } else state(prev => { return { ...prev, profilePicture: fileValue } })
+  } else if (file.size > 1000000) {
+    return window.alert('File size has to be less than 1mb')
+  } else {
+    fileNameState(prev => { return { ...prev, image: file.name } })
+    fileState(file)
+  }
 }
 
-export const validateResumeFiles = (fileValue, state) => {
-  if (!fileValue.includes('.pdf') && !fileValue.includes('.doc')) {
+export const validateResumeFiles = (file, fileNameState, fileState) => {
+  if (!file.name.includes('.pdf') && !file.name.includes('.doc')) {
     return window.alert('please select correct file type')
-  } else state(prev => { return { ...prev, resume: fileValue } })
+  } else if (file.size > 1000000) {
+    return window.alert('File size has to be less than 1mb')
+  } else {
+    fileNameState(prev => { return { ...prev, resume: file.name } })
+    fileState(file)
+  }
 }

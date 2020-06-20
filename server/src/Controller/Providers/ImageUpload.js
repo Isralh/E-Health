@@ -23,16 +23,16 @@ const upload = multer({
       cb(null, Date.now().toString())
     }
   })
-}).single('profileImage')
-
+}).array('uploadFiles', 2)
 const imageupload = async (req, res) => {
-  let downloadUrl
+  const filesUrl = []
   upload(req, res, err => {
-    if (err) return res.status(200).send({ message: 'Error uploading the images' })
-    const imageUrl = req.files
-    downloadUrl = imageUrl
-    console.log(downloadUrl)
-    return res.status(201).send(downloadUrl)
+    if (err) { return res.status(200).send({ message: 'Error uploading the images' }) }
+    const files = req.files
+    for (let i = 0; i < files.length; i++) {
+      filesUrl.push(files[i].location)
+    }
+    return res.status(201).send({ message: 'success', data: filesUrl })
   })
 }
 
