@@ -30,7 +30,24 @@ export const validateErrors = (firstName, lastName, email, password, confirmPass
     state(true)
   } else state(false)
 }
-
+export const valiadateEducation = (education, state) => {
+  return (
+    education.length < 5 ? state(prev => { return { ...prev, education: 'Required 5 characters or more' } })
+      : state(prev => { return { ...prev, education: null } })
+  )
+}
+export const validateExperience = (experience, state) => {
+  return (
+    experience.length < 0 ? state(prev => { return { ...prev, experience: 'Experience required' } })
+      : state(prev => { return { ...prev, experience: null } })
+  )
+}
+export const validateSummary = (summary, state) => {
+  return (
+    summary.length < 20 ? state(prev => { return { ...prev, summary: 'Required 20 characters or more' } })
+      : state(prev => { return { ...prev, summary: null } })
+  )
+}
 export const validateImageFiles = (file, fileNameState, fileState) => {
   if (!file.name.includes('.jpg') && !file.name.includes('.png') && !file.name.includes('.jpeg')) {
     return window.alert('please select correct file type')

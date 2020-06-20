@@ -103,7 +103,7 @@ export const SecondForm = ({
         </div>
         <div className='input-wrapper'>
           <input
-            type='text'
+            type='number'
             name='experience'
             placeholder='Years of experience'
             required

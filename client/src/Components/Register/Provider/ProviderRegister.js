@@ -27,7 +27,8 @@ const ProviderRegister = () => {
     summary: '',
     rate: '',
     resume: '',
-    profilePicture: ''
+    profilePicture: '',
+    isSubmitting: false
   })
 
   // input errors state for the registration
@@ -101,18 +102,23 @@ const ProviderRegister = () => {
       }
     }
     s3Uploader(fileData)
-      .then(data =>
-        setFormInput(prev => { return { ...prev, profilePicture: data[0], resume: data[1] } }))
+      .then(data => {
+        setFormInput(prev => { return { ...prev, profilePicture: data[0], resume: data[1], isSubmitting: true } })
+      })
       .catch(e => console.log(e))
   }
 
   /* upload form data to the server after we get response from AWS to set the image and resume url location
   in the form input state */
   useEffect(() => {
-    Registeration(formInput)
-      .then(data => console.log(data))
-      .catch(e => console.log(e))
-  }, [formInput])
+    if (formInput.isSubmitting === true) {
+      Registeration(formInput)
+        .then(data => {
+          console.log(data)
+          setFormInput(prev => { return { ...prev, isSubmitting: false } })
+        }).catch(e => console.log(e))
+    }
+  }, [formInput.isSubmitting])
 
   return (
     <div className='container'>
@@ -128,7 +134,7 @@ const ProviderRegister = () => {
             handleImageUpload={imageUpload}
             handleResumeUpload={resumeUpload}
             handleSubmit={submitRegisteration}
-            />
+          />
           : <FirstForm
             firstName={formInput.firstName}
             lastName={formInput.lastName}
@@ -142,7 +148,7 @@ const ProviderRegister = () => {
             emailError={errors.email}
             passwordError={errors.password}
             confirmPasswordError={errors.confirmPassword}
-            />}
+          />}
       </div>
     </div>
   )

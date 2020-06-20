@@ -14,6 +14,6 @@ export const Registeration = async (data) => {
   if ((data.resume.length > 0) && (data.profilePicture.length > 0)) {
     const registerationData = await axios.post('http://localhost:3002/api/post/provider/register', data)
 
-    return registerationData.data.data
+    return registerationData
   }
 }
