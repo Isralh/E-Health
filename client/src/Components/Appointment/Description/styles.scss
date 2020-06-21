@@ -1,13 +1,32 @@
 @import '../../../Assets/Sass/Variables';
 
 .description-container {
-    @media (min-width:$mobile-width) {
-        flex-basis: 60%;
-        margin-left: 10vw;
+  @media (min-width: $mobile-width) {
+    flex-basis: 60%;
+    margin-left: 10vw;
 
-        p {
-            font-size: 18px;
-        }
+    p {
+      font-size: 18px;
     }
-
+    .checked {
+      color: orange;
+    }
+    .rating {
+      margin-left: 10px;
+      font-weight: $bolderFont;
+    }
+    .view-profile {
+      color: blue;
+      font-size: 15px;
+    }
+    button {
+      color: white;
+      font-weight: $bolderFont;
+      background: orange;
+      border: solid white;
+      padding: 10px;
+      width: 100px;
+      border-radius: 25px;
+    }
+  }
 }

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Services from './Services'
 import Image from '../Image/Image'
-import Description from '../Description/Description'
+import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
 const Doctors = () => {
   const [doctors, setDoctors] = useState()
-
+  const rateDoctor = (doctor) => {
+    return doctor.rate < 120 ? '4.0' : '5.0'
+  }
+  const viewRating = (doctor) => {
+    return doctor.rate < 120 ? <FourStar /> : <FiveStar />
+  }
   // on page load get all of the doctors from our database
   useEffect(() => {
     Services()
@@ -14,10 +19,7 @@ const Doctors = () => {
   }, [])
 
   useEffect(() => {
-    console.log(doctors)
-    if (doctors !== undefined) {
-      console.log(doctors.map(doctor => doctor.first_name))
-    }
+
   }, [doctors])
   return (
     <div className='list-container'>
@@ -27,6 +29,8 @@ const Doctors = () => {
           <Description
             firstName={doctor.first_name}
             lastName={doctor.last_name}
+            showRating={viewRating(doctor)}
+            doctorRating={rateDoctor(doctor)}
           />
         </div>
       ) : null}

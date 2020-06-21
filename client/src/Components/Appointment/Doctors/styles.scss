@@ -1,34 +1,18 @@
-// $fullHeight: 100vh;
-// $fullWidth: 100%;
-// $mobile-width: 320px;
-// $tablet-width: 768px;
-// $desktop-width: 1024px;
-// $fontColor: rgb(88, 72, 72);
-// $fontWeight: bold;
-// $textCenter: center;
-// $relativePosition: relative;
-// @mixin flex($direction, $wrap, $justify) {
-//     position: relative;
-//     display: flex;
-//     flex-direction: $direction;
-//     flex-wrap: $wrap;
-//     justify-content: $justify;
-//   }
 @import '../../../Assets/Sass/Mixins';
 @import '../../../Assets/Sass/Variables';
 
 .list-container {
-    @media (min-width:$mobile-width) {
-        width: $fullWidth;
-        display: block;
-        margin: 5vh 0 5vh 0;
+  @media (min-width: $mobile-width) {
+    width: $fullWidth;
+    display: block;
+    margin: 5vh 0 5vh 0;
 
-        .doctors-container {
-            width: 100%;
-            @include flex(row, nowrap, flex-start);
-            margin: 5vh 2vw 0 2vw;
-            height: 180px;
-            border-bottom: 0.5px solid lightgray;
-        }
+    .doctors-container {
+      width: 95%;
+      @include flex(row, nowrap, flex-start);
+      margin: 5vh 2vw 0 2vw;
+      height: 180px;
+      border-bottom: 0.5px solid lightgray;
     }
+  }
 }
