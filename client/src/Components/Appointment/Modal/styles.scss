@@ -1,0 +1,50 @@
+@import '../../../Assets/Sass/Variables';
+@mixin flex($direction, $wrap, $justify) {
+  position: relative;
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+}
+.modal-container {
+  @media (min-width: $mobile-width) {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: $fullWidth;
+    height: $fullHeight;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
+      background-color: #fefefe;
+      height: 100vh;
+      //   border: 1px solid #888;
+      width: 100%;
+    }
+    .top-content {
+      @include flex(row, nowrap, flex-start);
+      height: 40vh;
+      .close-modal {
+        // float: right;
+        // margin: 10px 10px 0 0;
+        flex-basis: 5%;
+        span {
+          font-size: 30px;
+          color: $fontColor;
+        }
+      }
+    }
+  }
+}
+// $fullHeight: 100vh;
+// $fullWidth: 100%;
+// $mobile-width: 320px;
+// $tablet-width: 768px;
+// $desktop-width: 1024px;
+// $fontColor: rgb(88, 72, 72);
+// $fontWeight: bold;
+// $textCenter: center;
+// $relativePosition: relative;
+// $bolderFont: bolder;

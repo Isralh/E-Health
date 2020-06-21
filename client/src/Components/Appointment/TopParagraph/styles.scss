@@ -1,17 +1,16 @@
 @import '../../../Assets/Sass/Variables';
 
 .paragraph-container {
-    @media(min-width:$mobile-width) {
-        border-bottom: solid 1px $fontColor;
-        margin: 10vh 0 0 2vw;
-        width: 95%;
-        height: 20px;
+  @media (min-width: $mobile-width) {
+    border-bottom: solid 1px $fontColor;
+    margin: 10vh 0 0 2vw;
+    width: 95%;
+    height: 20px;
 
-        p {
-            text-align: justify;
-            color: $fontColor;
-            font-size: 20px;
-        }
+    p {
+      text-align: justify;
+      color: $fontColor;
+      font-size: 20px;
     }
-
+  }
 }

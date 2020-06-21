@@ -2,14 +2,14 @@ import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-const Description = ({ firstName, lastName, doctorRating, showRating }) => {
+const Description = ({ firstName, lastName, doctorRating, showRating, showModal, flexPercentage }) => {
   return (
-    <div className='description-container'>
+    <div className='description-container' style={{ flexBasis: flexPercentage }}>
       <p>{` Dr. ${firstName} ${lastName}`}</p>
       {showRating}
       <span className='rating'>{doctorRating}</span>
-      <p className='view-profile'>View Profile & Reviews</p>
-      <button className='book-btn'>Button</button>
+      <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
+      <button className='book-btn'>Book</button>
     </div>
   )
 }

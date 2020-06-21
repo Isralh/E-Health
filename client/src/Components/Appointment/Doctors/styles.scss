@@ -6,9 +6,9 @@
     width: $fullWidth;
     display: block;
     margin: 5vh 0 5vh 0;
-
+    width: 95%;
     .doctors-container {
-      width: 95%;
+      width: 100%;
       @include flex(row, nowrap, flex-start);
       margin: 5vh 2vw 0 2vw;
       height: 180px;
