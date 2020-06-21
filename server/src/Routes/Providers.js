@@ -4,6 +4,6 @@ const Registration = require('../Controller/Providers/Registration')
 const AllProviders = require('../Controller/Providers/AllProviders')
 router.post('/post/provider/uploadImageResume', imageUpload)
 router.post('/post/provider/register', Registration)
-router.get('/post/provider/AllProviders', AllProviders)
+router.get('/get/provider/AllProviders', AllProviders)
 
 module.exports = router
