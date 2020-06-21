@@ -1,0 +1,15 @@
+@import '../../../Assets/Sass/Variables';
+
+header {
+    @media (min-width:$mobile-width) {
+        text-align: justify;
+        margin: 5vh 5vw 0 2vw;
+
+        h1 {
+            color: $fontColor;
+            font-size: 22px;
+            line-height: 30px;
+            font-weight: bolder;
+        }
+    }
+}

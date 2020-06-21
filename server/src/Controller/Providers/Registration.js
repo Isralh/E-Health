@@ -3,7 +3,7 @@ const Bcrypt = require('bcrypt')
 const jwtToken = require('jsonwebtoken')
 const jwtSecret = require('../../Config/JwtSecret')
 
-const Registeration = async (req, res) => {
+const Registration = async (req, res) => {
   const clientData = await req.body
 
   try {
@@ -53,4 +53,4 @@ const Registeration = async (req, res) => {
   }
 }
 
-module.exports = Registeration
+module.exports = Registration
