@@ -1,11 +1,5 @@
 @import '../../../Assets/Sass/Variables';
-@mixin flex($direction, $wrap, $justify) {
-  position: relative;
-  display: flex;
-  flex-direction: $direction;
-  flex-wrap: $wrap;
-  justify-content: $justify;
-}
+@import '../../../Assets/Sass/Mixins';
 .modal-container {
   @media (min-width: $mobile-width) {
     position: fixed;
@@ -27,24 +21,20 @@
       @include flex(row, nowrap, flex-start);
       height: 40vh;
       .close-modal {
-        // float: right;
-        // margin: 10px 10px 0 0;
         flex-basis: 5%;
+        margin: 5vh 0 0 0;
         span {
           font-size: 30px;
           color: $fontColor;
         }
       }
+      .modal-doctor-image {
+        @include background(repeat, cover, 50% 50%, relative);
+        @include profileImage(middle, 50%);
+        height: 50%;
+        flex-basis: 100px;
+        margin: 5vh 0 0 0;
+      }
     }
   }
 }
-// $fullHeight: 100vh;
-// $fullWidth: 100%;
-// $mobile-width: 320px;
-// $tablet-width: 768px;
-// $desktop-width: 1024px;
-// $fontColor: rgb(88, 72, 72);
-// $fontWeight: bold;
-// $textCenter: center;
-// $relativePosition: relative;
-// $bolderFont: bolder;

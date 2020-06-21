@@ -2,7 +2,7 @@
 
 .description-container {
   @media (min-width: $mobile-width) {
-    // flex-basis: 60%;
+    flex-basis: 60%;
     margin-left: 10vw;
 
     p {
@@ -18,6 +18,8 @@
     .view-profile {
       color: blue;
       font-size: 15px;
+      width: 150px;
+      cursor: pointer;
     }
     button {
       color: white;

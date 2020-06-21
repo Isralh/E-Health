@@ -13,3 +13,8 @@
   background-position: $position;
   position: $relative;
 }
+
+@mixin profileImage($alignMiddle, $radius) {
+  vertical-align: $alignMiddle;
+  border-radius: $radius;
+}

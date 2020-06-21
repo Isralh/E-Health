@@ -6,16 +6,6 @@ import './styles.scss'
 import Modal from '../Modal/Modal'
 export const doctorContext = createContext()
 const Doctors = () => {
-  /* description component flex percentage */
-  const [descriptionFlex, setDescriptionModal] = useState({
-    nonModal: '60%'
-  })
-
-  /* Image component flex percentage */
-  const [imageFlex, setImageFlex] = useState({
-    nonModal: '150px'
-  })
-
   /* state to toggle modal open and close */
   const [modalState, setModalState] = useState(false)
 
@@ -53,13 +43,15 @@ const Doctors = () => {
       .catch(e => console.log(e))
   }, [])
 
+  useEffect(() => {
+    console.log(doctors)
+  }, [doctors])
   return (
     <div className='list-container'>
       {doctors !== undefined ? doctors.map(doctor =>
         <div key={doctor.id} className='doctors-container'>
           <Image
             doctorsImage={doctor.image}
-            imageFlex={imageFlex.nonModal}
           />
           <Description
             firstName={doctor.first_name}
@@ -67,7 +59,6 @@ const Doctors = () => {
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
             showModal={openModal.bind(this, doctor)}
-            flexPercentage={descriptionFlex.nonModal}
           />
         </div>
       ) : null}

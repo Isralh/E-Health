@@ -3,6 +3,7 @@
 
 .list-container {
   @media (min-width: $mobile-width) {
+      flex-basis: 150px;
     width: $fullWidth;
     display: block;
     margin: 5vh 0 5vh 0;

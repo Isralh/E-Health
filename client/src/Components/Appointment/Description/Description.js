@@ -2,9 +2,9 @@ import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-const Description = ({ firstName, lastName, doctorRating, showRating, showModal, flexPercentage }) => {
+const Description = ({ firstName, lastName, doctorRating, showRating, showModal }) => {
   return (
-    <div className='description-container' style={{ flexBasis: flexPercentage }}>
+    <div className='description-container'>
       <p>{` Dr. ${firstName} ${lastName}`}</p>
       {showRating}
       <span className='rating'>{doctorRating}</span>
