@@ -35,7 +35,7 @@ module.exports = DbConnection.define('providers', {
     allowNull: false
   },
   summary: {
-    type: DataTypes.BLOB,
+    type: DataTypes.TEXT({ length: 1000 }),
     allowNull: false
   },
   resume: {

@@ -14,26 +14,61 @@
     .modal-content {
       background-color: #fefefe;
       height: 100vh;
-      //   border: 1px solid #888;
       width: 100%;
+      color: $fontColor;
     }
     .top-content {
       @include flex(row, nowrap, flex-start);
-      height: 40vh;
+      height: 30vh;
       .close-modal {
-        flex-basis: 5%;
-        margin: 5vh 0 0 0;
+        float: right;
+        margin: 1vh 10px 0 0px;
         span {
           font-size: 30px;
-          color: $fontColor;
+        }
+      }
+      .top-description {
+        flex-basis: 55%;
+        margin: 5vh 0 0 20px;
+        color: $fontColor;
+        .doctor-name {
+          font-size: 20px;
+        }
+        .rating {
+          margin-left: 10px;
+        }
+        .checked {
+          color: orange;
+        }
+        .top-school {
+          margin-left: 5px;
         }
       }
       .modal-doctor-image {
         @include background(repeat, cover, 50% 50%, relative);
         @include profileImage(middle, 50%);
-        height: 50%;
-        flex-basis: 100px;
-        margin: 5vh 0 0 0;
+        height: 65%;
+        flex-basis: 90px;
+        margin: 8vh 0 0 10px;
+      }
+    }
+    .main-content {
+      margin: -10px 20px 0 20px;
+      .main-description {
+        .years-experience {
+          margin-left: 5px;
+        }
+        h4 {
+          //   font-size: 15px;
+          margin-top: 25px;
+        }
+        .qualifications-border {
+          margin-top: -15px;
+          border-bottom: 1px solid $fontColor;
+        }
+        .summary {
+          margin-top: -20px;
+        }
       }
     }
   }
