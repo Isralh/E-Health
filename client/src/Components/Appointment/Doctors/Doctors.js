@@ -41,6 +41,11 @@ const Doctors = () => {
     setSelectedDoctor(doctor)
   }
 
+  /* function to close modal */
+  const modalClose = () => {
+    setModalState(false)
+  }
+
   /* on page load get all of the doctors from our database */
   useEffect(() => {
     Services()
@@ -69,6 +74,7 @@ const Doctors = () => {
       <doctorContext.Provider value={selectedDoctor}>
         <Modal
           viewModal={modalState}
+          closeModal={modalClose}
         />
       </doctorContext.Provider>
     </div>
