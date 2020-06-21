@@ -1,0 +1,13 @@
+@import '../../../Assets/Sass/Variables';
+
+.description-container {
+    @media (min-width:$mobile-width) {
+        flex-basis: 60%;
+        margin-left: 10vw;
+
+        p {
+            font-size: 18px;
+        }
+    }
+
+}

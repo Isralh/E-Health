@@ -6,3 +6,10 @@
   flex-wrap: $wrap;
   justify-content: $justify;
 }
+
+@mixin background($repeat, $cover, $position, $relative) {
+  background-repeat: $repeat;
+  background-size: $cover;
+  background-position: $position;
+  position: $relative;
+}
