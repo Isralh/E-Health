@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-const Description = ({ firstName, lastName, doctorRating, showRating, showModal }) => {
+const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates }) => {
   return (
     <div className='description-container'>
       <p>{` Dr. ${firstName} ${lastName}`}</p>

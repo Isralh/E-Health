@@ -56,6 +56,7 @@ const Doctors = () => {
           <Description
             firstName={doctor.first_name}
             lastName={doctor.last_name}
+            rates={doctor.rate}
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
             showModal={openModal.bind(this, doctor)}

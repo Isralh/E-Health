@@ -3,7 +3,7 @@
 
 .list-container {
   @media (min-width: $mobile-width) {
-      flex-basis: 150px;
+    flex-basis: 150px;
     width: $fullWidth;
     display: block;
     margin: 5vh 0 5vh 0;
@@ -14,6 +14,13 @@
       margin: 5vh 2vw 0 2vw;
       height: 180px;
       border-bottom: 0.5px solid lightgray;
+    }
+  }
+  @media (min-width: $tablet-width) {
+    width: 60%;
+    margin-left: 15vw;
+    .doctors-container {
+      margin-left: 0vw;
     }
   }
 }

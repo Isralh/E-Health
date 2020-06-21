@@ -1,5 +1,25 @@
 @import '../../../Assets/Sass/Variables';
 
+header {
+  @media (min-width: $mobile-width) {
+    text-align: justify;
+    margin: 5vh 5vw 0 2vw;
+
+    h1 {
+      color: $fontColor;
+      font-size: 22px;
+      line-height: 30px;
+      font-weight: bolder;
+    }
+  }
+  @media (min-width: $tablet-width) {
+    width: 60%;
+    margin-left: 15vw;
+    h1 {
+      line-height: 40px;
+    }
+  }
+}
 .paragraph-container {
   @media (min-width: $mobile-width) {
     border-bottom: solid 1px $fontColor;
@@ -12,5 +32,9 @@
       color: $fontColor;
       font-size: 20px;
     }
+  }
+  @media (min-width: $tablet-width) {
+    width: 60%;
+    margin-left: 15vw;
   }
 }
