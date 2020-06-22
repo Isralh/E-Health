@@ -5,11 +5,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates }) => {
   return (
     <div className='description-container'>
-      <p>{` Dr. ${firstName} ${lastName}`}</p>
-      {showRating}
-      <span className='rating'>{doctorRating}</span>
-      <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
-      <button className='book-btn'>Book</button>
+      <div className='description-wrapper'>
+        <p>{` Dr. ${firstName} ${lastName}`}</p>
+        {showRating}
+        <span className='rating'>{doctorRating}</span>
+        <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
+        <p className='rates'>{`$${rates}/hour`}</p>
+        <button className='book-btn'>Book Now</button>
+      </div>
     </div>
   )
 }

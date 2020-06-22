@@ -2,10 +2,15 @@
 @import '../../../Assets/Sass/Mixins';
 
 .doctor-images {
+  border-right: 1px solid black;
+
   @media (min-width: $mobile-width) {
     flex-basis: 150px;
     @include background(repeat, cover, 50% 50%, relative);
     @include profileImage(middle, 50%);
-    height: 90%;
+    height: 70%;
+  }
+  @media (min-width: 600px) {
+    height: 75%;
   }
 }

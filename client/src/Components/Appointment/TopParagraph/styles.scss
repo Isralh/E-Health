@@ -13,8 +13,15 @@ header {
     }
   }
   @media (min-width: $tablet-width) {
+    margin-left: 10%;
+    width: 80%;
+    h1 {
+      line-height: 30px;
+    }
+  }
+  @media (min-width: 1000px) {
+    margin-left: 20%;
     width: 60%;
-    margin-left: 15vw;
     h1 {
       line-height: 40px;
     }
@@ -34,7 +41,15 @@ header {
     }
   }
   @media (min-width: $tablet-width) {
+    margin-left: 10%;
+    width: 80%;
+  }
+  @media (min-width: 1000px) {
+    margin-left: 20%;
     width: 60%;
-    margin-left: 15vw;
+  }
+  @media (min-width: 1000px) {
+    margin-left: 20%;
+    width: 60%;
   }
 }

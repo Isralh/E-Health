@@ -61,6 +61,7 @@ const Doctors = () => {
             doctorRating={rateDoctor(doctor)}
             showModal={openModal.bind(this, doctor)}
           />
+          <button className='tablet-book-btn'>Book</button>
         </div>
       ) : null}
       <doctorContext.Provider value={selectedDoctor}>

@@ -1,10 +1,9 @@
 @import '../../../Assets/Sass/Variables';
-
+@import '../../../Assets/Sass/Mixins';
 .description-container {
   @media (min-width: $mobile-width) {
-    flex-basis: 60%;
+    flex-basis: 40%;
     margin-left: 10vw;
-
     p {
       font-size: 18px;
     }
@@ -20,25 +19,38 @@
       font-size: 15px;
       width: 150px;
       cursor: pointer;
+      text-align: center;
     }
     button {
-      color: white;
-      font-weight: $bolderFont;
-      background: orange;
-      border: solid white;
-      padding: 10px;
-      width: 100px;
-      border-radius: 25px;
-      cursor: pointer;
+      @include bookButton(
+        white,
+        $bolderFont,
+        orange,
+        solid white,
+        10px,
+        100px,
+        25px,
+        pointer
+      );
     }
     button:hover {
       background: $fontColor;
     }
   }
   @media (min-width: 425px) and (max-width: $tablet-width) {
-    margin-left: 20vw;
+    // margin-left: 20vw;
   }
   @media (min-width: $tablet-width) {
-    margin-left: 10vw;
+    // margin-left: 20%;
+    // margin-left: 10vw;
+  }
+  @media (min-width: 600px) {
+    flex-basis: 60%;
+    .description-wrapper {
+      margin-left: 70px;
+    }
+    button {
+      display: none;
+    }
   }
 }

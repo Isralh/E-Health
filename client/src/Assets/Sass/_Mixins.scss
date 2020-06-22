@@ -18,3 +18,23 @@
   vertical-align: $alignMiddle;
   border-radius: $radius;
 }
+
+@mixin bookButton(
+  $color,
+  $bolderFont,
+  $background,
+  $border,
+  $padding,
+  $width,
+  $radius,
+  $cursor
+) {
+  color: $color;
+  font-weight: $bolderFont;
+  background: $background;
+  border: $border;
+  padding: $padding;
+  width: $width;
+  border-radius: $radius;
+  cursor: $cursor;
+}
