@@ -29,6 +29,10 @@
 
       .input-wrapper {
         margin-top: 5vh;
+
+        P {
+          color: red;
+        }
       }
 
       input {
@@ -66,7 +70,7 @@
           // border-radius: 5px;
           cursor: pointer;
 
-          :hover {
+          button:hover {
             color: $fontColor;
             background: white;
             font-weight: bolder;

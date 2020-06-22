@@ -1,9 +1,9 @@
 import React from 'react'
 import './Styles.scss'
-const Heading = () => {
+const Heading = ({ topHeading }) => {
   return (
     <div className='heading'>
-      <h1>JOIN OUR NETWORK</h1>
+      <h1>{topHeading}</h1>
     </div>
   )
 }

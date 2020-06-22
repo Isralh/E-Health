@@ -96,7 +96,7 @@ const ProviderRegister = () => {
   }
 
   // On form submit check if all inputs have been filled correctly
-  const submitRegistration = async (e) => {
+  const submitRegistration = (e) => {
     e.preventDefault()
     validateEducation(formInput.education, setErrors)
     validateExperience(formInput.experience, setErrors)
@@ -159,7 +159,7 @@ const ProviderRegister = () => {
     <div className='container'>
       <NavBar />
       <div className='content-container'>
-        <Heading />
+        <Heading topHeading='Join Our Network' />
         {firstFormComplete
           ? <SecondForm
             handleChange={handleFormInput}
@@ -177,7 +177,7 @@ const ProviderRegister = () => {
             userExperience={formInput.experience}
             userRates={formInput.rate}
             userSummary={formInput.summary}
-            />
+          />
           : <FirstForm
             handleChange={handleFormInput}
             handleNext={goToNextForm}
@@ -191,7 +191,7 @@ const ProviderRegister = () => {
             emailError={errors.email}
             passwordError={errors.password}
             confirmPasswordError={errors.confirmPassword}
-            />}
+          />}
       </div>
     </div>
   )
