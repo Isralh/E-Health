@@ -1,20 +1,20 @@
 export const validateFirstName = (firstName, setState) => {
   return (
-    firstName.length < 3 ? setState(prev => { return { ...prev, firstName: 'Required 3 characters or more' } })
+    firstName.length < 3 ? setState(prev => { return { ...prev, firstName: 'First name has to be at least 3 characters' } })
       : setState(prev => { return { ...prev, firstName: null } })
   )
 }
 
 export const validateLastName = (lastName, setState) => {
   return (
-    lastName.length < 3 ? setState(prev => { return { ...prev, lastName: 'Required 3 characters or more' } })
+    lastName.length < 3 ? setState(prev => { return { ...prev, lastName: 'Last name has to be at least 3 characters' } })
       : setState(prev => { return { ...prev, lastName: null } })
   )
 }
 
 export const validatePassWord = (password, setState) => {
   return (
-    password.length < 6 ? setState(prev => { return { ...prev, password: 'Required at least 6 characters or more' } })
+    password.length < 6 ? setState(prev => { return { ...prev, password: 'Password must be at least 6 characters' } })
       : setState(prev => { return { ...prev, password: null } })
   )
 }
@@ -61,7 +61,7 @@ export const validateRates = (rate, state) => {
 }
 export const validateSummary = (summary, state) => {
   return (
-    summary.length < 20 ? state(prev => { return { ...prev, summary: 'Required 20 characters or more' } })
+    summary.length < 20 ? state(prev => { return { ...prev, summary: 'professional summary has to be at least 20 characters' } })
       : state(prev => { return { ...prev, summary: null } })
   )
 }
@@ -79,7 +79,7 @@ export const validateResume = (resume, state) => {
 }
 export const validateImageFiles = (file, fileNameState, fileState) => {
   if (!file.name.includes('.jpg') && !file.name.includes('.png') && !file.name.includes('.jpeg')) {
-    return window.alert('please select correct file type')
+    return window.alert('Only png, jpg, or jpeg files accepted')
   } else if (file.size > 1000000) {
     return window.alert('File size has to be less than 1mb')
   } else {
@@ -90,7 +90,7 @@ export const validateImageFiles = (file, fileNameState, fileState) => {
 
 export const validateResumeFiles = (file, fileNameState, fileState) => {
   if (!file.name.includes('.pdf') && !file.name.includes('.doc')) {
-    return window.alert('please select correct file type')
+    return window.alert('Only pdf and doc files accepted')
   } else if (file.size > 1000000) {
     return window.alert('File size has to be less than 1mb')
   } else {

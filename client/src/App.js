@@ -5,6 +5,7 @@ import './App.scss'
 import ProviderRegister from './Components/Register/Provider/ProviderRegister'
 import Appointment from './Components/Appointment/Appointment/Appointment'
 import CustomerRegister from './Components/Register/Customer/CustomerRegister'
+import Login from './Components/Login/Login'
 const App = () => {
   return (
     <Router>
@@ -13,6 +14,7 @@ const App = () => {
         <Route path='/providerRegister' component={ProviderRegister} />
         <Route path='/bookAppointment' component={Appointment} />
         <Route path='/createAccount' component={CustomerRegister} />
+        <Route path='/login' component={Login} />
       </Switch>
     </Router>
   )

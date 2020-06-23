@@ -3,12 +3,18 @@ import './Styles.scss'
 import NavBar from '../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import { FirstForm, SecondForm } from './Form'
-import {
-  validateFirstName, validateLastName, validatePassWord, validateResume, validateSecondForm,
-  validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
-  validateEducation, validateExperience, validateSummary, validateRates, validateImages
-} from './errorValidation'
+// import {
+//   validateFirstName, validateLastName, validatePassWord, validateResume, validateSecondForm,
+//   validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
+//   validateEducation, validateExperience, validateSummary, validateRates, validateImages
+// } from './errorValidation'
 import { s3Uploader, Registration } from './Services'
+import { useHistory } from 'react-router-dom'
+import {
+  validateEmail, validateFirstName, validateLastName, validatePassWord, validateResume,
+  validateSecondForm, validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
+  validateEducation, validateExperience, validateSummary, validateRates, validateImages
+} from '../ErrorValidation/ErrorValidation'
 const ProviderRegister = () => {
   const [selectedResume, setSelectedResume] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -29,8 +35,8 @@ const ProviderRegister = () => {
     confirmPassword: '',
     education: '',
     experience: '',
-    summary: ' ',
-    rate: '',
+    summary: '',
+    rate: ' ',
     resume: '',
     profilePicture: ''
   })
@@ -53,6 +59,9 @@ const ProviderRegister = () => {
   // toggle between first and second form based on completion and error handling
   const [firstFormComplete, setFirstFormComplete] = useState(false)
 
+  useEffect(() => {
+    setFirstFormComplete(true)
+  }, [])
   // get input values onChange and update our form state
   const handleFormInput = (e) => {
     e.persist()
@@ -65,14 +74,14 @@ const ProviderRegister = () => {
     validateFirstName(formInput.firstName, setErrors)
     validateLastName(formInput.lastName, setErrors)
     validatePassWord(formInput.password, setErrors)
+    validateEmail(formInput.email, setErrors)
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
-    formInput.email.length < 3 ? setErrors(prev => { return { ...prev, email: 'Invalid email-address' } }) : setErrors(prev => { return { ...prev, email: null } })
   }
 
   // change the formview based on error state changes, if error with the first form don't move to the next form view
-  useEffect(() => {
-    validateFirstForm(errors, setFirstFormComplete)
-  }, [errors])
+  // useEffect(() => {
+  //   validateFirstForm(errors, setFirstFormComplete)
+  // }, [errors])
 
   /* onchange function to get image file selected then check if it's a correct file type, if not send an alert.
   if it is update the input text for the image input in the form then setSelectedImage state we use to upload the image file
@@ -150,11 +159,12 @@ const ProviderRegister = () => {
     }
   }, [isSubmitting.server])
 
-  useEffect(() => {
-    console.log(formInput)
-    console.log(errors)
-    console.log(isSubmitting)
-  }, [formInput, errors, isSubmitting])
+  /* go to the login page */
+  const history = useHistory()
+  const goToLoginPage = () => {
+    history.push('/login')
+  }
+
   return (
     <div className='container'>
       <NavBar />
@@ -177,7 +187,7 @@ const ProviderRegister = () => {
             userExperience={formInput.experience}
             userRates={formInput.rate}
             userSummary={formInput.summary}
-          />
+            />
           : <FirstForm
             handleChange={handleFormInput}
             handleNext={goToNextForm}
@@ -191,7 +201,8 @@ const ProviderRegister = () => {
             emailError={errors.email}
             passwordError={errors.password}
             confirmPasswordError={errors.confirmPassword}
-          />}
+            handleLogin={goToLoginPage}
+            />}
       </div>
     </div>
   )

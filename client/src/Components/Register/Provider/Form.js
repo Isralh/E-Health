@@ -3,7 +3,7 @@ import './Styles.scss'
 export const FirstForm = ({
   handleChange, handleNext, firstNameError, lastNameError,
   emailError, passwordError, confirmPasswordError, firstName,
-  lastName, email, password, confirmPassword
+  lastName, email, password, confirmPassword, handleLogin
 }) => {
   return (
     <div className='form-container'>
@@ -65,7 +65,7 @@ export const FirstForm = ({
         </div>
       </form>
       <div className='button-container'>
-        <p>Existing user? <span>Login</span></p>
+        <p>Existing user? <span onClick={handleLogin}>Login</span></p>
         <button
           type='button'
           onClick={handleNext}
@@ -120,11 +120,11 @@ export const SecondForm = ({
         </div>
         <div className='input-wrapper'>
           <p>{summaryError}</p>
-          <textarea
+          <input
             className='summary'
             type='text'
             name='summary'
-            placeholder='Professional Summary'
+            placeholder='Your experience summary...'
             required
             value={userSummary}
             onChange={handleChange}

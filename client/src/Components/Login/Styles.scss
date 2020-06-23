@@ -1,0 +1,76 @@
+@import '../../Assets/Sass/Variables';
+@import '../../Assets/Sass/Mixins';
+
+.login-container {
+    width: $fullWidth;
+    height: $fullHeight;
+    background: white;
+    color: $fontColor;
+}
+
+.login-wrapper {
+    color: $fontColor;
+    position: $relativePosition;
+    margin-top: 5vh;
+}
+
+.heading {
+    margin-right: 10vw;
+
+    h1 {
+        font-size: 25px;
+        text-align: $textCenter;
+        margin-left: 3vw;
+    }
+}
+
+.form-container {
+    margin: 5vh 0 0 7vw;
+    width: 80%;
+
+    .input-wrapper {
+        margin-top: 5vh;
+
+        p {
+            color: red;
+        }
+    }
+
+    input {
+        height: 30px;
+        width: 97%;
+    }
+}
+
+.button-container {
+    margin-top: 5vh;
+    width: 100%;
+    @include flex(row, nowrap, space-between);
+
+    p {
+        font-weight: bolder;
+        color: $fontColor;
+        font-size: 15px;
+
+        span {
+            cursor: pointer;
+            font-weight: bolder;
+        }
+    }
+
+    button {
+        background: $fontColor;
+        color: white;
+        font-size: 18px;
+        width: 90px;
+        height: 45px;
+        // border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        color: $fontColor;
+        background: white;
+        font-weight: bolder;
+    }
+}

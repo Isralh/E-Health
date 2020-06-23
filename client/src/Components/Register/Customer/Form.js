@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Form = ({
-  firstName, firstNameError, handleChange, lastNameError, lastName, handleSubmit,
+  firstName, firstNameError, handleChange, lastNameError, lastName, handleSubmit, handleLogin,
   emailError, email, password, passwordError, confirmPassword, confirmPasswordError
 }) => {
   return (
@@ -63,7 +63,7 @@ const Form = ({
           />
         </div>
         <div className='button-container'>
-          <p>Existing user? <span>Login</span></p>
+          <p>Existing user? <span onClick={handleLogin}>Login</span></p>
           <button
             onClick={handleSubmit}
             type='submit'

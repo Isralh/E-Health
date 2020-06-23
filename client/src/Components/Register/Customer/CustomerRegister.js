@@ -4,6 +4,7 @@ import Heading from '../Provider/Heading'
 import Form from './Form'
 import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateEmail } from '../ErrorValidation/ErrorValidation'
 import Services from './Services'
+import { useHistory } from 'react-router-dom'
 import './Styles.scss'
 const CustomerRegister = () => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
@@ -59,10 +60,12 @@ const CustomerRegister = () => {
     submitForm()
   }, [errors])
 
-  useEffect(() => {
-    console.log(formInput)
-    console.log(errors)
-  }, [formInput, errors])
+  const history = useHistory()
+  /* go to the login page */
+  const goToLoginPage = () => {
+    history.push('/login')
+  }
+
   return (
     <div className='registration-container'>
       <NavBar />
@@ -81,6 +84,7 @@ const CustomerRegister = () => {
           passwordError={errors.password}
           confirmPasswordError={errors.confirmPassword}
           handleSubmit={validateForm}
+          handleLogin={goToLoginPage}
         />
       </div>
     </div>
