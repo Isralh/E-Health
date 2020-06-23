@@ -25,6 +25,17 @@ export const validateConfirmPassword = (password, confirmPassword, setState) => 
   )
 }
 
+export const validateEmail = (email, setState) => {
+  const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const value = expression.test(email)
+
+  return (
+    value === false ? setState(prev => { return { ...prev, email: 'Please enter a valid e-mail address' } })
+      : setState(prev => { return { ...prev, email: null } })
+
+  )
+}
+
 export const validateFirstForm = (error, state) => {
   if ((!error.firstName) && (!error.lastName) && (!error.email) && (!error.password) && (!error.confirmPassword)) {
     state(true)

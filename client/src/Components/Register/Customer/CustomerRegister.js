@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../../Home/NavBar/NavBar'
 import Heading from '../Provider/Heading'
 import Form from './Form'
-import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword } from '../ErrorValidation/ErrorValidation'
+import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateEmail } from '../ErrorValidation/ErrorValidation'
+import Services from './Services'
 import './Styles.scss'
 const CustomerRegister = () => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
@@ -36,22 +37,34 @@ const CustomerRegister = () => {
     e.preventDefault()
     validateFirstName(formInput.firstName, setErrors)
     validateLastName(formInput.lastName, setErrors)
+    validateEmail(formInput.email, setErrors)
     validatePassWord(formInput.password, setErrors)
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
   }
 
   /* submit the form if there are no errors in the input error state */
-  const submitForm = () => {
+  const submitForm = async () => {
     if (!errors.firstName && !errors.lastName && !errors.email && !errors.password && !errors.confirmPassword) {
-
+      const response = await Services(formInput)
+      try {
+        if (response.status === 200) return window.alert(response.data.message)
+        if (response.status === 201) return window.alert(response.data.message)
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
+
+  useEffect(() => {
+    submitForm()
+  }, [errors])
+
   useEffect(() => {
     console.log(formInput)
     console.log(errors)
   }, [formInput, errors])
   return (
-    <div className='registeration-container'>
+    <div className='registration-container'>
       <NavBar />
       <div className='registration-wrapper'>
         <Heading topHeading='Create an Account' />
