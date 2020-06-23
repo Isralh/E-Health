@@ -3,7 +3,7 @@ import NavBar from '../../Home/NavBar/NavBar'
 import Heading from '../Provider/Heading'
 import Form from './Form'
 import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateEmail } from '../ErrorValidation/ErrorValidation'
-import Services from './Services'
+import RegistrationServices from './RegistrationServices'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
 const CustomerRegister = () => {
@@ -46,7 +46,7 @@ const CustomerRegister = () => {
   /* submit the form if there are no errors in the input error state */
   const submitForm = async () => {
     if (!errors.firstName && !errors.lastName && !errors.email && !errors.password && !errors.confirmPassword) {
-      const response = await Services(formInput)
+      const response = await RegistrationServices(formInput)
       try {
         if (response.status === 200) return window.alert(response.data.message)
         if (response.status === 201) return window.alert(response.data.message)

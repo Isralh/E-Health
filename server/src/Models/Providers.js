@@ -49,5 +49,10 @@ module.exports = DbConnection.define('providers', {
   rate: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  userType: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'provider'
   }
 })

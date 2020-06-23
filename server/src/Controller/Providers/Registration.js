@@ -24,7 +24,7 @@ const Registration = async (req, res) => {
       first_name: clientData.firstName,
       last_name: clientData.lastName,
       email: (clientData.email).trim(),
-      password: await (await Bcrypt.hash(clientData.password, 8)).trim(),
+      password: await (await Bcrypt.hash(clientData.password.trim(), 8)),
       education: clientData.education,
       yearsOfExperience: clientData.experience,
       summary: clientData.summary,
@@ -35,9 +35,9 @@ const Registration = async (req, res) => {
       const token = jwtToken.sign({
         userId: provider.id,
         firstName: provider.first_name,
-        credential: 'provider'
+        credential: provider.userType
       }, jwtSecret, {
-        expiresIn: '2hr'
+        expiresIn: '5hr'
       })
       return res.status(201).send({ message: 'success', userToken: token })
     }).catch(e => {

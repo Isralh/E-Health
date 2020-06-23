@@ -28,23 +28,22 @@ const existingUser = async (data, res, outputMessage) => {
 /* function to add in the new user */
 const addUser = async (data, res, outputMessage) => {
   let hashedPassword
-  Bcrypt.hash(data.password, 8, (err, hash) => {
+  Bcrypt.hash(data.password.trim(), 8, (err, hash) => {
     if (err) throw err
     hashedPassword = hash
   })
   customers.create({
     first_name: data.firstName,
     last_name: data.lastName,
-    email: data.email,
-    password: hashedPassword,
-    userType: 'customer'
+    email: data.email.trim(),
+    password: hashedPassword
   }).then(customer => {
     const token = jwtToken.sign({
       userId: customer.id,
       firstName: customer.first_name,
-      credential: 'customer'
+      credential: customer.userType
     }, jwtSecret, {
-      expiresIn: '2hr'
+      expiresIn: '5hr'
     })
     return res.status(201).send({ message: outputMessage, userToken: token })
   }).catch(e => { if (e) return res.status(500) })
