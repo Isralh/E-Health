@@ -3,11 +3,6 @@ import './Styles.scss'
 import NavBar from '../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import { FirstForm, SecondForm } from './Form'
-// import {
-//   validateFirstName, validateLastName, validatePassWord, validateResume, validateSecondForm,
-//   validateConfirmPassword, validateFirstForm, validateResumeFiles, validateImageFiles,
-//   validateEducation, validateExperience, validateSummary, validateRates, validateImages
-// } from './errorValidation'
 import { s3Uploader, Registration } from './Services'
 import { useHistory } from 'react-router-dom'
 import {
@@ -56,20 +51,17 @@ const ProviderRegister = () => {
     profilePicture: ' '
   })
 
-  // toggle between first and second form based on completion and error handling
+  /* toggle between first and second form based on completion and error handling */
   const [firstFormComplete, setFirstFormComplete] = useState(false)
 
-  useEffect(() => {
-    setFirstFormComplete(true)
-  }, [])
-  // get input values onChange and update our form state
+  /* get input values onChange and update our form state */
   const handleFormInput = (e) => {
     e.persist()
     const value = e.target.value
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
   }
 
-  // check if there were any errors in the first form submission and set the errors state
+  /* check if there were any errors in the first form submission and set the errors state */
   const goToNextForm = () => {
     validateFirstName(formInput.firstName, setErrors)
     validateLastName(formInput.lastName, setErrors)
@@ -78,10 +70,10 @@ const ProviderRegister = () => {
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
   }
 
-  // change the formview based on error state changes, if error with the first form don't move to the next form view
-  // useEffect(() => {
-  //   validateFirstForm(errors, setFirstFormComplete)
-  // }, [errors])
+  /* change the formview based on error state changes, if error with the first form don't move to the next form view */
+  useEffect(() => {
+    validateFirstForm(errors, setFirstFormComplete)
+  }, [errors])
 
   /* onchange function to get image file selected then check if it's a correct file type, if not send an alert.
   if it is update the input text for the image input in the form then setSelectedImage state we use to upload the image file
@@ -92,19 +84,19 @@ const ProviderRegister = () => {
   }
 
   /* onchange function to get image file selected then check if it's a correct file type, if not send an alert.
-  if it is update the input text for the image input in the form then set thes selected image state we use to upload the resume file
+  if it is update the input text for the image input in the form then set the selected image state we use to upload the resume file
   to AWS S3 */
   const resumeUpload = (e) => {
     const resumeValue = e.target.files[0]
     validateResumeFiles(resumeValue, setFileName, setSelectedResume, setErrors)
   }
 
-  // go to the previous form section
+  /* go to the previous form section */
   const handlePrevious = () => {
     setFirstFormComplete(false)
   }
 
-  // On form submit check if all inputs have been filled correctly
+  /* On form submit check if all inputs have been filled correctly */
   const submitRegistration = (e) => {
     e.preventDefault()
     validateEducation(formInput.education, setErrors)
@@ -142,7 +134,7 @@ const ProviderRegister = () => {
     }
   }, [isSubmitting.aws])
 
-  // upload form data to the server after we get response from AWS with image and resume url location
+  /* upload form data to the server after we get response from AWS with image and resume url location */
   useEffect(() => {
     if (isSubmitting.server === true) {
       Registration(formInput)
@@ -187,7 +179,7 @@ const ProviderRegister = () => {
             userExperience={formInput.experience}
             userRates={formInput.rate}
             userSummary={formInput.summary}
-            />
+          />
           : <FirstForm
             handleChange={handleFormInput}
             handleNext={goToNextForm}
@@ -202,7 +194,7 @@ const ProviderRegister = () => {
             passwordError={errors.password}
             confirmPasswordError={errors.confirmPassword}
             handleLogin={goToLoginPage}
-            />}
+          />}
       </div>
     </div>
   )
