@@ -3,6 +3,7 @@ import NavBar from '../Home/NavBar/NavBar'
 import Form from './Form'
 import Heading from '../Register/Provider/Heading'
 import { useHistory } from 'react-router-dom'
+import LoginServices from '../Login/LoginServices'
 import './Styles.scss'
 
 const Login = () => {
@@ -18,8 +19,19 @@ const Login = () => {
   })
   /* on change get user's input and update the formInput state */
   const getUserInput = (e) => {
+    e.persist()
     const value = e.target.value
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
+  }
+
+  const token = window.localStorage
+  /* function to submit the form */
+  const submitLogin = (e) => {
+    e.preventDefault()
+    LoginServices(formInput).then(res => {
+      const value = res.data.token
+      token.setItem('token', value)
+    }).catch(e => console.log(e))
   }
 
   /* go to create account page */
@@ -39,6 +51,7 @@ const Login = () => {
           password={formInput.password}
           emailError={error.email}
           passwordError={error.password}
+          handleSubmit={submitLogin}
         />
       </div>
     </div>

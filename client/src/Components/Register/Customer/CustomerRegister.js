@@ -48,6 +48,7 @@ const CustomerRegister = () => {
     if (!errors.firstName && !errors.lastName && !errors.email && !errors.password && !errors.confirmPassword) {
       const response = await RegistrationServices(formInput)
       try {
+        console.log(response.status)
         if (response.status === 200) return window.alert(response.data.message)
         if (response.status === 201) return window.alert(response.data.message)
       } catch (e) {

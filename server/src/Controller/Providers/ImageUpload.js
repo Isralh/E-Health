@@ -24,7 +24,7 @@ const upload = multer({
     }
   })
 }).array('uploadFiles', 2)
-const imageupload = async (req, res) => {
+const imageUpload = async (req, res) => {
   const filesUrl = []
   upload(req, res, err => {
     if (err) { return res.status(200).send({ message: 'Error uploading the images' }) }
@@ -36,4 +36,4 @@ const imageupload = async (req, res) => {
   })
 }
 
-module.exports = imageupload
+module.exports = imageUpload
