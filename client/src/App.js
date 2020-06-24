@@ -6,7 +6,8 @@ import ProviderRegister from './Components/Register/Provider/ProviderRegister'
 import Appointment from './Components/Appointment/Appointment/Appointment'
 import CustomerRegister from './Components/Register/Customer/CustomerRegister'
 import Login from './Components/Login/Login'
-import Checkout from './Components/Checkout/Checkout'
+import Checkout from './Components/CheckoutRegister/Checkout'
+import Payment from './Components/Payment/Payment'
 const App = () => {
   return (
     <Router>
@@ -14,9 +15,10 @@ const App = () => {
         <Route exact path='/' component={Home} />
         <Route path='/providerRegister' component={ProviderRegister} />
         <Route path='/bookAppointment' component={Appointment} />
-        <Route path='/checkout' component={Checkout} />
         <Route path='/createAccount' component={CustomerRegister} />
         <Route path='/login' component={Login} />
+        <Route path='/checkoutRegister' component={Checkout} />
+        <Route path='/payment' component={Payment} />
       </Switch>
     </Router>
   )

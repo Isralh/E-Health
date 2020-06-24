@@ -46,7 +46,7 @@ const Checkout = () => {
           /> : null}
         <CustomerRegister
           displayNavBar='none'
-          historyPush='/login'
+          historyPush='/payment'
           submitType='Continue'
         />
       </div>

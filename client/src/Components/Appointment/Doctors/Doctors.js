@@ -49,7 +49,7 @@ const Doctors = () => {
   const history = useHistory()
   const bookDoctor = (doctor) => {
     doctorChoice.setItem('doctor', doctor.id)
-    history.push('/checkout')
+    history.push('/checkoutRegister')
   }
   return (
     <div className='list-container'>
