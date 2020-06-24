@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Home/NavBar/NavBar'
 import CheckoutServices from './CheckoutServices'
+import SharedServices from '../SharedServices/SharedServices'
 import DoctorCard from './DoctorCard'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import CustomerRegister from '../Register/Customer/CustomerRegister'
 const Checkout = () => {
-  const doctorChoice = window.localStorage
-  const doctorId = doctorChoice.getItem('doctor')
   /* selected doctor information to book appointment */
   const [doctorInfo, setDoctorInfo] = useState()
 
@@ -18,16 +17,16 @@ const Checkout = () => {
   const numberRating = () => {
     return doctorInfo.rating < 120 ? '4.0' : '5.0'
   }
+
   /* on page load fetch the selected doctor from the database */
   useEffect(() => {
-    CheckoutServices(doctorId)
+    SharedServices()
       .then(res => {
         if (res.status === 200) {
           setDoctorInfo(res.data.data)
         }
       })
   }, [])
-
   useEffect(() => {
     console.log(doctorInfo)
   }, [doctorInfo])
@@ -43,7 +42,9 @@ const Checkout = () => {
             ratingNumber={numberRating()}
             hourlyRate={doctorInfo.rate}
             doctorsImage={doctorInfo.image}
-          /> : null}
+          /> 
+          <Modal
+          : null}
         <CustomerRegister
           displayNavBar='none'
           historyPush='/payment'
