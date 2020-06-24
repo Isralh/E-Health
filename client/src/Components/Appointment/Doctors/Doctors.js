@@ -4,6 +4,7 @@ import Image from '../Image/Image'
 import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
 import Modal from '../Modal/Modal'
+import { useHistory } from 'react-router-dom'
 export const doctorContext = createContext()
 const Doctors = () => {
   /* state to toggle modal open and close */
@@ -43,9 +44,13 @@ const Doctors = () => {
       .catch(e => console.log(e))
   }, [])
 
-  useEffect(() => {
-    console.log(doctors)
-  }, [doctors])
+  /* function to start the booking process */
+  const doctorChoice = window.localStorage
+  const history = useHistory()
+  const bookDoctor = (doctor) => {
+    doctorChoice.setItem('doctor', doctor.id)
+    history.push('/checkout')
+  }
   return (
     <div className='list-container'>
       {doctors !== undefined ? doctors.map(doctor =>
@@ -60,8 +65,9 @@ const Doctors = () => {
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
             showModal={openModal.bind(this, doctor)}
+            handleBooking={bookDoctor.bind(this, doctor)}
           />
-          <button className='tablet-book-btn'>Book</button>
+          <button onClick={bookDoctor.bind(this, doctor)} className='tablet-book-btn'>Book</button>
         </div>
       ) : null}
       <doctorContext.Provider value={selectedDoctor}>
