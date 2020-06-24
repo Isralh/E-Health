@@ -24,16 +24,12 @@ const validateEmail = (email, res) => {
 /* function to add in the new customer and add authentication using jwtToken */
 const addCustomer = async (data, res) => {
   /* hash the password first and create the new customer */
-  let hashedPassword
-  Bcrypt.hash(data.password.trim(), 8, (err, hash) => {
-    if (err) throw err
-    hashedPassword = hash
-  })
+
   customers.create({
     first_name: data.firstName,
     last_name: data.lastName,
     email: data.email.trim(),
-    password: hashedPassword
+    password: await Bcrypt.hash(data.password.trim())
   }).then(customer => {
     jwtToken.sign({
       userId: customer.id,
@@ -49,22 +45,28 @@ const addCustomer = async (data, res) => {
 /* function to handle the registration process */
 const Registration = async (req, res) => {
   const customerData = req.body
-
-  /* validate user input and send if there are any errors */
-  validateLength(customerData.firstName, 3, res, 'First Name has to be at least 3 characters')
-  validateLength(customerData.lastName, 3, res, 'last Name has to be at least 3 characters')
-  validateLength(customerData.password, 6, res, 'password has to be at least 6 characters')
-  validateEmail(customerData.email, res)
-  validateConfirmPassword(customerData.password, customerData.confirmPassword, res)
-
+  console.log(customerData)
   /* check if customer already exists if not create a new customer */
   const existingCustomers = await customers.findOne({ where: { email: customerData.email } })
   try {
     if (existingCustomers) return res.status(200).send({ message: 'email already exists' })
-    addCustomer(customerData, res)
+    if (customerData.password !== customerData.confirmPassword) return res.status(200).send({ message: 'passwords must match' })
+    customers.create({
+      first_name: customerData.firstName,
+      last_name: customerData.lastName,
+      email: customerData.email,
+      password: await Bcrypt.hash(customerData.password.trim(), 8),
+      userType: 'customer'
+    }).then(customer => {
+      const token = jwtToken.sign({
+        id: customer.id,
+        name: customer.first_name,
+        userType: customer.userType
+      }, jwtSecret, { expiresIn: '5hr' })
+      return res.status(201).send({ message: 'success', token: token })
+    }).catch(e => { return res.status(500) })
   } catch (e) {
-    if (e) return res.status(500)
+    return res.status(500)
   }
 }
-
 module.exports = Registration

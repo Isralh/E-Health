@@ -24,7 +24,7 @@ const Registration = async (req, res) => {
       first_name: clientData.firstName,
       last_name: clientData.lastName,
       email: (clientData.email).trim(),
-      password: await (await Bcrypt.hash(clientData.password.trim(), 8)),
+      password: await Bcrypt.hash(clientData.password.trim(), 8),
       education: clientData.education,
       yearsOfExperience: clientData.experience,
       summary: clientData.summary,

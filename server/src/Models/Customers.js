@@ -28,8 +28,7 @@ module.exports = Database.define('customers', {
   },
   userType: {
     type: DataTypes.STRING,
-    allowNull: false,
-    defaultValue: 'customer'
+    allowNull: false
   }
 })
 

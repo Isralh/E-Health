@@ -1,1 +1,61 @@
-.checkout-container {}
+@import '../../Assets/Sass/Mixins';
+@import '../../Assets/Sass/Variables';
+
+
+
+.content-wrapper {
+    color: $fontColor;
+}
+
+.card-container {
+    border: 1px solid black;
+    margin: 5vh 5vw 0 5vw;
+    height: 160px;
+    @include flex(row, nowrap, space-between);
+    width: 80%;
+}
+
+.profile-wrapper {
+    margin-left: 10px;
+
+    .doctor-name {
+        font-size: 20px;
+    }
+
+    .checked {
+        color: orange;
+    }
+
+    .numberRating {
+        color: black;
+        margin-left: 10px;
+        font-weight: bolder;
+    }
+
+    .view-profile {
+        color: blue;
+        font-size: 15px;
+        width: 150px;
+        cursor: pointer;
+    }
+}
+
+.image-container {
+    @include background(repeat, cover, 50% 50%, relative);
+    @include profileImage(middle, 50%);
+    height: 65%;
+    flex-basis: 90px;
+    margin: 5vh 20px 0 0px;
+}
+
+
+
+
+
+// @mixin flex($direction, $wrap, $justify) {
+//     position: relative;
+//     display: flex;
+//     flex-direction: $direction;
+//     flex-wrap: $wrap;
+//     justify-content: $justify;
+//   }

@@ -6,7 +6,7 @@ import { validateFirstName, validateLastName, validatePassWord, validateConfirmP
 import RegistrationServices from './RegistrationServices'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
-const CustomerRegister = () => {
+const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitType = 'Register' }) => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
   inputs */
   const [formInput, setFormInput] = useState({
@@ -42,6 +42,7 @@ const CustomerRegister = () => {
     validatePassWord(formInput.password, setErrors)
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
   }
+  const history = useHistory()
 
   /* submit the form if there are no errors in the input error state */
   const submitForm = async () => {
@@ -50,7 +51,7 @@ const CustomerRegister = () => {
       try {
         console.log(response.status)
         if (response.status === 200) return window.alert(response.data.message)
-        if (response.status === 201) return window.alert(response.data.message)
+        if (response.status === 201) return history.push(historyPush)
       } catch (e) {
         console.log(e)
       }
@@ -61,7 +62,6 @@ const CustomerRegister = () => {
     submitForm()
   }, [errors])
 
-  const history = useHistory()
   /* go to the login page */
   const goToLoginPage = () => {
     history.push('/login')
@@ -69,7 +69,9 @@ const CustomerRegister = () => {
 
   return (
     <div className='registration-container'>
-      <NavBar />
+      <div style={{ display: displayNavBar }}>
+        <NavBar />
+      </div>
       <div className='registration-wrapper'>
         <Heading topHeading='Create an Account' />
         <Form
@@ -86,6 +88,7 @@ const CustomerRegister = () => {
           confirmPasswordError={errors.confirmPassword}
           handleSubmit={validateForm}
           handleLogin={goToLoginPage}
+          submitHeading={submitType}
         />
       </div>
     </div>

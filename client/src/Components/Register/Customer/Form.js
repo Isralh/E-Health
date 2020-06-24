@@ -2,7 +2,7 @@ import React from 'react'
 
 const Form = ({
   firstName, firstNameError, handleChange, lastNameError, lastName, handleSubmit, handleLogin,
-  emailError, email, password, passwordError, confirmPassword, confirmPasswordError
+  emailError, email, password, passwordError, confirmPassword, confirmPasswordError, submitHeading
 }) => {
   return (
     <div className='form-container'>
@@ -67,7 +67,7 @@ const Form = ({
           <button
             onClick={handleSubmit}
             type='submit'
-          >Register
+          >{submitHeading}
           </button>
         </div>
       </form>
