@@ -28,8 +28,8 @@ const Doctors = () => {
 
   /* function to open modal on click */
   const openModal = (doctor) => {
-    setModalState(true)
     setSelectedDoctor(doctor)
+    setModalState(true)
   }
 
   /* function to close modal */
@@ -74,6 +74,7 @@ const Doctors = () => {
         <Modal
           viewModal={modalState}
           closeModal={modalClose}
+          data={selectedDoctor}
         />
       </doctorContext.Provider>
     </div>

@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { doctorContext } from '../Doctors/Doctors'
 import ModalImage from './ModalImage'
 import { TopDescription, MainDescription } from './ModalDescription'
 import { FiveStar, FourStar } from '../Description/Description'
-const Modal = ({ viewModal, closeModal }) => {
-  /* the individual doctor's data received when click on view doctors profile and review */
-  const data = useContext(doctorContext)
-
+const Modal = ({ viewModal, closeModal, data }) => {
   /* mock rating system I came up with based on the doctors hourly rate */
   const rateDoctor = (data) => {
     return data.rate < 120 ? '4.0' : '5.0'

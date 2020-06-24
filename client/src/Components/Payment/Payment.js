@@ -4,7 +4,10 @@ import SharedServices from '../SharedServices/SharedServices'
 import DoctorCard from '../CheckoutRegister/DoctorCard'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
+import Modal from '../Appointment/Modal/Modal'
 const Payment = () => {
+  const [modalStatus, setModalStatus] = useState(false)
+
   const [doctorInfo, setDoctorInfo] = useState()
 
   const doctorsRating = () => {
@@ -23,22 +26,35 @@ const Payment = () => {
       })
   }, [])
 
-  useEffect(() => {
-    console.log(doctorInfo)
-  }, [doctorInfo])
+  /* onClick open modal */
+  const modalOpen = () => {
+    setModalStatus(true)
+  }
+
+  /* onClick close Modal */
+  const modalClose = () => {
+    setModalStatus(false)
+  }
   return (
     <div className='payment-container'>
       <NavBar />
       <div className='content-wrapper' />
       {doctorInfo !== undefined
-        ? <DoctorCard
-          firstName={doctorInfo.first_name}
-          lastName={doctorInfo.last_name}
-          rating={doctorsRating()}
-          ratingNumber={numberRating()}
-          hourlyRate={doctorInfo.rate}
-          doctorsImage={doctorInfo.image}
-        /> : null}
+        ? <>
+          <DoctorCard
+            firstName={doctorInfo.first_name}
+            lastName={doctorInfo.last_name}
+            rating={doctorsRating()}
+            ratingNumber={numberRating()}
+            hourlyRate={doctorInfo.rate}
+            doctorsImage={doctorInfo.image}
+            showModal={modalOpen}
+          /> <Modal
+            data={doctorInfo}
+            viewModal={modalStatus}
+            closeModal={modalClose}
+          />
+        </> : null}
     </div>
   )
 }
