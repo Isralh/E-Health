@@ -1,3 +1,22 @@
+@import '../../Assets/Sass/Variables';
+
+.payment-container {
+    color: $fontColor;
+
+}
+
 .content-wrapper {
     margin-top: 10vh;
+}
+
+.dateTime-container {
+    margin: 7vh 5vw 0 7vw;
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .heading {
+        margin-left: 5px;
+    }
 }

@@ -5,6 +5,7 @@ import DoctorCard from '../CheckoutRegister/DoctorCard'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
 import Modal from '../Appointment/Modal/Modal'
+import DateAndTime from './DateAndTime'
 const Payment = () => {
   const [modalStatus, setModalStatus] = useState(false)
 
@@ -55,6 +56,7 @@ const Payment = () => {
             closeModal={modalClose}
           />
         </> : null}
+      <DateAndTime />
     </div>
   )
 }
