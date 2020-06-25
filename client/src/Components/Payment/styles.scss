@@ -1,22 +1,41 @@
 @import '../../Assets/Sass/Variables';
 
 .payment-container {
-    color: $fontColor;
-
+  color: $fontColor;
+  padding-bottom: 200px;
 }
 
 .content-wrapper {
-    margin-top: 10vh;
+  margin-top: 10vh;
 }
 
 .dateTime-container {
-    margin: 7vh 5vw 0 7vw;
+  margin: 7vh 5vw 0 7vw;
+}
 
-    h1 {
-        font-size: 24px;
-    }
+.top-heading {
+  h1 {
+    font-size: 23.5px;
+  }
 
-    .heading {
-        margin-left: 5px;
-    }
+  .heading {
+    margin-left: 5px;
+  }
+}
+
+.datePicker {
+  margin-top: 5vh;
+  p {
+    font-size: 20px;
+  }
+  .selected-date {
+    width: 120px;
+    height: 25px;
+    margin-top: -10px;
+  }
+  .selected-time {
+    width: 120px;
+    height: 25px;
+    margin-top: -10px;
+  }
 }
