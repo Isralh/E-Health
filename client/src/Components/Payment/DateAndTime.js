@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { FirstStep } from './Headers'
 const DateAndTime = ({ handleTime, handleDate, selection, times = [], dateFilter }) => {
   return (
     <div className='dateTime-container'>
-      <div className='top-heading'>
-        <h1><span className='step-one'>1.</span><span className='heading'>Choose Date and Time</span></h1>
-      </div>
+      <FirstStep />
       <div className='datePicker'>
         <p> Select Date: </p>
         <DatePicker

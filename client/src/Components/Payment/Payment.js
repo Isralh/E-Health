@@ -6,6 +6,7 @@ import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
 import Modal from '../Appointment/Modal/Modal'
 import DateAndTime from './DateAndTime'
+import CreditCard from './CreditCard'
 const Payment = () => {
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -100,6 +101,7 @@ const Payment = () => {
         selection={bookingDate}
         handleTime={getBookingTime}
       />
+      <CreditCard />
     </div>
   )
 }

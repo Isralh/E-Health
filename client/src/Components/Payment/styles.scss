@@ -1,5 +1,5 @@
 @import '../../Assets/Sass/Variables';
-
+@import '../../Assets/Sass/Mixins';
 .payment-container {
   color: $fontColor;
   padding-bottom: 200px;
@@ -10,12 +10,13 @@
 }
 
 .dateTime-container {
-  margin: 7vh 5vw 0 7vw;
+  margin: 7vh 0vw 0 0vw;
 }
 
 .top-heading {
+  margin-left: 3vw;
   h1 {
-    font-size: 23.5px;
+    font-size: 26px;
   }
 
   .heading {
@@ -27,15 +28,22 @@
   margin-top: 5vh;
   p {
     font-size: 20px;
+    margin-left: 80px;
   }
   .selected-date {
-    width: 120px;
-    height: 25px;
-    margin-top: -10px;
+    @include select(115px, 25px, -10px, 80px);
   }
   .selected-time {
-    width: 120px;
-    height: 25px;
-    margin-top: -10px;
+    @include select(120px, 25px, -10px, 80px);
+  }
+}
+
+.creditCard-container {
+  margin: 7vh 0vw 0 0vw;
+  .card {
+    margin: 5vh 0px 0 0px;
+  }
+  form {
+    margin-top: 5vh;
   }
 }
