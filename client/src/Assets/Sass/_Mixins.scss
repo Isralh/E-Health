@@ -19,10 +19,10 @@
   border-radius: $radius;
 }
 
-@mixin select($width, $height, $topMargin, $leftMargin) {
+@mixin select($width, $height) {
   width: $width;
   height: $height;
-  margin: $topMargin 0 0 $leftMargin;
+  margin-top: -10px;
 }
 @mixin bookButton(
   $color,

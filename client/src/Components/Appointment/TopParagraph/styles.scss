@@ -39,6 +39,9 @@ header {
       color: $fontColor;
       font-size: 20px;
     }
+    .available {
+      font-weight: $bolderFont;
+    }
   }
   @media (min-width: $tablet-width) {
     margin-left: 10%;

@@ -20,6 +20,33 @@ const Payment = () => {
   /* state to hold the selected booking time */
   const [bookingTime, setBookingTime] = useState()
 
+  /* focus state for the credit card */
+  const [focus, setFocus] = useState()
+
+  /* state to hold our credit card info */
+  const [creditCard, setCreditCard] = useState({
+    number: '',
+    name: '',
+    expiry: '',
+    cvc: ''
+  })
+
+  /* function to get the credit card inputs onChange */
+  const getCreditCardInput = (e) => {
+    e.persist()
+    const value = e.target.value
+    setCreditCard(prev => { return { ...prev, [e.target.name]: value } })
+  }
+
+  /* function to handle on focus of the credit card inputs */
+  const cardInputFocus = (e) => {
+    e.persist()
+    const value = e.target.name
+    setFocus(value)
+  }
+  useEffect(() => {
+    console.log(creditCard)
+  }, [creditCard])
   /* Available booking time */
   const [availableTimes, setAvailableTimes] = useState(
     ['8 AM', '9AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM'])
@@ -40,10 +67,6 @@ const Payment = () => {
     setBookingTime(e.target.value)
   }
 
-  useEffect(() => {
-    console.log(bookingDate)
-    console.log(bookingTime)
-  }, [bookingDate, bookingTime])
   /* set the doctors rating based on their rate... this is a mock rating system */
   const doctorsRating = () => {
     return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
@@ -101,7 +124,15 @@ const Payment = () => {
         selection={bookingDate}
         handleTime={getBookingTime}
       />
-      <CreditCard />
+      <CreditCard
+        number={creditCard.number}
+        name={creditCard.name}
+        expiry={creditCard.expiry}
+        cvc={creditCard.cvc}
+        focusState={focus}
+        handleChange={getCreditCardInput}
+        handleFocus={cardInputFocus}
+      />
     </div>
   )
 }

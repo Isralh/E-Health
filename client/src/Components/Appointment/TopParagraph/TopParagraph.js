@@ -9,7 +9,7 @@ const TopParagraph = () => {
         </h1>
       </header>
       <div className='paragraph-container'>
-        <p>Available doctors</p>
+        <p className='available'>Available doctors</p>
       </div>
     </>
   )

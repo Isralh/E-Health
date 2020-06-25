@@ -4,8 +4,8 @@ import 'react-credit-cards/es/styles-compiled.css'
 import { SecondStep } from './Headers'
 
 const CreditCard = ({
-  handleChange, handleFocus, focusState, CardExpiry, CardCVC,
-  cardName, cardNumber, number, name, expiry, cvc
+  handleChange, handleFocus, focusState, expiry, cvc,
+  name, number
 }) => {
   return (
     <div className='creditCard-container'>
@@ -13,10 +13,10 @@ const CreditCard = ({
       <div>
         <div className='card'>
           <Cards
-            number={cardNumber}
-            name={cardName}
-            cvc={CardCVC}
-            expiry={CardExpiry}
+            number={number}
+            name={name}
+            cvc={cvc}
+            expiry={expiry}
             focused={focusState}
             issuer='VISA'
             preview
@@ -24,8 +24,9 @@ const CreditCard = ({
         </div>
         <form>
           <input
-            type='number'
+            type='text'
             name='number'
+            maxLength={16}
             placeholder='Card Number'
             required
             value={number}
@@ -35,6 +36,7 @@ const CreditCard = ({
           <input
             type='text'
             name='name'
+            maxLength={3}
             placeholder='Card Holder Name'
             required
             value={name}
@@ -42,8 +44,9 @@ const CreditCard = ({
             onFocus={handleFocus}
           />
           <input
-            type='number'
+            type='text'
             name='expiry'
+            maxLength={4}
             placeholder='MM/YY Expiry'
             required
             value={expiry}
@@ -51,8 +54,9 @@ const CreditCard = ({
             onFocus={handleFocus}
           />
           <input
-            type='number'
+            type='text'
             name='cvc'
+            maxLength={3}
             placeholder='cvc'
             required
             value={cvc}

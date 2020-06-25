@@ -14,9 +14,10 @@
 }
 
 .top-heading {
-  margin-left: 3vw;
+  text-align: center;
   h1 {
     font-size: 26px;
+    margin-left: 12px;
   }
 
   .heading {
@@ -26,15 +27,15 @@
 
 .datePicker {
   margin-top: 5vh;
+  text-align: center;
   p {
     font-size: 20px;
-    margin-left: 80px;
   }
   .selected-date {
-    @include select(115px, 25px, -10px, 80px);
+    @include select(115px, 25px);
   }
   .selected-time {
-    @include select(120px, 25px, -10px, 80px);
+    @include select(120px, 30px);
   }
 }
 

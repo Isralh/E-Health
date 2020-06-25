@@ -6,7 +6,7 @@ const Description = ({ firstName, lastName, doctorRating, showRating, showModal,
   return (
     <div className='description-container'>
       <div className='description-wrapper'>
-        <p>{` Dr. ${firstName} ${lastName}`}</p>
+        <p className='doctor-name'>{` Dr. ${firstName} ${lastName}`}</p>
         {showRating}
         <span className='rating'>{doctorRating}</span>
         <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
