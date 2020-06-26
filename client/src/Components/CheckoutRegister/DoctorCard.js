@@ -6,7 +6,7 @@ const DoctorCard = ({ firstName, lastName, rating, doctorsImage, ratingNumber, h
       <div className='profile-wrapper'>
         <p className='doctor-name'>{`Dr. ${firstName} ${lastName}`}</p>
         <div><span>{rating}</span><span className='numberRating'>{ratingNumber}</span></div>
-        <p>{`$${hourlyRate}/hour`}</p>
+        <p>{`$${hourlyRate}/ Appointment`}</p>
         <p onClick={showModal} className='view-profile'>View Profile & Review</p>
       </div>
       <div className='image-container' style={{ backgroundImage: `url(${doctorsImage})` }} />

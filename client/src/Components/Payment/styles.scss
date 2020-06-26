@@ -5,46 +5,134 @@
   padding-bottom: 200px;
 }
 
-.content-wrapper {
-  margin-top: 10vh;
+.topHeader {
+  margin-top: 5vh;
+  h1 {
+    font-size: 25px;
+    text-align: center;
+  }
 }
-
+.schedule-container {
+  margin: 0 2vw 0 2vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  @media (min-width: 400px) {
+    margin: 0 5vw 0 5vw;
+  }
+}
 .dateTime-container {
   margin: 7vh 0vw 0 0vw;
 }
-
-.top-heading {
-  text-align: center;
-  h1 {
-    font-size: 26px;
-    margin-left: 12px;
-  }
-
-  .heading {
-    margin-left: 5px;
-  }
-}
-
-.datePicker {
+.paymentInfo-container {
   margin-top: 5vh;
-  text-align: center;
-  p {
+
+  h1 {
+    margin-left: 20px;
     font-size: 20px;
   }
+}
+.selection-wrapper {
+  margin-left: 20px;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+
   .selected-date {
-    @include select(115px, 25px);
+    color: $fontColor;
+    @include select(40.5vw, 25px, 10px);
   }
+
   .selected-time {
-    @include select(120px, 30px);
+    color: $fontColor;
+    @include select(40.5vw, 31px, 10px);
   }
 }
 
 .creditCard-container {
-  margin: 7vh 0vw 0 0vw;
   .card {
     margin: 5vh 0px 0 0px;
   }
-  form {
-    margin-top: 5vh;
+}
+
+.payment-form {
+  margin-left: 20px;
+  .expiry {
+    width: 90%;
   }
+  .security {
+    width: 90%;
+  }
+
+  input {
+    height: 25px;
+    width: 90%;
+    margin-top: 10px;
+  }
+}
+
+.bioCard-container {
+  border: 1px solid $fontColor;
+  margin: 5vh 0 0 4vw;
+  height: 180px;
+  @include flex(row, nowrap, space-between);
+  width: 87%;
+
+  .bio-wrapper {
+    margin-left: 10px;
+  }
+  .doctor {
+    font-size: 20px;
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  .doctorRating {
+    margin-left: 10px;
+    font-weight: bolder;
+  }
+
+  .doctorProfile {
+    color: blue;
+    font-size: 15px;
+    width: 150px;
+    cursor: pointer;
+  }
+  .doctorImage {
+    @include background(repeat, cover, 50% 50%, relative);
+    @include profileImage(middle, 50%);
+    height: 65%;
+    flex-basis: 90px;
+    margin: 5vh 20px 0 0px;
+  }
+}
+
+.visit-container {
+  h1 {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+  margin-top: 3vh;
+  form {
+    margin-left: 20px;
+    input {
+      padding-bottom: 150px;
+      width: 90%;
+    }
+  }
+}
+
+.total-btn {
+  margin-left: 20px;
+  margin-top: 2vh;
+  height: 50px;
+  width: 87%;
+  background: $fontColor;
+  color: white;
+  font-size: 20px;
 }

@@ -1,38 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import DatePicker from 'react-datepicker'
+import Calendar from 'react-calendar'
 import 'react-datepicker/dist/react-datepicker.css'
-import { FirstStep } from './Headers'
-const DateAndTime = ({ handleTime, handleDate, selection, times = [], dateFilter }) => {
+const DateAndTime = ({
+  handleTime, handleDate, selection, times = [], dateFilter, firstName,
+  lastName, rating, ratingNumber, hourlyRate, showModal, doctorsImage
+}) => {
   return (
     <div className='dateTime-container'>
-      <FirstStep />
-      <div className='datePicker'>
-        <p> Select Date: </p>
-        <DatePicker
-          selected={selection}
-          onChange={handleDate}
-          filterDate={dateFilter}
-          minDate={new Date()}
-          placeholderText='Available Dates'
-          isClearable
-          className='selected-date'
-        />
-      </div>
-      <div className='time-selector'>
-        <p> Select Time:</p>
-        <select className='selected-time' onChange={handleTime}>
-          {times.map((time, i) =>
-            <option key={i}>{time}</option>
-          )}
-        </select>
-      </div>
-      <div className='length-selector'>
-        <p>Session Length:</p>
-        <select className='selected-time '>
-          <option>1 hour</option>
-          <option>2 hours</option>
-          <option>3 hours</option>
-        </select>
+      <div className='scheduler-container'>
+        <div className='bioCard-container'>
+          <div className='bio-wrapper'>
+            <p className='doctor'>{`Dr. ${firstName} ${lastName}`}</p>
+            <div><span>{rating}</span><span className='doctorRating'>{ratingNumber}</span></div>
+            <p>{`$${hourlyRate}/Appointment`}</p>
+            <p onClick={showModal} className='doctorProfile'>View Profile & Review</p>
+          </div>
+          <div className='doctorImage' style={{ backgroundImage: `url(${doctorsImage})` }} />
+        </div>
+        <div className='paymentInfo-container'>
+          <h1>Payment Information</h1>
+          {/* <div className='selection-wrapper'>
+             <div className='datePicker'>
+              <DatePicker
+                selected={selection}
+                onChange={handleDate}
+                filterDate={dateFilter}
+                minDate={new Date()}
+                placeholderText='Choose Date'
+                className='selected-date'
+              />
+            </div>
+            <div className='time-selector'>
+              <select className='selected-time' onChange={handleTime}>
+                {times.map((time, i) =>
+                  <option key={i}>{time}</option>
+                )}
+              </select>
+          </div>
+            </div> */}
+        </div>
       </div>
     </div>
   )

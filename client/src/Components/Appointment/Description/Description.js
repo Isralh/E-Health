@@ -10,7 +10,7 @@ const Description = ({ firstName, lastName, doctorRating, showRating, showModal,
         {showRating}
         <span className='rating'>{doctorRating}</span>
         <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
-        <p className='rates'>{`$${rates}/hour`}</p>
+        <p className='rates'>{`$${rates}/ Appointment`}</p>
         <button className='book-btn' onClick={handleBooking}>Book Now</button>
       </div>
     </div>

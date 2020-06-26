@@ -1,33 +1,19 @@
 import React from 'react'
-import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
-import { SecondStep } from './Headers'
 
 const CreditCard = ({
-  handleChange, handleFocus, focusState, expiry, cvc,
-  name, number
+  handleChange, handleFocus, expiry, cvc,
+  name, number, zip
 }) => {
   return (
     <div className='creditCard-container'>
-      <SecondStep />
       <div>
-        <div className='card'>
-          <Cards
-            number={number}
-            name={name}
-            cvc={cvc}
-            expiry={expiry}
-            focused={focusState}
-            issuer='VISA'
-            preview
-          />
-        </div>
-        <form>
+        <form className='payment-form'>
           <input
             type='text'
             name='number'
             maxLength={16}
-            placeholder='Card Number'
+            placeholder='Credit Card Number (16 digits)'
             required
             value={number}
             onChange={handleChange}
@@ -36,7 +22,6 @@ const CreditCard = ({
           <input
             type='text'
             name='name'
-            maxLength={3}
             placeholder='Card Holder Name'
             required
             value={name}
@@ -44,6 +29,7 @@ const CreditCard = ({
             onFocus={handleFocus}
           />
           <input
+            className='expiry'
             type='text'
             name='expiry'
             maxLength={4}
@@ -54,12 +40,22 @@ const CreditCard = ({
             onFocus={handleFocus}
           />
           <input
+            className='security'
             type='text'
             name='cvc'
             maxLength={3}
-            placeholder='cvc'
+            placeholder='Security Code'
             required
             value={cvc}
+            onChange={handleChange}
+            onFocus={handleFocus}
+          />
+          <input
+            type='number'
+            name='zip'
+            placeholder='Zipcode (Required)'
+            required
+            value={zip}
             onChange={handleChange}
             onFocus={handleFocus}
           />
