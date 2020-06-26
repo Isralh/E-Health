@@ -8,6 +8,9 @@ const CreditCard = ({
   return (
     <div className='creditCard-container'>
       <div>
+        <div className='paymentInfo-container'>
+          <h1>Payment Information</h1>
+        </div>
         <form className='payment-form'>
           <input
             type='text'

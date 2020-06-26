@@ -33,24 +33,6 @@
     font-size: 20px;
   }
 }
-.selection-wrapper {
-  margin-left: 20px;
-  margin-top: 5vh;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: start;
-
-  .selected-date {
-    color: $fontColor;
-    @include select(40.5vw, 25px, 10px);
-  }
-
-  .selected-time {
-    color: $fontColor;
-    @include select(40.5vw, 31px, 10px);
-  }
-}
 
 .creditCard-container {
   .card {
