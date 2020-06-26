@@ -17,12 +17,16 @@ const DateAndTime = ({ handleTime, handleDate, selection, times = [], dateFilter
           isClearable
           className='selected-date'
         />
+      </div>
+      <div className='time-selector'>
         <p> Select Time:</p>
         <select className='selected-time' onChange={handleTime}>
           {times.map((time, i) =>
             <option key={i}>{time}</option>
           )}
         </select>
+      </div>
+      <div className='length-selector'>
         <p>Session Length:</p>
         <select className='selected-time '>
           <option>1 hour</option>
