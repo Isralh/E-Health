@@ -91,6 +91,10 @@ const Payment = () => {
     setModalStatus(false)
   }
 
+  /* onClick submit appointment */
+  const submitAppointment = () => {
+
+  }
   return (
     <div className='payment-container'>
       <NavBar />
@@ -129,6 +133,7 @@ const Payment = () => {
             <ReasonForVisit />
             <Button
               subTotal={'Book' + ' ' + `$${doctorInfo.rate}`}
+              handleAppointment={submitAppointment}
             />
           </div>
           </> : null}

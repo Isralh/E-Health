@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Button = ({ subTotal }) => {
+const Button = ({ subTotal, handleAppointment }) => {
   return (
     <div className='button-conatainer'>
-      <button className='total-btn'>{subTotal}</button>
+      <button className='total-btn' onClick={handleAppointment}>{subTotal}</button>
     </div>
   )
 }

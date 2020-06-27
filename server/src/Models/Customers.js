@@ -31,15 +31,3 @@ module.exports = Database.define('customers', {
     allowNull: false
   }
 })
-
-// const create = async () => {
-//   const createTable = await customers.sync()
-
-//   try {
-//     if (createTable) console.log('success')
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
-
-// create()

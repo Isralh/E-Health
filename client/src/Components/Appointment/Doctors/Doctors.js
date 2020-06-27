@@ -64,6 +64,7 @@ const Doctors = () => {
             rates={doctor.rate}
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
+            doctorSchedule='8:00 AM'
             showModal={openModal.bind(this, doctor)}
             handleBooking={bookDoctor.bind(this, doctor)}
           />

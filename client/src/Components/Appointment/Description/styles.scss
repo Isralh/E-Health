@@ -1,19 +1,24 @@
 @import '../../../Assets/Sass/Variables';
 @import '../../../Assets/Sass/Mixins';
+
 .description-container {
   @media (min-width: $mobile-width) {
     flex-basis: 40%;
     margin-left: 10vw;
+
     p {
       font-size: 18px;
     }
+
     .checked {
       color: orange;
     }
+
     .rating {
       margin-left: 10px;
       font-weight: $bolderFont;
     }
+
     .view-profile {
       color: blue;
       font-size: 15px;
@@ -21,37 +26,51 @@
       cursor: pointer;
       text-align: center;
     }
+
+    .clock {
+      background: white;
+    }
+
+    .schedule {
+      margin-left: 10px;
+    }
+
     button {
-      @include bookButton(
-        white,
+      @include bookButton(white,
         $bolderFont,
         orange,
         solid white,
         10px,
         100px,
         25px,
-        pointer
-      );
+        pointer);
     }
+
     button:hover {
       background: $fontColor;
     }
   }
+
   @media (min-width: 425px) and (max-width: $tablet-width) {
     // margin-left: 20vw;
   }
+
   @media (min-width: $tablet-width) {
     // margin-left: 20%;
     // margin-left: 10vw;
   }
+
   @media (min-width: 600px) {
     flex-basis: 60%;
+
     .description-wrapper {
       margin-left: 70px;
     }
+
     .doctor-name {
       font-size: 22px;
     }
+
     button {
       display: none;
     }
