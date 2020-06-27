@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext } from 'react'
-import Services from './Services'
+import { getProviders, getSchedule } from './Services'
 import Image from '../Image/Image'
 import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
@@ -12,6 +12,9 @@ const Doctors = () => {
 
   /* state to put all of our doctors information in */
   const [doctors, setDoctors] = useState()
+
+  /* state to put all of out doctor's schedule in */
+  const [schedule, setSchedule] = useState()
 
   /* state to hold the selected doctor on view profile */
   const [selectedDoctor, setSelectedDoctor] = useState()
@@ -39,11 +42,19 @@ const Doctors = () => {
 
   /* on page load get all of the doctors from our database */
   useEffect(() => {
-    Services()
-      .then(data => { if (data.status === 200) { setDoctors(data.data) } })
+    getProviders()
+      .then(data => { if (data.status === 200) setDoctors(data.data) })
+      .catch(e => console.log(e))
+
+    getSchedule()
+      .then(data => { if (data.status === 200) setSchedule(data.data) })
       .catch(e => console.log(e))
   }, [])
 
+  useEffect(() => {
+    console.log(schedule)
+    console.log(doctors)
+  }, [schedule, doctors])
   /* function to start the booking process */
   const doctorChoice = window.localStorage
   const history = useHistory()

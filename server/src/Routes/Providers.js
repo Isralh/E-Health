@@ -1,11 +1,14 @@
 const router = require('express').Router()
 const imageUpload = require('../Controller/Providers/ImageUpload')
-const Registration = require('../Controller/Providers/Registration')
-const AllProviders = require('../Controller/Providers/AllProviders')
-const GetProviderByID = require('../Controller/Providers/GetProviderByID')
+const registration = require('../Controller/Providers/Registration')
+const allProviders = require('../Controller/Providers/AllProviders')
+const getProviderByID = require('../Controller/Providers/GetProviderByID')
+const getSchedule = require('../Controller/Providers/GetSchedule')
+
 router.post('/post/provider/uploadImageResume', imageUpload)
-router.post('/post/provider/register', Registration)
-router.get('/get/provider/AllProviders', AllProviders)
-router.get('/get/provider/:id', GetProviderByID)
+router.post('/post/provider/register', registration)
+router.get('/get/provider/AllProviders', allProviders)
+router.get('/get/provider/schedule', getSchedule)
+router.get('/get/provider/:id', getProviderByID)
 
 module.exports = router

@@ -1,7 +1,7 @@
 const Database = require('../Database/mysqlDB')
 const { DataTypes } = require('sequelize')
 
-module.exports = Database.define('emp_schedule', {
+module.exports = Database.define('schedule', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
