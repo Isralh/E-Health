@@ -1,11 +1,13 @@
 import React from 'react'
-const BioCard = ({ firstName, lastName, rating, doctorsImage, ratingNumber, hourlyRate, showModal }) => {
+const BioCard = ({
+  firstName, lastName, rating, ratingNumber, hourlyRate, showModal, doctorsImage
+}) => {
   return (
     <div className='bioCard-container'>
       <div className='bio-wrapper'>
         <p className='doctor'>{`Dr. ${firstName} ${lastName}`}</p>
         <div><span>{rating}</span><span className='doctorRating'>{ratingNumber}</span></div>
-        <p>{`$${hourlyRate}/ Appointment`}</p>
+        <p>{`$${hourlyRate}/Appointment`}</p>
         <p onClick={showModal} className='doctorProfile'>View Profile & Review</p>
       </div>
       <div className='doctorImage' style={{ backgroundImage: `url(${doctorsImage})` }} />
@@ -14,3 +16,4 @@ const BioCard = ({ firstName, lastName, rating, doctorsImage, ratingNumber, hour
 }
 
 export default BioCard
+

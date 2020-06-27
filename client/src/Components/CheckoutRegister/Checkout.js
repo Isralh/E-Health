@@ -17,6 +17,7 @@ const Checkout = () => {
     return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
   }
 
+  /* show the doctor's number rating */
   const numberRating = () => {
     return doctorInfo.rating < 120 ? '4.0' : '5.0'
   }

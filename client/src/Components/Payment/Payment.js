@@ -4,7 +4,7 @@ import SharedServices from '../SharedServices/SharedServices'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
 import Modal from '../Appointment/Modal/Modal'
-import DateAndTime from './DateAndTime'
+import BioCard from './BioCard'
 import CreditCard from './CreditCard'
 import { TopHeader } from './Headers'
 import ReasonForVisit from './ReasonForVistit'
@@ -104,7 +104,7 @@ const Payment = () => {
             closeModal={modalClose}
           />
           <div className='schedule-container'>
-            <DateAndTime
+            <BioCard
               times={availableTimes}
               dateFilter={filterDates}
               handleDate={getBookingDate}
