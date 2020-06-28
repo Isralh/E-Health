@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../Home/NavBar/NavBar'
 import { getProviderById, getSchedule, postAppointment, providerId } from './services'
-import { customerToken, doctorToken } from '../JwtDecode/JwtDecode'
+import { customerToken } from '../JwtDecode/JwtDecode'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
 import Modal from '../Appointment/Modal/Modal'
@@ -11,6 +11,7 @@ import { TopHeader } from './Headers'
 import ReasonForVisit from './ReasonForVistit'
 import Button from './Button'
 import { AppointmentDate, AppointmentTime } from './AppointmentSetter'
+import { useHistory } from 'react-router-dom'
 const Payment = () => {
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -75,13 +76,6 @@ const Payment = () => {
     setModalStatus(false)
   }
 
-  /* onClick submit appointment */
-  const submitAppointment = (e) => {
-    e.preventDefault()
-    const data = { customerId: customerToken().userId, providerId }
-    console.log(data)
-  }
-
   /* state to hold selected appointment date */
   const [selectedDate, setSelectedDate] = useState(null)
 
@@ -103,6 +97,23 @@ const Payment = () => {
   const [timeOption, setTimeOption] = useState(
     ['Choose Time', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM']
   )
+
+  /* onClick submit appointment */
+  const history = useHistory()
+  const submitAppointment = (e) => {
+    e.preventDefault()
+    const data = { customerId: customerToken().userId, providerId, selectedDate, selectedTime }
+    postAppointment(data)
+      .then(res => {
+        if (res.status === 201) {
+          return history.push('/dashboard')
+        }
+        if (res.status === 200) {
+          window.alert(res.data.message)
+        }
+      })
+      .catch(e => console.log(e))
+  }
 
   useEffect(() => {
     console.log(selectedTime)
@@ -163,7 +174,7 @@ const Payment = () => {
             viewModal={modalStatus}
             closeModal={modalClose}
           />
-          </> : null}
+        </> : null}
     </div>
 
   )

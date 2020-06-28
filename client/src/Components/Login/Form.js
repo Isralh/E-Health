@@ -1,5 +1,8 @@
 import React from 'react'
-const Form = ({ emailError, handleChange, email, passwordError, password, handleSubmit, handleRegister }) => {
+const Form = ({
+  emailError, handleChange, email, passwordError, password, handleSubmit,
+  handleRegister, handleFocus
+}) => {
   return (
     <div className='form-container'>
       <form className='login-form'>
@@ -12,6 +15,7 @@ const Form = ({ emailError, handleChange, email, passwordError, password, handle
             required
             value={email}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
         </div>
         <div className='input-wrapper'>
@@ -23,6 +27,7 @@ const Form = ({ emailError, handleChange, email, passwordError, password, handle
             required
             value={password}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
         </div>
         <div className='button-container'>

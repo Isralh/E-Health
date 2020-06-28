@@ -22,7 +22,7 @@ module.exports = Database.define('appointments', {
     allowNull: false
   },
   time: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   }
 })

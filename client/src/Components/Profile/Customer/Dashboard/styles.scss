@@ -1,0 +1,55 @@
+@import '../../../../Assets/Sass/Variables';
+
+.dashboard-container {
+  height: $fullHeight;
+  width: $fullWidth;
+}
+
+.top-heading {
+  margin-top: 20vh;
+  h1 {
+    font-size: 25px;
+    color: $fontColor;
+    text-align: center;
+  }
+}
+
+.booking-btn {
+  margin-top: 5vh;
+  text-align: center;
+  button {
+    width: 60%;
+    height: 60px;
+    background: orange;
+    color: white;
+    border: 1px solid white;
+    font-size: 15px;
+    font-weight: $bolderFont;
+  }
+}
+
+.appointment-container {
+  width: $fullWidth;
+  margin-top: 5vh;
+  .heading {
+    border: 1px solid $fontColor;
+    height: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: $bolderFont;
+    color: $fontColor;
+    h1 {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+  .date-time {
+    border: 1px solid $fontColor;
+    height: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+    .appointment-time {
+      margin-top: 10px;
+    }
+  }
+}

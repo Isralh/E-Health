@@ -8,6 +8,8 @@ import CustomerRegister from './Components/Register/Customer/CustomerRegister'
 import Login from './Components/Login/Login'
 import Checkout from './Components/CheckoutRegister/Checkout'
 import Payment from './Components/Payment/Payment'
+import ProviderDashboard from './Components/Profile/Provider/Dashboard/Dashboard'
+import CustomerDashboard from './Components/Profile/Customer/Dashboard/Dashboard'
 const App = () => {
   return (
     <Router>
@@ -19,6 +21,8 @@ const App = () => {
         <Route path='/login' component={Login} />
         <Route path='/checkoutRegister' component={Checkout} />
         <Route path='/payment' component={Payment} />
+        <Route path='/dashboard' component={CustomerDashboard} />
+        <Route path='/provider/dashboard' component={ProviderDashboard} />
       </Switch>
     </Router>
   )

@@ -17,15 +17,21 @@ const Login = () => {
     email: '',
     password: ''
   })
-  /* on change get user's input and update the formInput state */
+
+  /* onChange get user's input and update the formInput state */
   const getUserInput = (e) => {
     e.persist()
     const value = e.target.value
     setFormInput(prev => { return { ...prev, [e.target.name]: value } })
   }
 
-  const token = window.localStorage
+  /* onFocus clear the input errors */
+  const clearErrors = () => {
+    setError(prev => { return { ...prev, email: '', password: '' } })
+  }
+
   /* function to submit the form */
+  const token = window.localStorage
   const submitLogin = (e) => {
     e.preventDefault()
     LoginServices(formInput)
@@ -38,7 +44,7 @@ const Login = () => {
         }
         if (res.status === 202) {
           token.setItem('customerToken', res.data.token)
-          history.push('/')
+          history.push('/dashboard')
         }
       })
       .catch(e => console.log(e))
@@ -62,6 +68,7 @@ const Login = () => {
           emailError={error.email}
           passwordError={error.password}
           handleSubmit={submitLogin}
+          handleFocus={clearErrors}
         />
       </div>
     </div>
