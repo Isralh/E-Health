@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import NavBar from '../Home/NavBar/NavBar'
-import Form from './Form'
-import Heading from '../Register/Provider/Heading'
+import NavBar from '../../Home/NavBar/NavBar'
+import Form from '../SharedComponent/Form'
+import Heading from '../../Register/Provider/Heading'
 import { useHistory } from 'react-router-dom'
-import LoginServices from '../Login/LoginServices'
-import './Styles.scss'
+import LoginServices from './LoginServices'
+import '../SharedComponent/Styles.scss'
 
-const Login = () => {
+const CustomerLogin = () => {
   /* state to hold all of our form input */
   const [formInput, setFormInput] = useState({
     email: '',
@@ -69,10 +69,12 @@ const Login = () => {
           passwordError={error.password}
           handleSubmit={submitLogin}
           handleFocus={clearErrors}
+          loginButton='flex'
+          providerLoginButton='none'
         />
       </div>
     </div>
   )
 }
 
-export default Login
+export default CustomerLogin

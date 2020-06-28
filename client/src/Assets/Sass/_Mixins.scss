@@ -25,14 +25,31 @@
   margin-top: $marginTop;
 }
 
-@mixin bookButton($color,
+@mixin loginBtn($background, $width) {
+  background: $background;
+  color: white;
+  font-size: 18px;
+  width: $width;
+  height: 50px;
+  cursor: pointer;
+}
+
+@mixin loginBtnHover($color) {
+  color: $color;
+  background: white;
+  font-weight: bolder;
+}
+
+@mixin bookButton(
+  $color,
   $bolderFont,
   $background,
   $border,
   $padding,
   $width,
   $radius,
-  $cursor) {
+  $cursor
+) {
   color: $color;
   font-weight: $bolderFont;
   background: $background;

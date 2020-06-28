@@ -3,15 +3,15 @@ import NavBar from '../../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import './styles.scss'
 import { BookingButton, JoinSession } from './Button'
-import { customerToken } from '../../../JwtDecode/JwtDecode'
 import Appointment from './Appointment'
 import { GetAppointment } from './Services'
 import { useHistory } from 'react-router-dom'
+import JwtDecode from 'jwt-decode'
+
 const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
-  const customer = customerToken()
-  console.log(customer)
-
+  const customerToken = window.localStorage.getItem('customerToken')
+  const customer = JwtDecode(customerToken)
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState(null)
 
@@ -22,12 +22,14 @@ const Dashboard = () => {
   }
   /* on initial load fetch the customer's appointment schedule */
   useEffect(() => {
-    GetAppointment(customer.userId)
-      .then(res => {
-        if (res.status === 200) {
-          setAppointments(res.data)
-        }
-      }).catch(e => console.log(e))
+    if (customer !== null || undefined) {
+      GetAppointment(customer.userId)
+        .then(res => {
+          if (res.status === 200) {
+            setAppointments(res.data)
+          }
+        }).catch(e => console.log(e))
+    }
   }, [])
 
   useEffect(() => {

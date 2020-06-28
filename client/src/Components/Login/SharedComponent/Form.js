@@ -1,7 +1,8 @@
 import React from 'react'
+
 const Form = ({
   emailError, handleChange, email, passwordError, password, handleSubmit,
-  handleRegister, handleFocus
+  handleRegister, handleFocus, loginButton, providerLoginButton
 }) => {
   return (
     <div className='form-container'>
@@ -30,8 +31,15 @@ const Form = ({
             onFocus={handleFocus}
           />
         </div>
-        <div className='button-container'>
+        <div className='loginBtn-customer' style={{ display: loginButton }}>
           <p>New user? <span onClick={handleRegister}>Register</span></p>
+          <button
+            onClick={handleSubmit}
+            type='submit'
+          >Login
+          </button>
+        </div>
+        <div className='loginBtn-provider' style={{ display: providerLoginButton }}>
           <button
             onClick={handleSubmit}
             type='submit'

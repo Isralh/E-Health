@@ -64,7 +64,7 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
 
   /* go to the login page */
   const goToLoginPage = () => {
-    history.push('/login')
+    history.push('/customer/login')
   }
 
   return (
