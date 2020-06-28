@@ -8,3 +8,8 @@ export const BookingButton = ({ handleBooking }) => {
   )
 }
 
+export const JoinSession = () => {
+  return (
+    <button>Join Session</button>
+  )
+}

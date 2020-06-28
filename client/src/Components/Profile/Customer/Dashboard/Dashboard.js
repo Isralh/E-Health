@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../../../Home/NavBar/NavBar'
 import Heading from './Heading'
 import './styles.scss'
-import { BookingButton } from './Button'
+import { BookingButton, JoinSession } from './Button'
 import { customerToken } from '../../../JwtDecode/JwtDecode'
 import Appointment from './Appointment'
 import { GetAppointment } from './Services'
@@ -51,6 +51,7 @@ const Dashboard = () => {
           />
         )
         : null}
+      <JoinSession />
     </div>
   )
 }
