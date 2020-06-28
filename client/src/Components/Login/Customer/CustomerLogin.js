@@ -3,7 +3,7 @@ import NavBar from '../../Home/NavBar/NavBar'
 import Form from '../SharedComponent/Form'
 import Heading from '../../Register/Provider/Heading'
 import { useHistory } from 'react-router-dom'
-import LoginServices from './LoginServices'
+import LoginCustomer from './Services'
 import '../SharedComponent/Styles.scss'
 
 const CustomerLogin = () => {
@@ -30,11 +30,11 @@ const CustomerLogin = () => {
     setError(prev => { return { ...prev, email: '', password: '' } })
   }
 
-  /* function to submit the form */
+  /* function to submit the form and login customer */
   const token = window.localStorage
   const submitLogin = (e) => {
     e.preventDefault()
-    LoginServices(formInput)
+    LoginCustomer(formInput)
       .then(res => {
         if (res.data.message === 'Email account does not exist') {
           setError(prev => { return { ...prev, email: res.data.message } })
@@ -44,7 +44,7 @@ const CustomerLogin = () => {
         }
         if (res.status === 202) {
           token.setItem('customerToken', res.data.token)
-          history.push('/dashboard')
+          history.push('/customer/dashboard')
         }
       })
       .catch(e => console.log(e))

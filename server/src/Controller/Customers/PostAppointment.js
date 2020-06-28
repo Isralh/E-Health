@@ -4,7 +4,7 @@ const validateData = (data, res, outPutMessage) => {
   if (!data) return res.status(200).send({ message: outPutMessage })
 }
 const postAppointment = async (req, res) => {
-  const { customerId, providerId, selectedDate, selectedTime } = req.body
+  const { customerId, providerId, appointmentId, selectedDate, selectedTime } = req.body
   validateData(selectedDate, res, 'please provide the appointment date')
   validateData(selectedTime, res, 'please provide the appointment time')
 
@@ -17,6 +17,7 @@ const postAppointment = async (req, res) => {
     const newAppointment = appointments.create({
       provider_id: providerId,
       customer_id: customerId,
+      appointment_id: appointmentId,
       date: selectedDate,
       time: selectedTime
     })

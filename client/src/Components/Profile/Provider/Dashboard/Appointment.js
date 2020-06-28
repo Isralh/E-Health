@@ -19,7 +19,7 @@ const Appointment = ({ date, time }) => {
           <span className='date'>{date}</span>
           <span className='time'>{time}</span>
         </div>
-        <JoinSession />
+        <button>Join Session</button>
       </div>
     </div>
   )

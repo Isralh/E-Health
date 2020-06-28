@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import NavBar from '../../Home/NavBar/NavBar'
 import Heading from '../../Register/Provider/Heading'
 import Form from '../SharedComponent/Form'
+import LoginProvider from './Services'
+import { useHistory } from 'react-router-dom'
 import '../SharedComponent/Styles.scss'
 
 const ProviderLogin = () => {
@@ -28,8 +30,27 @@ const ProviderLogin = () => {
     setError(prev => { return { ...prev, email: '', password: '' } })
   }
 
-  const submitLogin = () => {
+  /* function to submit the form and login provider */
+  const token = window.localStorage
+  const history = useHistory()
+  const submitLogin = (e) => {
 
+    e.preventDefault()
+
+    LoginProvider(formInput)
+      .then(res => {
+        if (res.data.message === 'Email account does not exist') {
+          setError(prev => { return { ...prev, email: res.data.message } })
+        }
+        if (res.data.message === 'Incorrect password') {
+          setError(prev => { return { ...prev, password: res.data.message } })
+        }
+        if (res.status === 202) {
+          token.setItem('providerToken', res.data.token)
+          history.push('/provider/dashboard')
+        }
+      })
+      .catch(e => console.log(e))
   }
 
   return (

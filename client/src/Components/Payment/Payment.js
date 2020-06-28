@@ -12,6 +12,7 @@ import ReasonForVisit from './ReasonForVistit'
 import Button from './Button'
 import { AppointmentDate, AppointmentTime } from './AppointmentSetter'
 import { useHistory } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 const Payment = () => {
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -103,11 +104,17 @@ const Payment = () => {
   const history = useHistory()
   const submitAppointment = (e) => {
     e.preventDefault()
-    const data = { customerId: customerToken().userId, providerId, selectedDate: selectedDate.toISOString().substring(0, 10), selectedTime } 
+    const data = {
+      customerId: customerToken().userId,
+      providerId,
+      selectedDate: selectedDate.toISOString().substring(0, 10),
+      selectedTime,
+      appointmentId: uuid()
+    }
     postAppointment(data)
       .then(res => {
         if (res.status === 201) {
-          return history.push('/dashboard')
+          return history.push('/customer/dashboard')
         }
         if (res.status === 200) {
           window.alert(res.data.message)

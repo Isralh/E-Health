@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../../Home/NavBar/NavBar'
-import Heading from './Heading'
+import Heading from '../../SharedComponents/Heading'
 import './styles.scss'
-import { BookingButton, JoinSession } from './Button'
+import { BookingButton } from './Button'
 import Appointment from './Appointment'
 import { GetAppointment } from './Services'
 import { useHistory } from 'react-router-dom'
@@ -38,9 +38,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard-container'>
       <NavBar />
-      <Heading
-        customerName={customer.firstName}
-      />
+      <Heading name={customer.firstName} />
       <BookingButton
         handleBooking={goToBookingPage}
       />
@@ -53,7 +51,6 @@ const Dashboard = () => {
           />
         )
         : null}
-      <JoinSession />
     </div>
   )
 }

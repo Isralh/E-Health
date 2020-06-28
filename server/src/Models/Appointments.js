@@ -24,5 +24,9 @@ module.exports = Database.define('appointments', {
   time: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  appointment_id: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
