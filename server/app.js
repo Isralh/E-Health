@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const providers = require('./src/Routes/Providers')
 const customers = require('./src/Routes/Customers')
+const appointments = require('./src/Routes/Appointment')
+
 const app = express()
 app.use(express.json())
 app.use(morgan('combined'))
@@ -13,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 
 app.use('/api', providers)
 app.use('/api', customers)
+app.use('/api', appointments)
 
 const PORT = 3002
 

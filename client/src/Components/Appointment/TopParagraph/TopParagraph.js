@@ -1,4 +1,5 @@
 import React from 'react'
+import DatePicker from 'react-datepicker'
 import './styles.scss'
 const TopParagraph = () => {
   return (
@@ -8,9 +9,7 @@ const TopParagraph = () => {
     finest psychologists at E-Health.
         </h1>
       </header>
-      <div className='paragraph-container'>
-        <p className='available'>Available doctors</p>
-      </div>
+      <div className='paragraph-container' />
     </>
   )
 }

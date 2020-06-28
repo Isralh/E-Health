@@ -24,16 +24,15 @@
   height: $height;
   margin-top: $marginTop;
 }
-@mixin bookButton(
-  $color,
+
+@mixin bookButton($color,
   $bolderFont,
   $background,
   $border,
   $padding,
   $width,
   $radius,
-  $cursor
-) {
+  $cursor) {
   color: $color;
   font-weight: $bolderFont;
   background: $background;

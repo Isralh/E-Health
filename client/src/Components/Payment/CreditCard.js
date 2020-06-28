@@ -8,9 +8,13 @@ const CreditCard = ({
   return (
     <div className='creditCard-container'>
       <div>
-        <div className='paymentInfo-container'>
+        {/*  <div className='paymentInfo-container'>
           <h1>Payment Information</h1>
         </div>
+        <div className='appointment-setter'>
+          <AppointmentDate />
+          <AppointmentTime />
+        </div> */}
         <form className='payment-form'>
           <div className='input-wrapper'>
             <p>{cardNumberError}</p>

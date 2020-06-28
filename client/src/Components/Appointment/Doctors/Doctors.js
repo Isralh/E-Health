@@ -29,6 +29,12 @@ const Doctors = () => {
     return doctor.rate < 120 ? <FourStar /> : <FiveStar />
   }
 
+  /* function to show the doctor's work time */
+  const scheduleTime = (time) => {
+    if (time === 12) return `${time}:00 PM EST`
+    if (time >= 8) return `${time}:00 AM EST`
+    else if (time < 8) return `${time}:00 PM EST`
+  }
   /* function to open modal on click */
   const openModal = (doctor) => {
     setSelectedDoctor(doctor)
@@ -59,12 +65,12 @@ const Doctors = () => {
   const doctorChoice = window.localStorage
   const history = useHistory()
   const bookDoctor = (doctor) => {
-    doctorChoice.setItem('doctor', doctor.id)
+    doctorChoice.setItem('doctorId', doctor.id)
     history.push('/checkoutRegister')
   }
   return (
     <div className='list-container'>
-      {doctors !== undefined ? doctors.map(doctor =>
+      {doctors && schedule !== undefined ? doctors.map((doctor, i) =>
         <div key={doctor.id} className='doctors-container'>
           <Image
             doctorsImage={doctor.image}
@@ -75,7 +81,7 @@ const Doctors = () => {
             rates={doctor.rate}
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
-            doctorSchedule='8:00 AM'
+            doctorSchedule={scheduleTime(schedule[i].time)}
             showModal={openModal.bind(this, doctor)}
             handleBooking={bookDoctor.bind(this, doctor)}
           />

@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faClock, faUserClock } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faClock } from '@fortawesome/free-solid-svg-icons'
 const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates, handleBooking, doctorSchedule }) => {
   return (
     <div className='description-container'>

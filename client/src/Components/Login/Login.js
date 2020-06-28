@@ -28,10 +28,20 @@ const Login = () => {
   /* function to submit the form */
   const submitLogin = (e) => {
     e.preventDefault()
-    LoginServices(formInput).then(res => {
-      const value = res.data.token
-      token.setItem('token', value)
-    }).catch(e => console.log(e))
+    LoginServices(formInput)
+      .then(res => {
+        if (res.data.message === 'Email account does not exist') {
+          setError(prev => { return { ...prev, email: res.data.message } })
+        }
+        if (res.data.message === 'Incorrect password') {
+          setError(prev => { return { ...prev, password: res.data.message } })
+        }
+        if (res.status === 202) {
+          token.setItem('customerToken', res.data.token)
+          history.push('/')
+        }
+      })
+      .catch(e => console.log(e))
   }
 
   /* go to create account page */

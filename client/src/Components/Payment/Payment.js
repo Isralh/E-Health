@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../Home/NavBar/NavBar'
-import SharedServices from '../SharedServices/SharedServices'
+import { getProviderById, getSchedule, postAppointment, providerId } from './services'
+import { customerToken, doctorToken } from '../JwtDecode/JwtDecode'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
 import Modal from '../Appointment/Modal/Modal'
@@ -9,6 +10,7 @@ import CreditCard from './CreditCard'
 import { TopHeader } from './Headers'
 import ReasonForVisit from './ReasonForVistit'
 import Button from './Button'
+import { AppointmentDate, AppointmentTime } from './AppointmentSetter'
 const Payment = () => {
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -16,11 +18,8 @@ const Payment = () => {
   /* current selected doctor information */
   const [doctorInfo, setDoctorInfo] = useState()
 
-  /* state to hold booking selection date */
-  const [bookingDate, setBookingDate] = useState()
-
-  /* state to hold the selected booking time */
-  const [bookingTime, setBookingTime] = useState()
+  /* state to hold doctor's time schedule */
+  const [timeSchedule, setTimeSchedule] = useState()
 
   /* state to hold our credit card info */
   const [creditCard, setCreditCard] = useState({
@@ -38,29 +37,6 @@ const Payment = () => {
     setCreditCard(prev => { return { ...prev, [e.target.name]: value } })
   }
 
-  useEffect(() => {
-    console.log(creditCard)
-  }, [creditCard])
-  /* Available booking time */
-  const [availableTimes, setAvailableTimes] = useState(
-    ['Choose Time', '8 AM', '9AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM'])
-
-  /* filter out the weekends so user can't book */
-  const filterDates = (date) => {
-    return date.getDay() !== 6 && date.getDay() !== 0
-  }
-
-  /* get the booking date from the customer */
-  const getBookingDate = (date) => {
-    setBookingDate(date)
-  }
-
-  /* function to get the booking time from the customer */
-
-  const getBookingTime = (e) => {
-    setBookingTime(e.target.value)
-  }
-
   /* set the doctors rating based on their rate... this is a mock rating system */
   const doctorsRating = () => {
     return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
@@ -71,14 +47,22 @@ const Payment = () => {
     return doctorInfo.rating < 120 ? '4.0' : '5.0'
   }
 
+  /* function to show the doctor's work time */
+  const scheduleTime = (time) => {
+    if (time === 12) return `${time}:00 PM EST`
+    if (time >= 8) return `${time}:00 AM EST`
+    else if (time < 8) return `${time}:00 PM EST`
+  }
+
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
-    SharedServices()
-      .then(res => {
-        if (res.status === 200) {
-          setDoctorInfo(res.data.data)
-        }
-      })
+    getProviderById()
+      .then(res => { if (res.status === 200) setDoctorInfo(res.data.data) })
+      .catch(e => console.log(e))
+
+    getSchedule()
+      .then(res => { if (res.status === 200) setTimeSchedule(res.data) })
+      .catch(e => console.log(e))
   }, [])
 
   /* onClick open modal */
@@ -92,36 +76,74 @@ const Payment = () => {
   }
 
   /* onClick submit appointment */
-  const submitAppointment = () => {
-
+  const submitAppointment = (e) => {
+    e.preventDefault()
+    const data = { customerId: customerToken().userId, providerId }
+    console.log(data)
   }
+
+  /* state to hold selected appointment date */
+  const [selectedDate, setSelectedDate] = useState(null)
+
+  /* function to change selected date onChange */
+  const getSelectedDate = (date) => {
+    setSelectedDate(date)
+  }
+
+  /* state to hold selected appointment time */
+  const [selectedTime, setSelectedTime] = useState(null)
+
+  /* function to change selected time onChange */
+  const getSelectedTime = (e) => {
+    const time = e.target.value
+    setSelectedTime(time)
+  }
+
+  /* state to hold time options for appointment */
+  const [timeOption, setTimeOption] = useState(
+    ['Choose Time', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM']
+  )
+
+  useEffect(() => {
+    console.log(selectedTime)
+    console.log(selectedDate)
+  }, [selectedTime, selectedDate])
   return (
     <div className='payment-container'>
       <NavBar />
       <TopHeader />
       <div className='content-wrapper' />
-      {doctorInfo !== undefined
+      {doctorInfo && timeSchedule !== undefined
         ? <>
-          <Modal
-            data={doctorInfo}
-            viewModal={modalStatus}
-            closeModal={modalClose}
-          />
           <div className='schedule-container'>
             <BioCard
-              times={availableTimes}
-              dateFilter={filterDates}
-              handleDate={getBookingDate}
-              selection={bookingDate}
-              handleTime={getBookingTime}
               firstName={doctorInfo.first_name}
               lastName={doctorInfo.last_name}
               rating={doctorsRating()}
               ratingNumber={numberRating()}
               hourlyRate={doctorInfo.rate}
               doctorsImage={doctorInfo.image}
+              doctorSchedule={scheduleTime(timeSchedule[0].time)}
               showModal={modalOpen}
             />
+            <div className='headers'>
+              <h1>Choose Date and Time</h1>
+            </div>
+            <div className='appointment-setter'>
+              <AppointmentDate
+                date={selectedDate}
+                handleSelect={getSelectedDate}
+                startDate={new Date()}
+              />
+              <AppointmentTime
+                time={timeOption}
+                handleSelect={getSelectedTime}
+
+              />
+            </div>
+            <div className='headers'>
+              <h1>Payment Information</h1>
+            </div>
             <CreditCard
               number={creditCard.number}
               name={creditCard.name}
@@ -136,6 +158,11 @@ const Payment = () => {
               handleAppointment={submitAppointment}
             />
           </div>
+          <Modal
+            data={doctorInfo}
+            viewModal={modalStatus}
+            closeModal={modalClose}
+          />
           </> : null}
     </div>
 
