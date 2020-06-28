@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const providers = require('./src/Routes/Providers')
 const customers = require('./src/Routes/Customers')
-
+const socket = require('./src/Socket/Socket')
 const app = express()
 app.use(express.json())
 app.use(morgan('combined'))
@@ -17,4 +17,6 @@ app.use('/api', customers)
 
 const PORT = 3002
 
-app.listen(PORT, (e) => e ? console.log(e) : console.log('success'))
+// app.listen(PORT, (e) => e ? console.log(e) : console.log('success'))
+
+socket(app, PORT)

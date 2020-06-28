@@ -3,7 +3,7 @@ import NavBar from '../../../Home/NavBar/NavBar'
 import Heading from '../../SharedComponents/Heading'
 import './styles.scss'
 import { BookingButton } from './Button'
-import Appointment from './Appointment'
+import Appointment from '../../SharedComponents/Appointment'
 import { GetAppointment } from './Services'
 import { useHistory } from 'react-router-dom'
 import JwtDecode from 'jwt-decode'
@@ -42,12 +42,14 @@ const Dashboard = () => {
       <BookingButton
         handleBooking={goToBookingPage}
       />
-      {appointments !== null
+      {appointments !== null && appointments.length > 0
         ? appointments.map((appointment, i) =>
           <Appointment
             key={i}
             date={appointment.date}
             time={appointment.time}
+            session='JOIN SESSION'
+            sessionId={appointment.appointment_id}
           />
         )
         : null}

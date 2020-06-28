@@ -11,6 +11,7 @@ import Checkout from './Components/CheckoutRegister/Checkout'
 import Payment from './Components/Payment/Payment'
 import ProviderDashboard from './Components/Profile/Provider/Dashboard/Dashboard'
 import CustomerDashboard from './Components/Profile/Customer/Dashboard/Dashboard'
+import Sessions from './Components/Profile/Sessions.js/Sessions'
 const App = () => {
   return (
     <Router>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/customer/dashboard' component={CustomerDashboard} />
         <Route path='/provider/login' component={ProviderLogin} />
         <Route path='/provider/dashboard' component={ProviderDashboard} />
+        <Route path='/session/:id' component={Sessions} />
       </Switch>
     </Router>
   )

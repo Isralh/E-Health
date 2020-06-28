@@ -1,14 +1,14 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { JoinSession } from './Button'
+import { Link } from 'react-router-dom'
 
 const FontAwesomeStyle = {
   color: 'rgb(88, 72, 72)',
   marginLeft: '20px',
   fontSize: '25px'
 }
-const Appointment = ({ date, time }) => {
+const Appointment = ({ date, time, session, sessionId }) => {
   return (
     <div className='appointments-container'>
       <div className='heading'>
@@ -19,8 +19,8 @@ const Appointment = ({ date, time }) => {
           <span className='date'>{date}</span>
           <span className='time'>{time}</span>
         </div>
-        <JoinSession />
       </div>
+      <Link to={`/session/${sessionId}`}><button className='session-btn'>{session}</button></Link>
     </div>
   )
 }

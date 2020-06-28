@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../../Home/NavBar/NavBar'
 import JwtDecode from 'jwt-decode'
-import Appointment from './Appointment'
+import Appointment from '../../SharedComponents/Appointment'
 import Heading from '../../SharedComponents/Heading'
 import { GetAppointment } from './Services'
 
@@ -33,8 +33,17 @@ const Dashboard = () => {
       <NavBar />
       {provider !== null || undefined
         ? <Heading name={provider.firstName} /> : null}
-      {appointments.length > 0 && appointments !== null
-        ? <Appointment /> : null}
+      {appointments !== null && appointments.length > 0
+        ? appointments.map((appointment, i) =>
+          <Appointment
+            key={i}
+            date={appointment.date}
+            time={appointment.time}
+            session='START SESSION'
+            sessionId={appointment.appointment_id}
+          />
+        )
+        : null}
     </div>
   )
 }

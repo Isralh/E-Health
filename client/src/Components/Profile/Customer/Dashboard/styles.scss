@@ -61,4 +61,14 @@
       margin-left: 10px;
     }
   }
+  .session-btn {
+    width: 90%;
+    margin-left: 5%;
+    height: 40px;
+    text-align: center;
+    background: orange;
+    color: white;
+    border: 1px solid $fontColor;
+    font-weight: $bolderFont;
+  }
 }
