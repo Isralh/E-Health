@@ -28,9 +28,9 @@
   }
 }
 
-.appointment-container {
-  width: $fullWidth;
-  margin-top: 5vh;
+.appointments-container {
+  margin-top: 10vh;
+  height: 30vh;
   .heading {
     border: 1px solid $fontColor;
     height: 40px;
@@ -43,13 +43,22 @@
       font-size: 18px;
     }
   }
-  .date-time {
+  .appointment-schedule {
     border: 1px solid $fontColor;
     height: 40px;
     margin-left: 5%;
     margin-right: 5%;
-    .appointment-time {
+    color: $fontColor;
+    text-align: center;
+    .fontAwesome {
       margin-top: 10px;
+      margin-right: 40px;
+    }
+    .date {
+      margin-left: 20px;
+    }
+    .time {
+      margin-left: 10px;
     }
   }
 }

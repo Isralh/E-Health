@@ -92,17 +92,18 @@ const Payment = () => {
     const time = e.target.value
     setSelectedTime(time)
   }
+  // const scheduleDate = new Date().toISOString().substring(0, 10)
 
   /* state to hold time options for appointment */
   const [timeOption, setTimeOption] = useState(
-    ['Choose Time', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM']
+    ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST', '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
   )
 
   /* onClick submit appointment */
   const history = useHistory()
   const submitAppointment = (e) => {
     e.preventDefault()
-    const data = { customerId: customerToken().userId, providerId, selectedDate, selectedTime }
+    const data = { customerId: customerToken().userId, providerId, selectedDate: selectedDate.toISOString().substring(0, 10), selectedTime } 
     postAppointment(data)
       .then(res => {
         if (res.status === 201) {
@@ -174,7 +175,7 @@ const Payment = () => {
             viewModal={modalStatus}
             closeModal={modalClose}
           />
-        </> : null}
+          </> : null}
     </div>
 
   )

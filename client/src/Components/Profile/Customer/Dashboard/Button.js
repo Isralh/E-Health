@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Button = () => {
+export const BookingButton = ({ handleBooking }) => {
   return (
     <div className='booking-btn'>
-      <button>Book Appointment</button>
+      <button onClick={handleBooking}>Book Appointment</button>
     </div>
   )
 }
 
-export default Button
