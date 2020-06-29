@@ -6,6 +6,8 @@ const providers = require('./src/Routes/Providers')
 const customers = require('./src/Routes/Customers')
 const socket = require('./src/Socket/Socket')
 const app = express()
+const server = require('http').createServer(app)
+
 app.use(express.json())
 app.use(morgan('combined'))
 app.use(cors())
@@ -17,6 +19,6 @@ app.use('/api', customers)
 
 const PORT = 3002
 
-// app.listen(PORT, (e) => e ? console.log(e) : console.log('success'))
+socket(server)
 
-socket(app, PORT)
+server.listen(PORT)

@@ -34,7 +34,6 @@ const ProviderLogin = () => {
   const token = window.localStorage
   const history = useHistory()
   const submitLogin = (e) => {
-
     e.preventDefault()
 
     LoginProvider(formInput)
@@ -46,7 +45,7 @@ const ProviderLogin = () => {
           setError(prev => { return { ...prev, password: res.data.message } })
         }
         if (res.status === 202) {
-          token.setItem('providerToken', res.data.token)
+          token.setItem('token', res.data.token)
           history.push('/provider/dashboard')
         }
       })

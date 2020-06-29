@@ -43,7 +43,7 @@ const CustomerLogin = () => {
           setError(prev => { return { ...prev, password: res.data.message } })
         }
         if (res.status === 202) {
-          token.setItem('customerToken', res.data.token)
+          token.setItem('token', res.data.token)
           history.push('/customer/dashboard')
         }
       })

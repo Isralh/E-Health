@@ -10,7 +10,7 @@ import JwtDecode from 'jwt-decode'
 
 const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
-  const customerToken = window.localStorage.getItem('customerToken')
+  const customerToken = window.localStorage.getItem('token')
   const customer = JwtDecode(customerToken)
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState(null)
