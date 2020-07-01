@@ -30,6 +30,10 @@ const socket = (server) => {
       socket.on('disconnect', () => {
         delete users[socket.id]
         io.to(room).emit('disconnect', { message: `${name} has left the chat!` })
+        io.in(room).clients((err, id) => {
+          if (err) console.log(err)
+          io.to(room).emit('allId', id)
+        })
       })
     })
   })

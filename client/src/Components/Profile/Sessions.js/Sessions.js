@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import JwtDecode from 'jwt-decode'
 import CustomerView from './CustomerView'
-
+import ProviderView from './ProviderView'
 const Sessions = ({ match }) => {
   /* user's information we get from the Jwt token saved in the local storage */
   const userToken = window.localStorage.getItem('token')
@@ -53,11 +53,8 @@ const Sessions = ({ match }) => {
   }, [users, userId])
   return (
     <div>
-      {user.role === 'customer'
-
-        ? <CustomerView />
-        : <h1>I AM PROVIDER</h1>}
-
+      {user.role === 'customer' ? <CustomerView users={users} role={user.role} />
+        : <ProviderView users={users} role={user.role} />}
     </div>
   )
 }
