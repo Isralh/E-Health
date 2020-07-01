@@ -20,7 +20,8 @@ const Appointment = ({ date, time, session, sessionId }) => {
           <span className='time'>{time}</span>
         </div>
       </div>
-      <Link to={`/session/${sessionId}`}><button className='session-btn'>{session}</button></Link>
+      <Link to={`/session/${sessionId}`}><button className='session-btn'>{session}</button>
+      </Link>
     </div>
   )
 }

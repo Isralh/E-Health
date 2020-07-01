@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const BookingButton = ({ handleBooking }) => {
+export const BookingButton = () => {
   return (
     <div className='booking-btn'>
-      <button onClick={handleBooking}>Book Appointment</button>
+      <Link to='/bookAppointment'><button>Book Appointment</button></Link>
     </div>
   )
 }

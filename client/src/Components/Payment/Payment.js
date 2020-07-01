@@ -101,6 +101,7 @@ const Payment = () => {
   )
 
   /* onClick submit appointment */
+  const doctorName = window.localStorage.getItem('doctorName')
   const history = useHistory()
   const submitAppointment = (e) => {
     e.preventDefault()
@@ -109,7 +110,7 @@ const Payment = () => {
       providerId,
       selectedDate: selectedDate.toISOString().substring(0, 10),
       selectedTime,
-      appointmentId: uuid()
+      appointmentId: doctorName
     }
     postAppointment(data)
       .then(res => {

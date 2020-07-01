@@ -62,10 +62,12 @@ const Doctors = () => {
     console.log(doctors)
   }, [schedule, doctors])
   /* function to start the booking process */
-  const doctorChoice = window.localStorage
+  const doctorId = window.localStorage
+  const doctorName = window.localStorage
   const history = useHistory()
   const bookDoctor = (doctor) => {
-    doctorChoice.setItem('doctorId', doctor.id)
+    doctorId.setItem('doctorId', doctor.id)
+    doctorName.setItem('doctorName', `${doctor.first_name}${doctor.last_name}`)
     history.push('/checkoutRegister')
   }
   return (

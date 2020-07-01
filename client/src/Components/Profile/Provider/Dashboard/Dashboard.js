@@ -9,7 +9,7 @@ const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
   const providerToken = window.localStorage.getItem('token')
   const provider = JwtDecode(providerToken)
-  console.log(provider)
+
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState([])
 

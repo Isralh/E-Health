@@ -5,21 +5,16 @@ import './styles.scss'
 import { BookingButton } from './Button'
 import Appointment from '../../SharedComponents/Appointment'
 import { GetAppointment } from './Services'
-import { useHistory } from 'react-router-dom'
 import JwtDecode from 'jwt-decode'
 
 const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
   const customerToken = window.localStorage.getItem('token')
   const customer = JwtDecode(customerToken)
+
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState(null)
 
-  /* function to redirect to booking page */
-  const history = useHistory()
-  const goToBookingPage = () => {
-    history.push('/bookAppointment')
-  }
   /* on initial load fetch the customer's appointment schedule */
   useEffect(() => {
     if (customer !== null || undefined) {
@@ -39,9 +34,7 @@ const Dashboard = () => {
     <div className='dashboard-container'>
       <NavBar />
       <Heading name={customer.firstName} />
-      <BookingButton
-        handleBooking={goToBookingPage}
-      />
+      <BookingButton />
       {appointments !== null && appointments.length > 0
         ? appointments.map((appointment, i) =>
           <Appointment
