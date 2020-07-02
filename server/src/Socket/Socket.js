@@ -7,18 +7,14 @@ const socket = (server) => {
   const io = require('socket.io')(server)
 
   io.on('connection', socket => {
-    /* if statement to check if the userId is in the all users object if not add the to all users object
-     to keep track of our current users */
-    if (!roomUsers[socket.id]) {
-      roomUsers[socket.id] = socket.id
-    }
+
 
     // console.log(roomUsers)
     /* when they first connect we will send them their user id */
     socket.emit('socketId', socket.id)
 
     /* join room */
-    socket.on('join', ({ name, room }) => { 
+    socket.on('join', ({ name, room }) => {
       socket.join(room)
       io.in(room).clients((err, id) => {
         if (err) console.log(err)
@@ -29,7 +25,7 @@ const socket = (server) => {
         io.to(data.customer).emit('answerCall', data.offer)
       })
       socket.on('accepted', data => {
-        io.to(data.provider).emit('customerAccepted', data.signal)
+        io.to(data.provider).emit('customerAccepted', data.accept)
       })
       /* when they disconnect delete the socket id from all users */
       socket.on('disconnect', () => {

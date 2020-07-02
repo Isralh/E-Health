@@ -10,24 +10,32 @@
 
 .login-wrapper {
   color: $fontColor;
-  position: $relativePosition;
-  margin-top: 10vh;
-}
+  margin: 15vh 15% 0 15%;
 
-.heading {
-  margin-right: 10vw;
+  @media (min-width: 500px) {
+    margin: 15vh 20% 0 20%;
+  }
 
-  h1 {
-    font-size: 25px;
-    text-align: $textCenter;
-    margin-left: 3vw;
+  @media (min-width: 768px) {
+    margin: 15vh 25% 0 25%;
+  }
+  @media (min-width: 1000px) {
+    margin: 15vh 30% 0 30%;
+  }
+  @media (min-width: 1200px) {
+    margin: 15vh 35% 0 35%;
   }
 }
 
-.form-container {
-  margin: 5vh 0 0 7vw;
-  width: 80%;
+.login-heading {
+  text-align: $textCenter;
 
+  h1 {
+    font-size: 25px;
+  }
+}
+
+.login-form-container {
   .input-wrapper {
     margin-top: 5vh;
 
@@ -37,8 +45,14 @@
   }
 
   input {
-    height: 30px;
-    width: 97%;
+    height: 50px;
+    width: 98%;
+  }
+
+  @media (max-width: 420px) {
+    input {
+      width: 97%;
+    }
   }
 }
 
@@ -50,6 +64,7 @@
   height: 45px;
   cursor: pointer;
 }
+
 .loginBtn-customer {
   margin-top: 5vh;
   width: 100%;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavBar from '../../Home/NavBar/NavBar'
 import Form from '../SharedComponent/Form'
-import Heading from '../../Register/Provider/Heading'
+import LoginHeader from '../SharedComponent/LoginHeader'
 import { useHistory } from 'react-router-dom'
 import LoginCustomer from './Services'
 import '../SharedComponent/Styles.scss'
@@ -32,6 +32,7 @@ const CustomerLogin = () => {
 
   /* function to submit the form and login customer */
   const token = window.localStorage
+  const history = useHistory()
   const submitLogin = (e) => {
     e.preventDefault()
     LoginCustomer(formInput)
@@ -50,18 +51,12 @@ const CustomerLogin = () => {
       .catch(e => console.log(e))
   }
 
-  /* go to create account page */
-  const history = useHistory()
-  const goToRegisterPage = () => {
-    history.push('/createAccount')
-  }
   return (
     <div className='login-container'>
       <NavBar />
       <div className='login-wrapper'>
-        <Heading topHeading='Login' />
+        <LoginHeader />
         <Form
-          handleRegister={goToRegisterPage}
           handleChange={getUserInput}
           email={formInput.email}
           password={formInput.password}

@@ -1,11 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+/* Link inline-styling */
+
+const LinkStyle = {
+  textDecoration: 'none',
+  color: 'rgb(88, 72, 72)'
+}
 
 const Form = ({
   emailError, handleChange, email, passwordError, password, handleSubmit,
   handleRegister, handleFocus, loginButton, providerLoginButton
 }) => {
   return (
-    <div className='form-container'>
+    <div className='login-form-container'>
       <form className='login-form'>
         <div className='input-wrapper'>
           <p>{emailError}</p>
@@ -32,7 +40,7 @@ const Form = ({
           />
         </div>
         <div className='loginBtn-customer' style={{ display: loginButton }}>
-          <p>New user? <span onClick={handleRegister}>Register</span></p>
+          <p>New user? <Link to='/createAccount' style={LinkStyle}><span>Register</span></Link></p>
           <button
             onClick={handleSubmit}
             type='submit'

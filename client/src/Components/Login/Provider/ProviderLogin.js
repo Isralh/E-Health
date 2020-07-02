@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import NavBar from '../../Home/NavBar/NavBar'
-import Heading from '../../Register/Provider/Heading'
 import Form from '../SharedComponent/Form'
 import LoginProvider from './Services'
 import { useHistory } from 'react-router-dom'
-import '../SharedComponent/Styles.scss'
+import LoginHeader from '../SharedComponent/LoginHeader'
 
 const ProviderLogin = () => {
   /* state to hold all of our form input */
@@ -56,7 +55,7 @@ const ProviderLogin = () => {
     <div className='provider-login-container'>
       <NavBar />
       <div className='login-wrapper'>
-        <Heading topHeading='Login' />
+        <LoginHeader />
         <Form
           handleChange={getUserInput}
           email={formInput.email}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../Home/NavBar/NavBar'
-import Heading from '../Provider/Heading'
 import Form from './Form'
 import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateEmail } from '../ErrorValidation/ErrorValidation'
 import RegistrationServices from './RegistrationServices'
+import RegisterHeading from './RegisterHeading'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
-const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitType = 'Register' }) => {
+const CustomerRegister = ({ historyPush = '/', submitType = 'Register' }) => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
   inputs */
   const [formInput, setFormInput] = useState({
@@ -69,11 +69,9 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
 
   return (
     <div className='registration-container'>
-      <div style={{ display: displayNavBar }}>
-        <NavBar />
-      </div>
+      <NavBar />
       <div className='registration-wrapper'>
-        <Heading topHeading='Create an Account' />
+        <RegisterHeading />
         <Form
           handleChange={getFormInput}
           firstName={formInput.firstName}

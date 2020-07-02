@@ -1,5 +1,4 @@
 import React from 'react'
-import DatePicker from 'react-datepicker'
 import './styles.scss'
 const TopParagraph = () => {
   return (

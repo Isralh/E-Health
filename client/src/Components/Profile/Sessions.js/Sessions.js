@@ -95,10 +95,10 @@ const Sessions = ({ match }) => {
 
     /* signal to send to the provider/doctor when answering the call */
     customer.on('signal', data => {
-      socket.emit('accepted', { provider: peerId, signal: data })
+      socket.emit('accepted', { provider: peerId, accept: data })
     })
 
-    /* after accepting get the doctorVideo ref's srcObject and make it the 
+    /* after accepting get the doctorVideo ref's srcObject and make it the
        doctors/provide media stream to show in our screen */
     customer.on('stream', stream => {
       doctorVideo.current.srcObject = stream
@@ -115,14 +115,6 @@ const Sessions = ({ match }) => {
       setPeerId(peer.toString())
     }
   }, [users])
-
-  useEffect(() => {
-    console.log(myId)
-    console.log(users)
-    console.log(peerId)
-    console.log(userStream)
-    console.log(callOffer)
-  }, [myId, users, userStream, callOffer])
 
   return (
     <div>
