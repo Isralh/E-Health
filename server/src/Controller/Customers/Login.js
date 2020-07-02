@@ -18,6 +18,7 @@ const loginCustomer = async (req, res) => {
           const token = jwtToken.sign({
             userId: existingCustomer.id,
             firstName: existingCustomer.first_name,
+            lastName: existingCustomer.last_name,
             role: 'customer'
           }, jwtSecret, { expiresIn: '5hrs' })
           return res.status(202).send({ message: 'success', token: token })

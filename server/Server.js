@@ -22,7 +22,7 @@ const PORT = 3002
 
 socket(server)
 
-server.listen(PORT, (e) => {
+server.listen(3002, (e) => {
   if (e) console.log(e)
 
   console.log(`listening to PORT ${PORT}`)

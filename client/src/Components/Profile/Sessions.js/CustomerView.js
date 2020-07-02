@@ -1,13 +1,32 @@
 import React from 'react'
 
-const CustomerView = ({ users = [] }) => {
+const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, calling, offer }) => {
   return (
-    <div>
-      <div>
-        {users.length > 1
-          ? <h1>DOCTOR IS ON THE LINE AND WILL CALL YOU SHORTLY</h1>
-          : <h1>WAITING ON DOCTOR</h1>}
-      </div>
+    <div className='view-container'>
+      {users.length > 1
+        ? <div className='withPeer-view'>
+          <div className='my-video-container'>
+            <video className='my-video' ref={myVideoRef} autoPlay playsInline muted />
+          </div>
+          {(offer !== null) && (calling === true)
+            ? <div>
+              <button onClick={AcceptCall}>Answer Call</button>
+            </div>
+            : null}
+          <div className='peer-view'>
+            <video className='peer-video' ref={doctorVideoRef} autoPlay playsInline />
+          </div>
+          </div>
+        : <div className='withoutPeer-view'>
+          <div className='my-video-container'>
+            <video className='my-video' ref={myVideoRef} autoPlay playsInline muted />
+          </div>
+          <div className='peer-view'>
+            <div className='message'>
+              <h1>Waiting on Doctor...</h1>
+            </div>
+          </div>
+          </div>}
     </div>
   )
 }

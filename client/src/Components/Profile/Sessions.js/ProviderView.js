@@ -1,16 +1,28 @@
 import React from 'react'
 
-const ProviderView = ({ users = [], role }) => {
+const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient }) => {
   return (
-    <div>
-      <div>
-        {users.length > 1
-          ? <div>
-            <h1>CLIENT IS AWAITING YOU</h1>
-            <button>CALL CLIENT</button>
+    <div className='view-container'>
+      {users.length > 1
+        ? <div className='withPeer-view'>
+          <div className='my-video-container'>
+            <video className='my-video' ref={myVideoRef} autoPlay playsInline muted />
           </div>
-          : <h1>WAITING ON CLIENT</h1>}
-      </div>
+          <button onClick={callClient}>Call Client</button>
+          <div className='peer-view'>
+            <video className='peer-video' ref={customerVideoRef} autoPlay playsInline />
+          </div>
+        </div>
+        : <div className='withoutPeer-view'>
+          <div className='my-video-container'>
+            <video className='my-video' ref={myVideoRef} autoPlay playsInline muted />
+          </div>
+          <div className='peer-view'>
+            <div className='message'>
+              <h1>Waiting on Client...</h1>
+            </div>
+          </div>
+        </div>}
     </div>
   )
 }

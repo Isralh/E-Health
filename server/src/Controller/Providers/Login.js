@@ -19,6 +19,7 @@ const loginProvider = async (req, res) => {
           const token = jwtToken.sign({
             userId: existingProvider.id,
             firstName: existingProvider.first_name,
+            lastName: existingProvider.last_name,
             role: 'provider'
           }, jwtSecret, { expiresIn: '5hrs' })
           return res.status(202).send({ message: 'success', token: token })
