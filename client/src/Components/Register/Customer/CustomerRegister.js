@@ -62,11 +62,6 @@ const CustomerRegister = ({ historyPush = '/', submitType = 'Register' }) => {
     submitForm()
   }, [errors])
 
-  /* go to the login page */
-  const goToLoginPage = () => {
-    history.push('/customer/login')
-  }
-
   return (
     <div className='registration-container'>
       <NavBar />
@@ -85,7 +80,6 @@ const CustomerRegister = ({ historyPush = '/', submitType = 'Register' }) => {
           passwordError={errors.password}
           confirmPasswordError={errors.confirmPassword}
           handleSubmit={validateForm}
-          handleLogin={goToLoginPage}
           submitHeading={submitType}
         />
       </div>

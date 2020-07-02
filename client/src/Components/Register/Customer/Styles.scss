@@ -13,6 +13,20 @@
   position: $relativePosition;
   margin-top: 5vh;
   margin: 5vh 10% 0 10%;
+
+  @media (min-width: 500px) {
+    margin: 7vh 20% 0 20%;
+  }
+
+  @media (min-width: 768px) {
+    margin: 7vh 25% 0 25%;
+  }
+  @media (min-width: 1000px) {
+    margin: 7vh 30% 0 30%;
+  }
+  @media (min-width: 1200px) {
+    margin: 7vh 35% 0 35%;
+  }
 }
 
 .register-heading {
@@ -24,7 +38,7 @@
 
 .form-container {
   .input-wrapper {
-    margin-top: 5vh;
+    margin-top: 3vh;
 
     p {
       color: red;
@@ -32,7 +46,7 @@
   }
 
   input {
-    height: 30px;
+    height: 45px;
     width: 98%;
   }
 }
