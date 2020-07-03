@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from '../../../Home/NavBar/NavBar'
+import NavBar from '../../../NavBar/NavBar'
 import Heading from '../../SharedComponents/Heading'
 import './styles.scss'
 import { BookingButton } from './Button'

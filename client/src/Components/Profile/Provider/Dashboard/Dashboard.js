@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from '../../../Home/NavBar/NavBar'
+import NavBar from '../../../NavBar/NavBar'
 import JwtDecode from 'jwt-decode'
 import Appointment from '../../SharedComponents/Appointment'
 import Heading from '../../SharedComponents/Heading'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NavBar from '../../Home/NavBar/NavBar'
+import NavBar from '../../NavBar/NavBar'
 import Form from '../SharedComponent/Form'
 import LoginHeader from '../SharedComponent/LoginHeader'
 import { useHistory } from 'react-router-dom'

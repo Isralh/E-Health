@@ -1,11 +1,9 @@
 import React from 'react'
-import NavBar from '../NavBar/NavBar'
-import FrontView from '../FrontView/FrontView'
+import NavBar from '../../NavBar/NavBar'
 const Home = () => {
   return (
     <div className='home-container'>
       <NavBar />
-      <FrontView />
     </div>
   )
 }

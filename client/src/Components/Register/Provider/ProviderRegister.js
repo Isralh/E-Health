@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Styles.scss'
-import NavBar from '../../Home/NavBar/NavBar'
+import NavBar from '../../NavBar/NavBar'
 import Heading from './Heading'
 import { FirstForm, SecondForm } from './Form'
 import { s3Uploader, Registration } from './Services'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from '../../Home/NavBar/NavBar'
+import NavBar from '../../NavBar/NavBar'
 import { getProviderById, postAppointment, providerId } from './services'
 import { customerToken } from '../../JwtDecode/JwtDecode'
 import { FiveStar, FourStar } from '../../Appointment/Description/Description'

@@ -1,0 +1,47 @@
+@import '../../Assets/Sass/Variables';
+@import '../../Assets/Sass/Mixins';
+
+nav {
+  height: 10vh;
+  border-bottom: 2px solid $fontColor;
+  @media (min-width: $mobile-width) {
+    @include flex(row, nowrap, space-between);
+  }
+}
+
+.heading-container {
+  top: 0;
+  color: $fontColor;
+  h1 {
+    margin: 3vh 0 0 20px;
+    font-size: 25 px;
+    cursor: pointer;
+  }
+}
+
+.burger-wrapper {
+  @include flex(column, nowrap, flex-start);
+  top: 3vh;
+  div {
+    margin: 5px 25px 0 0px;
+    border-bottom: 3px solid $fontColor;
+    width: 30px;
+  }
+}
+
+.nav-dropdown {
+  background: $fontColor;
+  height: auto;
+  z-index: 1;
+  @include flex(column, nowrap, flex-start);
+  .link {
+    font-size: 18px;
+    line-height: 30px;
+    margin-left: 10px;
+    color: white;
+  }
+
+  .login-dropdown {
+    @include flex(column, nowrap, flex-start);
+  }
+}

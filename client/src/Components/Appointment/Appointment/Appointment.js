@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../../Home/NavBar/NavBar'
+import Nav from '../../NavBar/NavBar'
 import TopContent from '../TopContent/TopContent'
 import Doctors from '../Doctors/Doctors'
 import './styles.scss'

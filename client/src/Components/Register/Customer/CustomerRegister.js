@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from '../../Home/NavBar/NavBar'
+import NavBar from '../../NavBar/NavBar'
 import Form from './Form'
 import { validateFirstName, validateLastName, validatePassWord, validateConfirmPassword, validateEmail } from '../ErrorValidation/ErrorValidation'
 import RegistrationServices from './RegistrationServices'

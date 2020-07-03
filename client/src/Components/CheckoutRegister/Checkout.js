@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from '../Home/NavBar/NavBar'
+import NavBar from '../NavBar/NavBar'
 import SharedServices from '../SharedServices/SharedServices'
 import DoctorCard from './DoctorCard'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
