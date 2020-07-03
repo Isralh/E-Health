@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from '../Home/NavBar/NavBar'
+import NavBar from '../../Home/NavBar/NavBar'
 import { getProviderById, postAppointment, providerId } from './services'
-import { customerToken } from '../JwtDecode/JwtDecode'
-import { FiveStar, FourStar } from '../Appointment/Description/Description'
-import './styles.scss'
-import Modal from '../Appointment/Modal/Modal'
-import BioCard from './BioCard'
-import CreditCard from './CreditCard'
-import { TopHeader } from './Headers'
-import ReasonForVisit from './ReasonForVistit'
-import Button from './Button'
-import { AppointmentDate, AppointmentTime } from './AppointmentSetter'
+import { customerToken } from '../../JwtDecode/JwtDecode'
+import { FiveStar, FourStar } from '../../Appointment/Description/Description'
+import Modal from '../../Appointment/Modal/Modal'
+import BioCard from '../BioCard/BioCard'
+import CreditCard from '../CreditCard/CreditCard'
+import TopHeader from '../Header/Header'
+import ReasonForVisit from '../ReasonForVisit/ReasonForVisit'
+import Button from '../Button/Button'
+import { AppointmentDate, AppointmentTime } from '../Scheduler/Scheduler'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import './styles.scss'
+
 const Payment = () => {
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -113,57 +114,58 @@ const Payment = () => {
     <div className='payment-container'>
       <NavBar />
       <TopHeader />
-      <div className='content-wrapper' />
-      {doctorInfo !== undefined
-        ? <>
-          <div className='schedule-container'>
-            <BioCard
-              firstName={doctorInfo.first_name}
-              lastName={doctorInfo.last_name}
-              rating={doctorsRating()}
-              ratingNumber={numberRating()}
-              hourlyRate={doctorInfo.rate}
-              doctorsImage={doctorInfo.image}
-              showModal={modalOpen}
-            />
-            <div className='headers'>
-              <h1>Choose Date and Time</h1>
-            </div>
-            <div className='appointment-setter'>
-              <AppointmentDate
-                date={selectedDate}
-                handleSelect={getSelectedDate}
-                startDate={new Date()}
+      <div className='content-wrapper'>
+        {doctorInfo !== undefined
+          ? <>
+            <div className='schedule-container'>
+              <BioCard
+                firstName={doctorInfo.first_name}
+                lastName={doctorInfo.last_name}
+                rating={doctorsRating()}
+                ratingNumber={numberRating()}
+                hourlyRate={doctorInfo.rate}
+                doctorsImage={doctorInfo.image}
+                showModal={modalOpen}
               />
-              <AppointmentTime
-                time={timeOption}
-                handleSelect={getSelectedTime}
+              <div className='headers'>
+                <h1>Choose Date and Time</h1>
+              </div>
+              <div className='appointment-setter'>
+                <AppointmentDate
+                  date={selectedDate}
+                  handleSelect={getSelectedDate}
+                  startDate={new Date()}
+                />
+                <AppointmentTime
+                  time={timeOption}
+                  handleSelect={getSelectedTime}
 
+                />
+              </div>
+              <div className='headers'>
+                <h1>Payment Information</h1>
+              </div>
+              <CreditCard
+                number={creditCard.number}
+                name={creditCard.name}
+                expiry={creditCard.expiry}
+                cvc={creditCard.cvc}
+                zip={creditCard.zip}
+                handleChange={getCreditCardInput}
+              />
+              <ReasonForVisit />
+              <Button
+                subTotal={'Book' + ' ' + `$${doctorInfo.rate}`}
+                handleAppointment={submitAppointment}
               />
             </div>
-            <div className='headers'>
-              <h1>Payment Information</h1>
-            </div>
-            <CreditCard
-              number={creditCard.number}
-              name={creditCard.name}
-              expiry={creditCard.expiry}
-              cvc={creditCard.cvc}
-              zip={creditCard.zip}
-              handleChange={getCreditCardInput}
+            <Modal
+              data={doctorInfo}
+              viewModal={modalStatus}
+              closeModal={modalClose}
             />
-            <ReasonForVisit />
-            <Button
-              subTotal={'Book' + ' ' + `$${doctorInfo.rate}`}
-              handleAppointment={submitAppointment}
-            />
-          </div>
-          <Modal
-            data={doctorInfo}
-            viewModal={modalStatus}
-            closeModal={modalClose}
-          />
           </> : null}
+      </div>
     </div>
 
   )

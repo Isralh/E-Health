@@ -1,12 +1,11 @@
-@import '../../Assets/Sass/Variables';
-@import '../../Assets/Sass/Mixins';
+@import '../../../Assets/Sass/Variables';
+@import '../../../Assets/Sass/Mixins';
 
 .bioCard-container {
   border: 1px solid $fontColor;
-  margin: 5vh 0 0 4vw;
-  height: 200px;
+  margin: 5vh 0 0 0;
+  height: 180px;
   @include flex(row, nowrap, space-between);
-  width: 87%;
 
   .bio-wrapper {
     margin-left: 10px;

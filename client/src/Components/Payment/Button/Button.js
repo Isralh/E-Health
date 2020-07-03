@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './Styles.scss'
 const Button = ({ subTotal, handleAppointment }) => {
   return (
     <div className='button-conatainer'>
