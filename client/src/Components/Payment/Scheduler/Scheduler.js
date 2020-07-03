@@ -10,7 +10,7 @@ export const Scheduler = ({ date, startDate, handleSelect, time = [], handleDate
         minDate={startDate}
         onChange={handleSelect}
         filterDate={date => date.getDay() !== 0}
-        dateFormat='dd/MM/yy'
+        dateFormat='MM/dd/yy'
         placeholderText='Select Date'
         className='date-picker'
       />

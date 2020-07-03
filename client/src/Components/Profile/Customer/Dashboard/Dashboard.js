@@ -11,7 +11,7 @@ const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
   const customerToken = window.localStorage.getItem('token')
   const customer = JwtDecode(customerToken)
-
+  console.log(customer)
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState(null)
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard-container'>
       <NavBar />
-      <Heading name={customer.firstName} />
+      <Heading name={customer.firstName.toUpperCase()} />
       <BookingButton />
       {appointments !== null && appointments.length > 0
         ? appointments.map((appointment, i) =>

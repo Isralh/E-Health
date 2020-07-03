@@ -5,6 +5,7 @@ import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
 import Modal from '../Modal/Modal'
 import { useHistory } from 'react-router-dom'
+import JwtDecode from 'jwt-decode'
 export const doctorContext = createContext()
 const Doctors = () => {
   /* state to toggle modal open and close */
@@ -44,6 +45,16 @@ const Doctors = () => {
       .catch(e => console.log(e))
   }, [])
 
+  /* check to see if users is signed in */
+  const user = window.localStorage.getItem('token')
+
+  /* when user tries to book doctor If user is signed in go to the payment section or direct them to create
+  an account first in the checkoutRegister page */
+  const redirectUser = () => {
+    if (user !== null) {
+      history.push('/payment')
+    } else history.push('/checkoutRegister')
+  }
   /* function to start the booking process */
   const doctorId = window.localStorage
   const doctorName = window.localStorage
@@ -51,7 +62,7 @@ const Doctors = () => {
   const bookDoctor = (doctor) => {
     doctorId.setItem('doctorId', doctor.id)
     doctorName.setItem('doctorName', `${doctor.first_name}${doctor.last_name}`)
-    history.push('/checkoutRegister')
+    redirectUser()
   }
   return (
     <div className='list-container'>

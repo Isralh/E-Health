@@ -152,7 +152,6 @@ const Payment = () => {
               />
               <ReasonForVisit />
               <Button
-                subTotal={'Book' + ' ' + `$${doctorInfo.rate}`}
                 handleAppointment={submitAppointment}
               />
             </div>

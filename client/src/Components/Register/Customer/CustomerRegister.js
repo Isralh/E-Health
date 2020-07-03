@@ -6,7 +6,7 @@ import RegistrationServices from './RegistrationServices'
 import RegisterHeading from './RegisterHeading'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
-const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitType = 'Register' }) => {
+const CustomerRegister = ({ historyPush = '/customer/dashboard', displayNavBar = 'block', submitType = 'Register' }) => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
   inputs */
   const [formInput, setFormInput] = useState({
@@ -43,15 +43,17 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
     validateConfirmPassword(formInput.password, formInput.confirmPassword, setErrors)
   }
   const history = useHistory()
-
+  const token = window.localStorage
   /* submit the form if there are no errors in the input error state */
   const submitForm = async () => {
     if (!errors.firstName && !errors.lastName && !errors.email && !errors.password && !errors.confirmPassword) {
       const response = await RegistrationServices(formInput)
       try {
-        console.log(response.status)
         if (response.status === 200) return window.alert(response.data.message)
-        if (response.status === 201) return history.push(historyPush)
+        if (response.status === 201) {
+          token.setItem('token', response.data.token)
+          history.push(historyPush)
+        }
       } catch (e) {
         console.log(e)
       }

@@ -59,9 +59,10 @@ const Registration = async (req, res) => {
       userType: 'customer'
     }).then(customer => {
       const token = jwtToken.sign({
-        id: customer.id,
-        name: customer.first_name,
-        userType: customer.userType
+        userId: customer.id,
+        firstName: customer.first_name,
+        lastName: customer.last_name,
+        role: 'customer'
       }, jwtSecret, { expiresIn: '5hr' })
       return res.status(201).send({ message: 'success', token: token })
     }).catch(e => { return res.status(500) })

@@ -8,8 +8,8 @@ const BioCard = ({
       <div className='bio-wrapper'>
         <p className='doctor-name'>{`Dr. ${firstName} ${lastName}`}</p>
         <div><span>{rating}</span><span className='doctorRating'>{ratingNumber}</span></div>
-        <p>{`$${hourlyRate}/Appointment`}</p>
         <p onClick={showModal} className='doctorProfile'>View Profile & Review</p>
+        <p className='appointment-rate'>{`$${hourlyRate}/Appointment`}</p>
       </div>
       <div className='doctorImage' style={{ backgroundImage: `url(${doctorsImage})` }} />
     </div>
