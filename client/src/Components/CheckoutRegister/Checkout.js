@@ -45,7 +45,7 @@ const Checkout = () => {
     <div className='checkout-container'>
       <NavBar />
       <div className='content-wrapper'>
-        {doctorInfo !== undefined
+        {/*    {doctorInfo !== undefined
           ? <>
             <DoctorCard
               firstName={doctorInfo.first_name}
@@ -61,7 +61,7 @@ const Checkout = () => {
               closeModal={modalClose}
             />
           </>
-          : null}
+          : null} */}
         <CustomerRegister
           displayNavBar='none'
           historyPush='/payment'

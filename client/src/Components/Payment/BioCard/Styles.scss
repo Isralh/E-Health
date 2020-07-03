@@ -3,7 +3,7 @@
 
 .bioCard-container {
   border: 1px solid $fontColor;
-  margin: 5vh 0 0 0;
+  margin: 5vh 0.5vw 0 0;
   height: 180px;
   @include flex(row, nowrap, space-between);
 
@@ -11,8 +11,9 @@
     margin-left: 10px;
   }
 
-  .doctor {
+  .doctor-name {
     font-size: 20px;
+    font-weight: $bolderFont;
   }
 
   .checked {

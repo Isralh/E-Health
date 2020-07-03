@@ -1,10 +1,11 @@
 import React from 'react'
-import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import ModalImage from './ModalImage'
 import { TopDescription, MainDescription } from './ModalDescription'
 import { FiveStar, FourStar } from '../Description/Description'
+import './styles.scss'
+
 const Modal = ({ viewModal, closeModal, data }) => {
   /* mock rating system I came up with based on the doctors hourly rate */
   const rateDoctor = (data) => {

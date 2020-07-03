@@ -9,7 +9,7 @@ import CreditCard from '../CreditCard/CreditCard'
 import TopHeader from '../Header/Header'
 import ReasonForVisit from '../ReasonForVisit/ReasonForVisit'
 import Button from '../Button/Button'
-import { AppointmentDate, AppointmentTime } from '../Scheduler/Scheduler'
+import { Scheduler } from '../Scheduler/Scheduler'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import './styles.scss'
@@ -114,7 +114,7 @@ const Payment = () => {
     <div className='payment-container'>
       <NavBar />
       <TopHeader />
-      <div className='content-wrapper'>
+      <div className='payment-wrapper'>
         {doctorInfo !== undefined
           ? <>
             <div className='schedule-container'>
@@ -131,15 +131,12 @@ const Payment = () => {
                 <h1>Choose Date and Time</h1>
               </div>
               <div className='appointment-setter'>
-                <AppointmentDate
+                <Scheduler
                   date={selectedDate}
                   handleSelect={getSelectedDate}
                   startDate={new Date()}
-                />
-                <AppointmentTime
                   time={timeOption}
-                  handleSelect={getSelectedTime}
-
+                  handleDate={getSelectedTime}
                 />
               </div>
               <div className='headers'>

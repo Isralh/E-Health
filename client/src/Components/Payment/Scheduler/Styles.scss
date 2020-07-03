@@ -1,0 +1,28 @@
+@import '../../../Assets/Sass/Variables';
+
+.appointment-setter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  .date-picker {
+    margin-top: 15px;
+    height: 40px;
+    width: 96%;
+    @media (min-width: 400px) {
+      width: 96.5%;
+    }
+    @media (min-width: 500px) {
+      width: 97%;
+    }
+    @media (min-width: 1220px) {
+      width: 97.5%;
+    }
+  }
+  .time-picker {
+    margin-top: 25px;
+    height: 45px;
+    color: $fontColor;
+    width: 99%;
+  }
+}

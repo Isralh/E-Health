@@ -17,7 +17,7 @@ export const TopDescription = ({ firstName, lastName, showRating, doctorRating, 
     </div>
   )
 }
-export const MainDescription = ({ years, education, bio }) => {
+export const MainDescription = ({ education, bio }) => {
   return (
     <div className='main-description'>
       <h4>Qualification and Experience</h4>
