@@ -1,0 +1,21 @@
+.pageNotFound {
+  height: auto;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-top: 25vh;
+  h1 {
+    font-size: 70px;
+  }
+}
+.message-container {
+  text-align: center;
+  margin-top: -25px;
+  .main-message {
+    font-size: 25px;
+  }
+  .sub-message {
+    font-size: 20px;
+  }
+}

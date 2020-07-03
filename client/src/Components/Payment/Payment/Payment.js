@@ -153,6 +153,7 @@ const Payment = () => {
               <ReasonForVisit />
               <Button
                 handleAppointment={submitAppointment}
+                book={`BOOK $${doctorInfo.rate}`}
               />
             </div>
             <Modal

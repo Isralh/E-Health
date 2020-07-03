@@ -1,9 +1,9 @@
 import React from 'react'
 import './Styles.scss'
-const Button = ({ handleAppointment }) => {
+const Button = ({ handleAppointment, book }) => {
   return (
     <div className='button-conatainer'>
-      <button className='total-btn' onClick={handleAppointment}>SUBMIT</button>
+      <button className='total-btn' onClick={handleAppointment}>{book}</button>
     </div>
   )
 }
