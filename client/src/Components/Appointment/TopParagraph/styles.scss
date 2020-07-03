@@ -1,58 +1,47 @@
 @import '../../../Assets/Sass/Variables';
 
-.header {
+.top-content {
   @media (min-width: $mobile-width) {
-    text-align: justify;
-    margin: 5vh 5vw 0 2vw;
-
-    h1 {
-      color: $fontColor;
-      font-size: 22px;
-      line-height: 30px;
-      font-weight: bolder;
-    }
+    display: block;
+    margin: 5vh 2.5% 5vh 2.5%;
   }
   @media (min-width: $tablet-width) {
-    margin-left: 10%;
-    width: 80%;
-    h1 {
-      line-height: 30px;
-    }
+    margin: 5vh 10% 0 10%;
   }
   @media (min-width: 1000px) {
-    margin-left: 20%;
-    width: 60%;
+    margin: 5vh 20% 0 20%;
+  }
+}
+.header {
+  h1 {
+    color: $fontColor;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: bolder;
+  }
+
+  @media (min-width: $tablet-width) {
+    h1 {
+      line-height: 35px;
+    }
+  }
+
+  @media (min-width: 1000px) {
     h1 {
       line-height: 40px;
     }
   }
 }
-.paragraph-container {
-  @media (min-width: $mobile-width) {
-    border-bottom: solid 1px $fontColor;
-    margin: 10vh 0 0 2vw;
-    width: 95%;
-    height: 20px;
 
-    p {
-      text-align: justify;
-      color: $fontColor;
-      font-size: 20px;
-    }
-    .available {
-      font-weight: $bolderFont;
-    }
-  }
-  @media (min-width: $tablet-width) {
-    margin-left: 10%;
-    width: 80%;
-  }
-  @media (min-width: 1000px) {
-    margin-left: 20%;
-    width: 60%;
-  }
-  @media (min-width: 1000px) {
-    margin-left: 20%;
-    width: 60%;
+.available-doctors {
+  margin-top: 10vh;
+  border-bottom: solid 1px $fontColor;
+  height: 20px;
+  margin-right: 2vw;
+  h1 {
+    text-align: justify;
+    color: $fontColor;
+    font-size: 20px;
+    font-weight: $bolderFont;
   }
 }

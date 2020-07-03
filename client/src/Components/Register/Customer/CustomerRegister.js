@@ -6,7 +6,7 @@ import RegistrationServices from './RegistrationServices'
 import RegisterHeading from './RegisterHeading'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
-const CustomerRegister = ({ historyPush = '/', submitType = 'Register' }) => {
+const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitType = 'Register' }) => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
   inputs */
   const [formInput, setFormInput] = useState({
@@ -64,7 +64,9 @@ const CustomerRegister = ({ historyPush = '/', submitType = 'Register' }) => {
 
   return (
     <div className='registration-container'>
-      <NavBar />
+      <div style={{ display: displayNavBar }}>
+        <NavBar />
+      </div>
       <div className='registration-wrapper'>
         <RegisterHeading />
         <Form

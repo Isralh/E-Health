@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext } from 'react'
-import { getProviders, getSchedule } from './Services'
+import { getProviders } from './Services'
 import Image from '../Image/Image'
 import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
@@ -12,9 +12,6 @@ const Doctors = () => {
 
   /* state to put all of our doctors information in */
   const [doctors, setDoctors] = useState()
-
-  /* state to put all of out doctor's schedule in */
-  const [schedule, setSchedule] = useState()
 
   /* state to hold the selected doctor on view profile */
   const [selectedDoctor, setSelectedDoctor] = useState()
@@ -29,12 +26,6 @@ const Doctors = () => {
     return doctor.rate < 120 ? <FourStar /> : <FiveStar />
   }
 
-  /* function to show the doctor's work time */
-  const scheduleTime = (time) => {
-    if (time === 12) return `${time}:00 PM EST`
-    if (time >= 8) return `${time}:00 AM EST`
-    else if (time < 8) return `${time}:00 PM EST`
-  }
   /* function to open modal on click */
   const openModal = (doctor) => {
     setSelectedDoctor(doctor)
@@ -51,16 +42,8 @@ const Doctors = () => {
     getProviders()
       .then(data => { if (data.status === 200) setDoctors(data.data) })
       .catch(e => console.log(e))
-
-    getSchedule()
-      .then(data => { if (data.status === 200) setSchedule(data.data) })
-      .catch(e => console.log(e))
   }, [])
 
-  useEffect(() => {
-    console.log(schedule)
-    console.log(doctors)
-  }, [schedule, doctors])
   /* function to start the booking process */
   const doctorId = window.localStorage
   const doctorName = window.localStorage
@@ -72,7 +55,7 @@ const Doctors = () => {
   }
   return (
     <div className='list-container'>
-      {doctors && schedule !== undefined ? doctors.map((doctor, i) =>
+      {doctors !== undefined ? doctors.map(doctor =>
         <div key={doctor.id} className='doctors-container'>
           <Image
             doctorsImage={doctor.image}
@@ -83,7 +66,6 @@ const Doctors = () => {
             rates={doctor.rate}
             showRating={viewRating(doctor)}
             doctorRating={rateDoctor(doctor)}
-            doctorSchedule={scheduleTime(schedule[i].time)}
             showModal={openModal.bind(this, doctor)}
             handleBooking={bookDoctor.bind(this, doctor)}
           />

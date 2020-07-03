@@ -2,6 +2,8 @@
 @import '../../../Assets/Sass/Mixins';
 
 .description-container {
+  color: $fontColor;
+
   @media (min-width: $mobile-width) {
     flex-basis: 40%;
     margin-left: 10vw;
@@ -36,29 +38,22 @@
     }
 
     button {
-      @include bookButton(white,
+      @include bookButton(
+        white,
         $bolderFont,
         orange,
         solid white,
         10px,
         100px,
         25px,
-        pointer);
+        pointer
+      );
       margin-left: 20px;
     }
 
     button:hover {
       background: $fontColor;
     }
-  }
-
-  @media (min-width: 425px) and (max-width: $tablet-width) {
-    // margin-left: 20vw;
-  }
-
-  @media (min-width: $tablet-width) {
-    // margin-left: 20%;
-    // margin-left: 10vw;
   }
 
   @media (min-width: 600px) {
@@ -70,6 +65,7 @@
 
     .doctor-name {
       font-size: 22px;
+      font-weight: $bolderFont;
     }
 
     button {

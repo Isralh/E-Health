@@ -7,10 +7,21 @@
 
 .card-container {
   border: 1px solid $fontColor;
-  margin: 5vh 5vw 0 7vw;
+  margin: 5vh 10vw 0 10vw;
   height: 180px;
   @include flex(row, nowrap, space-between);
-  width: 80%;
+  @media (min-width: 500px) {
+    margin: 7vh 20% 0 20%;
+  }
+  @media (min-width: 768px) {
+    margin: 7vh 25% 0 25%;
+  }
+  @media (min-width: 1000px) {
+    margin: 7vh 30% 0 30%;
+  }
+  @media (min-width: 1200px) {
+    margin: 7vh 35% 0 35%;
+  }
 }
 
 .profile-wrapper {
@@ -18,6 +29,7 @@
 
   .doctor-name {
     font-size: 20px;
+    font-weight: $bolderFont;
   }
 
   .checked {
@@ -38,9 +50,14 @@
 }
 
 .image-container {
+  position: relative;
   @include background(repeat, cover, 50% 50%, relative);
   @include profileImage(middle, 50%);
-  height: 65%;
+  height: 55%;
   flex-basis: 90px;
-  margin: 5vh 20px 0 0px;
+  margin: 7vh 10px 0 0;
+  @media (min-width: 500px) {
+    margin: 5vh 5% 0 0;
+    height: 60%;
+  }
 }

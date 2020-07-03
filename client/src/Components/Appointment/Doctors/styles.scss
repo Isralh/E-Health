@@ -3,16 +3,13 @@
 
 .list-container {
   @media (min-width: $mobile-width) {
-    width: $fullWidth;
     display: block;
-    margin: 5vh 0 5vh 0;
-    width: 95%;
+    margin: 5vh 2.5% 5vh 2.5%;
 
     .doctors-container {
-      width: 100%;
-      @include flex(row, nowrap, flex-start);
+      @include flex(row, nowrap, space-evenly);
       margin: 5vh 2vw 0 2vw;
-      height: 260px;
+      height: 220px;
       border-bottom: 0.5px solid lightgray;
     }
 
@@ -32,24 +29,23 @@
 
     .tablet-book-btn {
       display: block;
-      @include bookButton(white,
+      @include bookButton(
+        white,
         $bolderFont,
         orange,
         solid white,
         10px,
         130px,
         25px,
-        pointer);
+        pointer
+      );
       height: 50px;
       margin-top: 80px;
     }
   }
 
   @media (min-width: $tablet-width) {
-    // width: 80%;
-    // margin-left: 10vw;
-    margin-left: 10%;
-    width: 80%;
+    margin: 5vh 10% 0 10%;
 
     .doctors-container {
       margin-left: 0vw;
@@ -59,7 +55,5 @@
   @media (min-width: 1000px) {
     margin-left: 20%;
     width: 60%;
-    // width: 60%;
-    // margin-left: 15vw;
   }
 }

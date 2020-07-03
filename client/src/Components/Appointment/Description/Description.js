@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faClock } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates, handleBooking, doctorSchedule }) => {
   return (
     <div className='description-container'>
@@ -11,7 +11,6 @@ const Description = ({ firstName, lastName, doctorRating, showRating, showModal,
         <span className='rating'>{doctorRating}</span>
         <p onClick={showModal} className='view-profile'>View Profile & Reviews</p>
         <p className='rates'>{`$${rates}/ Appointment`}</p>
-        <p><span><FontAwesomeIcon icon={faClock} style={{ color: 'rgb(88, 72, 72)' }} /></span><span className='schedule'>{doctorSchedule}</span></p>
         <button className='book-btn' onClick={handleBooking}>Book Now</button>
       </div>
     </div>

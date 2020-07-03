@@ -6,13 +6,14 @@
 
   @media (min-width: $mobile-width) {
     margin-top: 20px;
-    flex-basis: 150px;
+    flex-basis: 120px;
     @include background(repeat, cover, 50% 50%, relative);
     @include profileImage(middle, 50%);
-    height: 60%;
+    height: 70%;
   }
 
   @media (min-width: 600px) {
+    flex-basis: 150px;
     height: 75%;
   }
 }
