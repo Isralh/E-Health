@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.scss'
-const TopParagraph = () => {
+const TopContent = () => {
   return (
     <div className='top-content'>
       <header className='header'>
@@ -15,4 +15,4 @@ const TopParagraph = () => {
   )
 }
 
-export default TopParagraph
+export default TopContent

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../Home/NavBar/NavBar'
-import { getProviderById, getSchedule, postAppointment, providerId } from './services'
+import { getProviderById, postAppointment, providerId } from './services'
 import { customerToken } from '../JwtDecode/JwtDecode'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import './styles.scss'
@@ -19,9 +19,6 @@ const Payment = () => {
 
   /* current selected doctor information */
   const [doctorInfo, setDoctorInfo] = useState()
-
-  /* state to hold doctor's time schedule */
-  const [timeSchedule, setTimeSchedule] = useState()
 
   /* state to hold our credit card info */
   const [creditCard, setCreditCard] = useState({
@@ -49,21 +46,10 @@ const Payment = () => {
     return doctorInfo.rating < 120 ? '4.0' : '5.0'
   }
 
-  /* function to show the doctor's work time */
-  const scheduleTime = (time) => {
-    if (time === 12) return `${time}:00 PM EST`
-    if (time >= 8) return `${time}:00 AM EST`
-    else if (time < 8) return `${time}:00 PM EST`
-  }
-
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
     getProviderById()
       .then(res => { if (res.status === 200) setDoctorInfo(res.data.data) })
-      .catch(e => console.log(e))
-
-    getSchedule()
-      .then(res => { if (res.status === 200) setTimeSchedule(res.data) })
       .catch(e => console.log(e))
   }, [])
 
@@ -93,7 +79,6 @@ const Payment = () => {
     const time = e.target.value
     setSelectedTime(time)
   }
-  // const scheduleDate = new Date().toISOString().substring(0, 10)
 
   /* state to hold time options for appointment */
   const [timeOption, setTimeOption] = useState(
@@ -124,16 +109,12 @@ const Payment = () => {
       .catch(e => console.log(e))
   }
 
-  useEffect(() => {
-    console.log(selectedTime)
-    console.log(selectedDate)
-  }, [selectedTime, selectedDate])
   return (
     <div className='payment-container'>
       <NavBar />
       <TopHeader />
       <div className='content-wrapper' />
-      {doctorInfo && timeSchedule !== undefined
+      {doctorInfo !== undefined
         ? <>
           <div className='schedule-container'>
             <BioCard
@@ -143,7 +124,6 @@ const Payment = () => {
               ratingNumber={numberRating()}
               hourlyRate={doctorInfo.rate}
               doctorsImage={doctorInfo.image}
-              doctorSchedule={scheduleTime(timeSchedule[0].time)}
               showModal={modalOpen}
             />
             <div className='headers'>

@@ -1,0 +1,46 @@
+@import '../../Assets/Sass/Variables';
+@import '../../Assets/Sass/Mixins';
+
+.bioCard-container {
+  border: 1px solid $fontColor;
+  margin: 5vh 0 0 4vw;
+  height: 200px;
+  @include flex(row, nowrap, space-between);
+  width: 87%;
+
+  .bio-wrapper {
+    margin-left: 10px;
+  }
+
+  .doctor {
+    font-size: 20px;
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  .doctorRating {
+    margin-left: 10px;
+    font-weight: bolder;
+  }
+
+  .doctorProfile {
+    color: blue;
+    font-size: 15px;
+    width: 150px;
+    cursor: pointer;
+  }
+
+  .doctorImage {
+    @include background(repeat, cover, 50% 50%, relative);
+    @include profileImage(middle, 50%);
+    height: 65%;
+    flex-basis: 90px;
+    margin: 5vh 20px 0 0px;
+  }
+
+  .schedule {
+    margin-left: 10px;
+  }
+}

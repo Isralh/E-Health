@@ -29,16 +29,7 @@
 
     .tablet-book-btn {
       display: block;
-      @include bookButton(
-        white,
-        $bolderFont,
-        orange,
-        solid white,
-        10px,
-        130px,
-        25px,
-        pointer
-      );
+      @include bookButton($bolderFont, 10px, 130px, 25px);
       height: 50px;
       margin-top: 80px;
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-export const TopDescription = ({ firstName, lastName, showRating, doctorRating }) => {
+export const TopDescription = ({ firstName, lastName, showRating, doctorRating, years }) => {
   return (
     <div className='top-description'>
       <p className='doctor-name'>{`Dr. ${firstName} ${lastName}`}</p>
@@ -11,15 +11,15 @@ export const TopDescription = ({ firstName, lastName, showRating, doctorRating }
       <p><span><FontAwesomeIcon icon={faGraduationCap} /></span>
         <span className='top-school'>Top 50 Medical School</span>
       </p>
+      <p><span><FontAwesomeIcon icon={faCheck} /></span>
+        <span className='years-experience'>{`${years} year(s) experience`}</span>
+      </p>
     </div>
   )
 }
 export const MainDescription = ({ years, education, bio }) => {
   return (
     <div className='main-description'>
-      <p><span><FontAwesomeIcon icon={faCheck} /></span>
-        <span className='years-experience'>{`${years} year(s) experience`}</span>
-      </p>
       <h4>Qualification and Experience</h4>
       <div className='qualifications-border' />
       <div>

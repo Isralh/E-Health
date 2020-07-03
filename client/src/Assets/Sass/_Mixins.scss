@@ -40,22 +40,24 @@
   font-weight: bolder;
 }
 
-@mixin bookButton(
-  $color,
-  $bolderFont,
-  $background,
-  $border,
-  $padding,
-  $width,
-  $radius,
-  $cursor
-) {
-  color: $color;
+@mixin bookButton($bolderFont, $padding, $width, $radius) {
+  color: white;
   font-weight: $bolderFont;
-  background: $background;
-  border: $border;
+  background: orange;
+  border: solid white;
   padding: $padding;
   width: $width;
   border-radius: $radius;
-  cursor: $cursor;
+  cursor: pointer;
 }
+
+// @include bookButton(
+//   white,
+//   $bolderFont,
+//   orange,
+//   solid white,
+//   10px,
+//   130px,
+//   25px,
+//   pointer
+// );

@@ -21,7 +21,7 @@ const Modal = ({ viewModal, closeModal, data }) => {
       <div className='modal-content'>
         {data !== undefined
           ? <>
-            <div className='top-content'>
+            <div className='topModal-content'>
               <TopDescription
                 firstName={data.first_name}
                 lastName={data.last_name}
@@ -36,7 +36,6 @@ const Modal = ({ viewModal, closeModal, data }) => {
             </div>
             <div className='main-content'>
               <MainDescription
-                years={data.yearsOfExperience}
                 education={data.education}
                 bio={data.summary}
               />

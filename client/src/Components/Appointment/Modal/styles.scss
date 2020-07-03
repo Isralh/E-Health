@@ -11,65 +11,106 @@
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    height: 100vh;
+    color: $fontColor;
+    padding-bottom: 10px;
+  }
+  .topModal-content {
+    @include flex(row, nowrap, space-around);
+    height: 30vh;
+    .close-modal {
+      float: right;
+      margin: 1vh 5px 0 0;
+      height: 5vh;
+      cursor: pointer;
+      span {
+        font-size: 30px;
+      }
+    }
+    .top-description {
+      flex-basis: 55%;
+      margin: 5vh 0 0 20px;
+      color: $fontColor;
+      .doctor-name {
+        font-size: 20px;
+        font-weight: $bolderFont;
+      }
+      .rating {
+        margin-left: 10px;
+      }
+      .checked {
+        color: orange;
+      }
+      .top-school {
+        margin-left: 5px;
+      }
+    }
+    .modal-doctor-image {
+      @include background(repeat, cover, 50% 50%, relative);
+      @include profileImage(middle, 50%);
+      height: 60%;
+      flex-basis: 95px;
+      margin: 10vh 0 0 10px;
+    }
+  }
+  .main-content {
+    margin: 10vh 20px 0 20px;
+    .main-description {
+      .years-experience {
+        margin-left: 5px;
+      }
+      h4 {
+        margin-top: 25px;
+      }
+      .qualifications-border {
+        margin-top: -15px;
+        border-bottom: 1px solid $fontColor;
+      }
+      .summary {
+        margin-top: -20px;
+      }
+    }
+  }
+  @media (min-width: 400px) {
     .modal-content {
       background-color: #fefefe;
-      height: 100vh;
-      width: 100%;
+      margin: 2vh 10% 0 10%;
+      height: auto;
       color: $fontColor;
+      padding-bottom: 10px;
     }
-    .top-content {
-      @include flex(row, nowrap, flex-start);
-      height: 30vh;
-      .close-modal {
-        float: right;
-        margin: 1vh 10px 0 0px;
-        span {
-          font-size: 30px;
-        }
-      }
-      .top-description {
-        flex-basis: 55%;
-        margin: 5vh 0 0 20px;
-        color: $fontColor;
-        .doctor-name {
-          font-size: 20px;
-        }
-        .rating {
-          margin-left: 10px;
-        }
-        .checked {
-          color: orange;
-        }
-        .top-school {
-          margin-left: 5px;
-        }
-      }
-      .modal-doctor-image {
-        @include background(repeat, cover, 50% 50%, relative);
-        @include profileImage(middle, 50%);
-        height: 65%;
-        flex-basis: 90px;
-        margin: 8vh 0 0 10px;
-      }
+  }
+  @media (min-width: 500px) {
+    .modal-content {
+      margin-top: 5vh;
     }
-    .main-content {
-      margin: -5px 20px 0 20px;
-      .main-description {
-        .years-experience {
-          margin-left: 5px;
-        }
-        h4 {
-          //   font-size: 15px;
-          margin-top: 25px;
-        }
-        .qualifications-border {
-          margin-top: -15px;
-          border-bottom: 1px solid $fontColor;
-        }
-        .summary {
-          margin-top: -20px;
-        }
-      }
+  }
+  @media (min-width: 600px) {
+    .modal-content {
+      margin: 5vh 15% 0 15%;
+    }
+  }
+  @media (min-width: 700px) {
+    .modal-content {
+      margin: 5vh 20% 0 20%;
+    }
+  }
+  @media (min-width: 800px) {
+    .modal-content {
+      margin: 5vh 25% 0 25%;
+    }
+  }
+  @media (min-width: 900px) {
+    .modal-content {
+      margin: 5vh 30% 0 30%;
+    }
+  }
+  @media (min-width: 1300px) {
+    .modal-content {
+      margin: 5vh 35% 0 35%;
     }
   }
 }

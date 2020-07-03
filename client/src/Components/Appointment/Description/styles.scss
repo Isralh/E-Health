@@ -8,8 +8,9 @@
     flex-basis: 40%;
     margin-left: 10vw;
 
-    p {
-      font-size: 18px;
+    .doctor-name {
+      font-size: 17px;
+      font-weight: $bolderFont;
     }
 
     .checked {
@@ -38,16 +39,7 @@
     }
 
     button {
-      @include bookButton(
-        white,
-        $bolderFont,
-        orange,
-        solid white,
-        10px,
-        100px,
-        25px,
-        pointer
-      );
+      @include bookButton($bolderFont, 10px, 100px, 25px);
       margin-left: 20px;
     }
 
@@ -65,7 +57,6 @@
 
     .doctor-name {
       font-size: 22px;
-      font-weight: $bolderFont;
     }
 
     button {
