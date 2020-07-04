@@ -39,11 +39,17 @@
     margin-left: 10px;
     color: white;
   }
-  .logins {
+  .options {
     @extend .link;
     margin-left: 20px;
   }
   .login-dropdown {
     @include flex(column, nowrap, flex-start);
+  }
+  .provider-dropdown {
+    @extend .login-dropdown;
+  }
+  .customer-dropdown {
+    @extend .login-dropdown;
   }
 }

@@ -25,9 +25,6 @@ const Dashboard = () => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log(appointments)
-  }, [appointments])
   return (
     <div className='dashboard-container'>
       <NavBar />

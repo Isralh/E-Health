@@ -5,7 +5,7 @@ import Description, { FiveStar, FourStar } from '../Description/Description'
 import './styles.scss'
 import Modal from '../Modal/Modal'
 import { useHistory } from 'react-router-dom'
-import JwtDecode from 'jwt-decode'
+
 export const doctorContext = createContext()
 const Doctors = () => {
   /* state to toggle modal open and close */
