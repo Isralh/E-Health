@@ -16,7 +16,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
           <div className='peer-view'>
             <video className='peer-video' ref={doctorVideoRef} autoPlay playsInline />
           </div>
-          </div>
+        </div>
         : <div className='withoutPeer-view'>
           <div className='my-video-container'>
             <video className='my-video' ref={myVideoRef} autoPlay playsInline muted />
@@ -26,7 +26,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
               <h1>Waiting on Doctor...</h1>
             </div>
           </div>
-          </div>}
+        </div>}
     </div>
   )
 }

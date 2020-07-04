@@ -6,14 +6,15 @@ import { BookingButton } from './Button'
 import Appointment from '../../SharedComponents/Appointment'
 import { GetAppointment } from './Services'
 import JwtDecode from 'jwt-decode'
-
+import NoAppointments from '../../SharedComponents/NoAppointments'
 const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
   const customerToken = window.localStorage.getItem('token')
   const customer = JwtDecode(customerToken)
   console.log(customer)
+
   /* state to hold customer's appointment schedule */
-  const [appointments, setAppointments] = useState(null)
+  const [appointments, setAppointments] = useState('')
 
   /* on initial load fetch the customer's appointment schedule */
   useEffect(() => {
@@ -35,7 +36,7 @@ const Dashboard = () => {
       <NavBar />
       <Heading name={customer.firstName.toUpperCase()} />
       <BookingButton />
-      {appointments !== null && appointments.length > 0
+      {appointments.length > 0
         ? appointments.map((appointment, i) =>
           <Appointment
             key={i}
@@ -45,7 +46,7 @@ const Dashboard = () => {
             sessionId={appointment.appointment_id}
           />
         )
-        : null}
+        : <NoAppointments />}
     </div>
   )
 }

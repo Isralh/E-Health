@@ -11,7 +11,7 @@ import Checkout from './Components/CheckoutRegister/Checkout'
 import Payment from './Components/Payment/Payment/Payment'
 import ProviderDashboard from './Components/Profile/Provider/Dashboard/Dashboard'
 import CustomerDashboard from './Components/Profile/Customer/Dashboard/Dashboard'
-import Sessions from './Components/Profile/Sessions.js/Sessions'
+import Sessions from './Components/Profile/VideoChat/Sessions'
 import PageNotFound from './Components/PageNotFound/PageNotFound'
 const App = () => {
   return (

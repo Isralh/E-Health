@@ -111,20 +111,22 @@ const Payment = () => {
     const value = e.target.value
     setVisitReason(value)
   }
+
   /* state to hold reason for visit input errors */
   const [reasonsError, setReasonsError] = useState('')
 
-  /* state to hold time options for appointment */
-  const [timeOption, setTimeOption] = useState(
-    ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST', '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
-  )
+  /* array that holds time options for appointment */
+  const timeOption = ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST',
+    '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
 
+  /* clear error message on individual input focus */
   const clearInputOnFocus = (e) => {
     e.persist()
     setCreditCardErrors(prev => ({ ...prev, [e.target.name]: '' }))
     setDateAndTimeErrors(prev => ({ ...prev, [e.target.name]: '' }))
-    // setReasonsError(prev => ({ ...prev, [e.target.name]: '' }))
+    setReasonsError('')
   }
+
   /* onClick submit appointment */
   const history = useHistory()
 
@@ -237,7 +239,6 @@ const Payment = () => {
             </> : null}
       </div>
     </div>
-
   )
 }
 
