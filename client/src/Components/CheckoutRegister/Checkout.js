@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar'
-import SharedServices from '../SharedServices/SharedServices'
+import GetProvider from './Services'
 import DoctorCard from './DoctorCard'
 import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import CustomerRegister from '../Register/Customer/CustomerRegister'
@@ -24,7 +24,7 @@ const Checkout = () => {
 
   /* on page load fetch the selected doctor from the database */
   useEffect(() => {
-    SharedServices()
+    GetProvider()
       .then(res => {
         if (res.status === 200) {
           setDoctorInfo(res.data.data)

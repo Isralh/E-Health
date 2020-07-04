@@ -3,15 +3,15 @@ import 'react-credit-cards/es/styles-compiled.css'
 import './Styles.scss'
 
 const CreditCard = ({
-  handleChange, handleFocus, expiry, cvc, expiryError, zipcodeError,
-  name, number, zip, cardNumberError, cardNameError, securityError
+  handleChange, handleFocus, expiry, cvc, expiryError, zipError,
+  name, number, zip, cardNumberError, cardNameError, cvcError
 }) => {
   return (
     <div className='creditCard-container'>
       <div>
         <form className='payment-form'>
           <div className='input-wrapper'>
-            <p>{cardNumberError}</p>
+            <p className='errors'>{cardNumberError}</p>
             <input
               type='text'
               name='number'
@@ -24,7 +24,7 @@ const CreditCard = ({
             />
           </div>
           <div className='input-wrapper'>
-            <p>{cardNameError}</p>
+            <p className='errors'>{cardNameError}</p>
             <input
               type='text'
               name='name'
@@ -36,7 +36,7 @@ const CreditCard = ({
             />
           </div>
           <div className='input-wrapper'>
-            <p>{expiryError}</p>
+            <p className='errors'>{expiryError}</p>
             <input
               className='expiry'
               type='text'
@@ -50,13 +50,13 @@ const CreditCard = ({
             />
           </div>
           <div className='input-wrapper'>
-            <p>{securityError}</p>
+            <p className='errors'>{cvcError}</p>
             <input
               className='security'
               type='text'
               name='cvc'
               maxLength={3}
-              placeholder='CVV code (3 digits)'
+              placeholder='CVC code (3 digits)'
               required
               value={cvc}
               onChange={handleChange}
@@ -64,7 +64,7 @@ const CreditCard = ({
             />
           </div>
           <div className='input-wrapper'>
-            <p>{zipcodeError}</p>
+            <p className='errors'>{zipError}</p>
             <input
               type='number'
               name='zip'

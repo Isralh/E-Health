@@ -1,26 +1,12 @@
 import axios from 'axios'
 
-const doctorChoice = window.localStorage
-const doctorId = doctorChoice.getItem('doctorId')
-
-export const providerId = doctorId
-
 /* Api endpoint to get selected provider(doctor) */
-export const getProviderById = async () => {
-  const apiUrl = `http://localhost:3002/api/get/provider/${doctorId}`
+export const getProviderById = async (providerId) => {
+  const apiUrl = `http://localhost:3002/api/get/provider/${providerId}`
 
-  const allProviders = await axios.get(apiUrl)
+  const provider = await axios.get(apiUrl)
 
-  return allProviders
-}
-
-/* Api endpoint to get selected providers(doctors) schedule */
-export const getSchedule = async () => {
-  const apiUrl = `http://localhost:3002/api/get/provider/schedule/${doctorId}`
-
-  const schedule = await axios.get(apiUrl)
-
-  return schedule
+  return provider
 }
 
 /* Api endpoint to post scheduled appointments */

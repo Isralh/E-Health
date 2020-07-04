@@ -5,8 +5,12 @@
     font-size: 20px;
   }
 
-  input {
+  .errors {
     margin-top: 20px;
+    color: red;
+    font-size: 16px;
+  }
+  input {
     padding-bottom: 150px;
     width: 97%;
   }

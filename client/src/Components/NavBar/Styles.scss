@@ -1,7 +1,7 @@
 @import '../../Assets/Sass/Variables';
 @import '../../Assets/Sass/Mixins';
 
-nav {
+.default-view {
   height: 10vh;
   border-bottom: 2px solid $fontColor;
   @media (min-width: $mobile-width) {
@@ -32,7 +32,6 @@ nav {
 .nav-dropdown {
   background: $fontColor;
   height: auto;
-  z-index: 1;
   @include flex(column, nowrap, flex-start);
   .link {
     font-size: 18px;
@@ -40,7 +39,10 @@ nav {
     margin-left: 10px;
     color: white;
   }
-
+  .logins {
+    @extend .link;
+    margin-left: 20px;
+  }
   .login-dropdown {
     @include flex(column, nowrap, flex-start);
   }

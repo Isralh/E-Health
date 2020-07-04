@@ -2,9 +2,15 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import './Styles.scss'
-export const Scheduler = ({ date, startDate, handleSelect, time = [], handleDate }) => {
+export const Scheduler = ({
+  date, startDate, handleSelect, time = [],
+  handleDate, dateError, timeError, handleFocus
+}) => {
   return (
     <div className='appointment-setter'>
+      <div className='dateError-container'>
+        <p className='errors'>{dateError}</p>
+      </div>
       <DatePicker
         selected={date}
         minDate={startDate}
@@ -13,12 +19,17 @@ export const Scheduler = ({ date, startDate, handleSelect, time = [], handleDate
         dateFormat='MM/dd/yy'
         placeholderText='Select Date'
         className='date-picker'
+        name='date'
+        onFocus={handleFocus}
       />
-      <select className='time-picker' onChange={handleDate}>
-        {time.map((time, i) =>
-          <option key={i}>{time}</option>
-        )}
-      </select>
+      <div className='time-selector'>
+        <p className='errors'>{timeError}</p>
+        <select className='time-picker' name='time' onChange={handleDate} onFocus={handleFocus}>
+          {time.map((time, i) =>
+            <option key={i}>{time}</option>
+          )}
+        </select>
+      </div>
     </div>
   )
 }

@@ -5,8 +5,13 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
+
+  .errors {
+    color: red;
+    font-size: 16px;
+  }
+
   .date-picker {
-    margin-top: 15px;
     height: 40px;
     width: 96%;
     @media (min-width: 400px) {
@@ -19,10 +24,12 @@
       width: 97.5%;
     }
   }
-  .time-picker {
-    margin-top: 25px;
-    height: 45px;
-    color: $fontColor;
-    width: 99%;
+  .time-selector {
+    margin-top: 5px;
+    .time-picker {
+      height: 45px;
+      color: $fontColor;
+      width: 99%;
+    }
   }
 }

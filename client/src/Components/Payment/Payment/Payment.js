@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
-import { getProviderById, postAppointment, providerId } from './services'
+import { getProviderById, postAppointment } from './services'
 import { customerToken } from '../../JwtDecode/JwtDecode'
 import { FiveStar, FourStar } from '../../Appointment/Description/Description'
 import Modal from '../../Appointment/Modal/Modal'
@@ -12,9 +12,17 @@ import Button from '../Button/Button'
 import { Scheduler } from '../Scheduler/Scheduler'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import { validateCardNumber, validateName, validateExpiry, validateCVC, validateZip } from '../FormValidation/CardValidation'
+import { validateDate, validateTime } from '../FormValidation/DateAndTime'
+import validateReason from '../FormValidation/ReasonForVisit'
+import { checkErrors } from '../FormValidation/checkErrors'
 import './styles.scss'
 
 const Payment = () => {
+  /* get providersId from local storage */
+  const providerChoice = window.localStorage
+  const providerId = providerChoice.getItem('providerId')
+
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
 
@@ -24,6 +32,15 @@ const Payment = () => {
   /* state to hold our credit card info */
   const [creditCard, setCreditCard] = useState({
     number: '',
+    name: '',
+    expiry: '',
+    cvc: '',
+    zip: ''
+  })
+
+  /* state to hold all of our credit card input errors */
+  const [creditCardErrors, setCreditCardErrors] = useState({
+    number: ' ',
     name: '',
     expiry: '',
     cvc: '',
@@ -49,7 +66,7 @@ const Payment = () => {
 
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
-    getProviderById()
+    getProviderById(providerId)
       .then(res => { if (res.status === 200) setDoctorInfo(res.data.data) })
       .catch(e => console.log(e))
   }, [])
@@ -65,7 +82,7 @@ const Payment = () => {
   }
 
   /* state to hold selected appointment date */
-  const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedDate, setSelectedDate] = useState('')
 
   /* function to change selected date onChange */
   const getSelectedDate = (date) => {
@@ -73,7 +90,7 @@ const Payment = () => {
   }
 
   /* state to hold selected appointment time */
-  const [selectedTime, setSelectedTime] = useState(null)
+  const [selectedTime, setSelectedTime] = useState('')
 
   /* function to change selected time onChange */
   const getSelectedTime = (e) => {
@@ -81,34 +98,76 @@ const Payment = () => {
     setSelectedTime(time)
   }
 
+  /* state to hold appointment date and time input errors */
+  const [dateAndTimeErrors, setDateAndTimeErrors] = useState({
+    date: '',
+    time: ''
+  })
+
+  /* state to hold appointment reason */
+  const [visitReason, setVisitReason] = useState(' ')
+
+  const getReason = (e) => {
+    const value = e.target.value
+    setVisitReason(value)
+  }
+  /* state to hold reason for visit input errors */
+  const [reasonsError, setReasonsError] = useState('')
+
   /* state to hold time options for appointment */
   const [timeOption, setTimeOption] = useState(
     ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST', '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
   )
 
-  /* onClick submit appointment */
-  const doctorName = window.localStorage.getItem('doctorName')
-  const history = useHistory()
-  const submitAppointment = (e) => {
-    e.preventDefault()
-    const data = {
-      customerId: customerToken().userId,
-      providerId,
-      selectedDate: selectedDate.toISOString().substring(0, 10),
-      selectedTime,
-      appointmentId: doctorName
-    }
-    postAppointment(data)
-      .then(res => {
-        if (res.status === 201) {
-          return history.push('/customer/dashboard')
-        }
-        if (res.status === 200) {
-          window.alert(res.data.message)
-        }
-      })
-      .catch(e => console.log(e))
+  const clearInputOnFocus = (e) => {
+    e.persist()
+    setCreditCardErrors(prev => ({ ...prev, [e.target.name]: '' }))
+    setDateAndTimeErrors(prev => ({ ...prev, [e.target.name]: '' }))
+    // setReasonsError(prev => ({ ...prev, [e.target.name]: '' }))
   }
+  /* onClick submit appointment */
+  const history = useHistory()
+
+  const validateInputs = (e) => {
+    e.preventDefault()
+    validateCardNumber(creditCard.number, setCreditCardErrors)
+    validateName(creditCard.name, setCreditCardErrors)
+    validateExpiry(creditCard.expiry, setCreditCardErrors)
+    validateCVC(creditCard.cvc, setCreditCardErrors)
+    validateZip(creditCard.zip, setCreditCardErrors)
+    validateDate(selectedDate, setDateAndTimeErrors)
+    validateTime(selectedTime, setDateAndTimeErrors)
+    validateReason(visitReason, setReasonsError)
+  }
+
+  /* submit appointment form to the database when all errors are null */
+  useEffect(() => {
+    /* if there is an error with the inputs errorCheck will return true else false */
+    const errorCheck = checkErrors(creditCardErrors.number, creditCardErrors.name, creditCardErrors.expiry,
+      creditCardErrors.cvc, creditCardErrors.zip, dateAndTimeErrors.date, dateAndTimeErrors.time, reasonsError)
+
+    /* if no errors post to database */
+    if (errorCheck === false) {
+      const data = {
+        customerId: customerToken().userId,
+        providerId,
+        selectedDate: selectedDate.toISOString().substring(0, 10),
+        selectedTime,
+        appointmentId: uuid()
+      }
+      postAppointment(data)
+        .then(res => {
+          if (res.status === 201) {
+            providerChoice.removeItem('providerId')
+            return history.push('/customer/dashboard')
+          }
+          if (res.status === 200) {
+            window.alert(res.data.message)
+          }
+        })
+        .catch(e => console.log(e))
+    }
+  }, [creditCardErrors, dateAndTimeErrors])
 
   return (
     <div className='payment-container'>
@@ -133,10 +192,13 @@ const Payment = () => {
               <div className='appointment-setter'>
                 <Scheduler
                   date={selectedDate}
+                  dateError={dateAndTimeErrors.date}
                   handleSelect={getSelectedDate}
                   startDate={new Date()}
                   time={timeOption}
+                  timeError={dateAndTimeErrors.time}
                   handleDate={getSelectedTime}
+                  handleFocus={clearInputOnFocus}
                 />
               </div>
               <div className='headers'>
@@ -144,15 +206,26 @@ const Payment = () => {
               </div>
               <CreditCard
                 number={creditCard.number}
+                cardNumberError={creditCardErrors.number}
                 name={creditCard.name}
+                cardNameError={creditCardErrors.name}
                 expiry={creditCard.expiry}
+                expiryError={creditCardErrors.expiry}
                 cvc={creditCard.cvc}
+                cvcError={creditCardErrors.cvc}
                 zip={creditCard.zip}
+                zipError={creditCardErrors.zip}
                 handleChange={getCreditCardInput}
+                handleFocus={clearInputOnFocus}
               />
-              <ReasonForVisit />
+              <ReasonForVisit
+                handleChange={getReason}
+                handleFocus={clearInputOnFocus}
+                reason={visitReason}
+                reasonError={reasonsError}
+              />
               <Button
-                handleAppointment={submitAppointment}
+                handleAppointment={validateInputs}
                 book={`BOOK $${doctorInfo.rate}`}
               />
             </div>
@@ -161,7 +234,7 @@ const Payment = () => {
               viewModal={modalStatus}
               closeModal={modalClose}
             />
-          </> : null}
+            </> : null}
       </div>
     </div>
 

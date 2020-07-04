@@ -15,16 +15,18 @@ const NavBar = () => {
   return (
     <div className='nav-container'>
       <nav>
-        <Heading />
-        <Burger
-          handleDropDown={toggleDropDown}
+        <div className='default-view'>
+          <Heading />
+          <Burger
+            handleDropDown={toggleDropDown}
+          />
+        </div>
+        <DropDown
+          showDropDown={dropDownView}
+          handleLoginDropDown={toggleLoginDropDown}
+          showLoginDropDown={loginDropDownView}
         />
       </nav>
-      <DropDown
-        showDropDown={dropDownView}
-        handleLoginDropDown={toggleLoginDropDown}
-        showLoginDropDown={loginDropDownView}
-      />
     </div>
   )
 }

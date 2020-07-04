@@ -60,7 +60,7 @@ const Doctors = () => {
   const doctorName = window.localStorage
   const history = useHistory()
   const bookDoctor = (doctor) => {
-    doctorId.setItem('doctorId', doctor.id)
+    doctorId.setItem('providerId', doctor.id)
     doctorName.setItem('doctorName', `${doctor.first_name}${doctor.last_name}`)
     redirectUser()
   }
