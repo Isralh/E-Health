@@ -9,11 +9,13 @@ export const getProviders = async () => {
   return allProviders
 }
 
-/* Api endpoint to get all of our providers(doctors) schedule */
-export const getSchedule = async () => {
-  const apiUrl = 'http://localhost:3002/api/get/provider/schedule'
+/* Api endpoint to post doctor rating */
 
-  const schedule = await axios.get(apiUrl)
+export const postRating = async (rating, doctorId) => {
+  const data = { rating, doctorId }
+  const apiUrl = 'http://localhost:3002/api/post/provider/rating'
 
-  return schedule
+  const postData = await axios.post(apiUrl, data)
+
+  return postData
 }

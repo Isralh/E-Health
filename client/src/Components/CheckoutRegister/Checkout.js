@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar'
 import GetProvider from './Services'
 import DoctorCard from './DoctorCard'
-import { FiveStar, FourStar } from '../Appointment/Description/Description'
+// import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import CustomerRegister from '../Register/Customer/CustomerRegister'
 import Modal from '../Appointment/Modal/Modal'
 const Checkout = () => {
@@ -13,14 +13,14 @@ const Checkout = () => {
   const [doctorInfo, setDoctorInfo] = useState()
 
   /* show the doctor's rating */
-  const doctorsRating = () => {
-    return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
-  }
+  // const doctorsRating = () => {
+  //   return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
+  // }
 
   /* show the doctor's number rating */
-  const numberRating = () => {
-    return doctorInfo.rating < 120 ? '4.0' : '5.0'
-  }
+  // const numberRating = () => {
+  //   return doctorInfo.rating < 120 ? '4.0' : '5.0'
+  // }
 
   /* on page load fetch the selected doctor from the database */
   useEffect(() => {

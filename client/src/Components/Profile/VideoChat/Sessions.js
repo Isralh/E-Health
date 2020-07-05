@@ -59,13 +59,13 @@ const Sessions = ({ match }) => {
   /* peer connection */
   useEffect(() => {
     /* get user's media stream on initial render */
-    // navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-    //   .then(media => {
-    //     if (media) {
-    //       userVideoRef.current.srcObject = media
-    //       setUserStream(media)
-    //     }
-    //   }).catch((e) => console.log(e))
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then(media => {
+        if (media) {
+          userVideoRef.current.srcObject = media
+          setUserStream(media)
+        }
+      }).catch((e) => console.log(e))
   }, [])
 
   const handleCalling = () => {

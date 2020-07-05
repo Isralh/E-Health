@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import ModalImage from './ModalImage'
 import { TopDescription, MainDescription } from './ModalDescription'
-import { FiveStar, FourStar } from '../Description/Description'
+// import { DoctorRating } from '../Description/Description'
+import { DoctorRating } from '../DoctorRating/DoctorRating'
 import './styles.scss'
 
 const Modal = ({ viewModal, closeModal, data }) => {
@@ -13,9 +14,9 @@ const Modal = ({ viewModal, closeModal, data }) => {
   }
 
   /* mock rating system I came up with based on the doctors hourly rate */
-  const viewRating = (data) => {
-    return data.rate < 120 ? <FourStar /> : <FiveStar />
-  }
+  // const viewRating = (data) => {
+  //   return data.rate < 120 ? <FourStar /> : <FiveStar />
+  // }
 
   return (
     <div className='modal-container' style={{ display: viewModal ? 'block' : 'none' }}>
@@ -26,7 +27,7 @@ const Modal = ({ viewModal, closeModal, data }) => {
               <TopDescription
                 firstName={data.first_name}
                 lastName={data.last_name}
-                showRating={viewRating(data)}
+                showRating={DoctorRating(data.rating)}
                 doctorRating={rateDoctor(data)}
                 years={data.yearsOfExperience}
               />

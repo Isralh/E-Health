@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates, handleBooking, doctorSchedule }) => {
+const Description = ({ firstName, lastName, doctorRating, showRating, showModal, rates, handleBooking, handleDoctorInfo }) => {
   return (
     <div className='description-container'>
-      <div className='description-wrapper'>
+      <div className='description-wrapper' onClick={handleDoctorInfo}>
         <p className='doctor-name'>{` Dr. ${firstName} ${lastName}`}</p>
         {showRating}
         <span className='rating'>{doctorRating}</span>
@@ -19,25 +19,27 @@ const Description = ({ firstName, lastName, doctorRating, showRating, showModal,
 
 export default Description
 
-export const FiveStar = () => {
-  return (
-    <>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-    </>
-  )
-}
-export const FourStar = () => {
-  return (
-    <>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
-      <span className='unchecked'><FontAwesomeIcon icon={faStar} /></span>
-    </>
-  )
-}
+// export const DoctorRating = (rating) => {
+//   if (rating === 5) {
+//     return (
+//       <>
+//         <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//         <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//         <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//         <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//         <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//       </>
+//     )
+//   }
+// }
+// export const FourStar = () => {
+//   return (
+//     <>
+//       <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//       <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//       <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//       <span className='checked'><FontAwesomeIcon icon={faStar} /></span>
+//       <span className='unchecked'><FontAwesomeIcon icon={faStar} /></span>
+//     </>
+//   )
+// }

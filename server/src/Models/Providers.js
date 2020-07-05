@@ -50,6 +50,16 @@ module.exports = DbConnection.define('providers', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  rating: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 5
+  },
+  ratingCount: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 1
+  },
   userType: {
     type: DataTypes.STRING,
     allowNull: false,

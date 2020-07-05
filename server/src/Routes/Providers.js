@@ -7,6 +7,7 @@ const getSchedule = require('../Controller/Providers/GetSchedule')
 const getScheduleById = require('../Controller/Providers/GetScheduleById')
 const login = require('../Controller/Providers/Login')
 const getAppointments = require('../Controller/Providers/getAppointment')
+const postRating = require('../Controller/Providers/postRating')
 
 router.post('/post/provider/uploadImageResume', imageUpload)
 router.post('/post/provider/register', registration)
@@ -16,5 +17,5 @@ router.get('/get/provider/schedule/:id', getScheduleById)
 router.get('/get/provider/:id', getProviderByID)
 router.post('/post/login/provider', login)
 router.get('/get/provider/appointments/:id', getAppointments)
-
+router.post('/post/provider/rating', postRating)
 module.exports = router

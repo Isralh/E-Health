@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
 import { getProviderById, postAppointment } from './services'
 import { customerToken } from '../../JwtDecode/JwtDecode'
-import { FiveStar, FourStar } from '../../Appointment/Description/Description'
+// import { DoctorRating } from '../../Appointment/Description/Description'
+import { DoctorRating } from '../../Appointment/DoctorRating/DoctorRating'
 import Modal from '../../Appointment/Modal/Modal'
 import BioCard from '../BioCard/BioCard'
 import CreditCard from '../CreditCard/CreditCard'
@@ -16,12 +17,15 @@ import { validateCardNumber, validateName, validateExpiry, validateCVC, validate
 import { validateDate, validateTime } from '../FormValidation/DateAndTime'
 import validateReason from '../FormValidation/ReasonForVisit'
 import { checkErrors } from '../FormValidation/checkErrors'
+import JwtDecode from 'jwt-decode'
 import './styles.scss'
 
 const Payment = () => {
-  /* get providersId from local storage */
+  /* get providersId and user's information from local storage when logged in */
   const providerChoice = window.localStorage
+  const token = window.localStorage.getItem('token')
   const providerId = providerChoice.getItem('providerId')
+  const user = JwtDecode(token)
 
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -55,9 +59,9 @@ const Payment = () => {
   }
 
   /* set the doctors rating based on their rate... this is a mock rating system */
-  const doctorsRating = () => {
-    return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
-  }
+  // const doctorsRating = () => {
+  //   return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
+  // }
 
   /* set the doctors rating based on their rate... this is a mock rating system */
   const numberRating = () => {
@@ -151,7 +155,7 @@ const Payment = () => {
     /* if no errors post to database */
     if (errorCheck === false) {
       const data = {
-        customerId: customerToken().userId,
+        customerId: user.userId,
         providerId,
         selectedDate: selectedDate.toISOString().substring(0, 10),
         selectedTime,
@@ -182,7 +186,7 @@ const Payment = () => {
               <BioCard
                 firstName={doctorInfo.first_name}
                 lastName={doctorInfo.last_name}
-                rating={doctorsRating()}
+                rating={DoctorRating(doctorInfo.rating)}
                 ratingNumber={numberRating()}
                 hourlyRate={doctorInfo.rate}
                 doctorsImage={doctorInfo.image}
