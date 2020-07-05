@@ -1,5 +1,5 @@
 @import '../../../Assets/Sass/Variables';
-
+@import '../../../Assets/Sass/Mixins';
 .withPeer-view {
   height: 100vh;
   width: 100%;
@@ -30,45 +30,37 @@
 }
 
 .withoutPeer-view {
-  height: 100vh;
-  width: 100%;
-
+  max-width: 1440px;
   .my-video-container {
-    margin-top: 15vh;
-    height: 35vh;
-    width: 90%;
-    margin-left: 5%;
-    .my-video {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .peer-view {
-    margin-top: 5vh;
-    height: 35vh;
-    width: 90%;
-    margin-left: 5%;
-  }
-  .message {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-
-    h1 {
-      color: $fontColor;
-      font-size: 22px;
-      text-align: center;
-      margin-top: 20vh;
+    height: 100vh;
+    overflow: hidden;
+    .my-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
     }
   }
-}
 
-// : <div className='withoutPeer-view'>
-// <div className='my-video-container'>
-//   <div className='my-video' />
-// </div>
-// <div className='peer-view'>
-//   <div className='message'>{waitingMessage}</div>
-// </div>
+  // .peer-view {
+  //   margin: -15vh 2% 0 2%;
+  // }
+  // .message {
+  //   position: relative;
+  //   width: 100%;
+  //   background: black;
+  //   height: 45vh;
+  //   h1 {
+  //     position: absolute;
+  //     color: white;
+  //     font-size: 22px;
+  //     margin-top: 20vh;
+  //     margin-left: 15vw;
+  //   }
+  // }
+}

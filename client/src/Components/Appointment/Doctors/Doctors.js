@@ -84,16 +84,20 @@ const Doctors = () => {
     }
   }, [doctors])
 
-  /* state to hold user's doctor rating */
+  /* state to hold user's doctor rating and Id, data used to post rating to the database */
   const [givenRating, setGivenRating] = useState()
   const [ratedDoctorId, setRatedDoctorId] = useState()
 
+  /* function to get the doctor Id */
   const getDoctorId = (doctor) => {
     setRatedDoctorId(doctor.id)
   }
 
+  /* function to get the rating given to the doctor */
   const getRating = (e) => {
-    setGivenRating(e.currentTarget.id)
+    if (user !== null) {
+      setGivenRating(e.currentTarget.id)
+    } else window.alert('You must be signed in to rate doctor!')
   }
 
   /* post rating to the database */
