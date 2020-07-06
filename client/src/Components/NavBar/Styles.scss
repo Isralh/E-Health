@@ -3,7 +3,7 @@
 
 .default-view {
   height: 10vh;
-  border-bottom: 2px solid $fontColor;
+  // border-bottom: 2px solid $fontColor;
   @media (min-width: $mobile-width) {
     @include flex(row, nowrap, space-between);
   }

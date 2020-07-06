@@ -1,0 +1,31 @@
+@import '../../../Assets/Sass/Variables';
+@import '../../../Assets/Sass/Mixins';
+
+.ourDoctors-container {
+  margin: 10vh 10% 0 10%;
+  text-align: center;
+  position: relative;
+  .top-message {
+    h1 {
+      color: $fontColor;
+      font-size: 26px;
+    }
+  }
+  .ourDoctors-img-container {
+    margin-top: 5vh;
+    .ourDoctors-Img {
+      text-align: center;
+      width: 100%;
+      height: 300px;
+      border-radius: 5%;
+      //   border: 0.2px solid lightgray;
+    }
+  }
+  .ourDoctors-message {
+    p {
+      font-size: 16px;
+      color: $fontColor;
+      line-height: 25px;
+    }
+  }
+}

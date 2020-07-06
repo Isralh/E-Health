@@ -1,0 +1,24 @@
+@import '../../../Assets/Sass/Variables';
+
+.book-appointment-btn {
+  background: $fontColor;
+  color: white;
+  height: 40px;
+  width: 200px;
+  font-size: 16px;
+  border-radius: 15px;
+  border: 1px solid white;
+  font-weight: $bolderFont;
+  @media (min-width: 830px) {
+    height: 50px;
+  }
+}
+
+.ourDoctors-btn {
+  @extend .book-appointment-btn;
+  width: 150px;
+}
+
+.getStarted-btn {
+  @extend .ourDoctors-btn;
+}
