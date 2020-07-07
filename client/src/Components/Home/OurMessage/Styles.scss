@@ -1,0 +1,27 @@
+@import '../../../Assets/Sass/Variables';
+
+.ourMessage-container {
+  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  color: $fontColor;
+  .ourMessage-content {
+    grid-column: 2/3;
+    h1 {
+      font-size: 28px;
+    }
+    p {
+      margin-top: 5vh;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: justify;
+    }
+    .ourMessage-btn {
+      margin-top: 5vh;
+      text-align: center;
+      button {
+        width: 200px;
+      }
+    }
+  }
+}

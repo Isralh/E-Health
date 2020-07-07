@@ -10,7 +10,7 @@ const TabletDesktopView = () => {
       </div>
       <div className='message-container-tabletView'>
         <div className='message-heading'>
-          <h1>Get the healthcare you deserve</h1>
+          <h1>Healthcare you deserve</h1>
         </div>
         <div className='message-content'>
           <p>Our doctors are graduates from the top 50 medical schools with an
@@ -18,6 +18,8 @@ const TabletDesktopView = () => {
         aim is to create a special relationship with all patients by taking time to listen
         to their problems.
           </p>
+        </div>
+        <div className='tabletView-btn-container'>
           <OurDoctorsButton />
         </div>
       </div>

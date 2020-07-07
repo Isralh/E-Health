@@ -8,7 +8,7 @@ const OurDoctors = () => {
     <>
       <div className='ourDoctors-container'>
         <div className='top-message'>
-          <h1>Get the healthcare you deserve</h1>
+          <h1>Healthcare you deserve</h1>
         </div>
         <div className='ourDoctors-img-container'>
           <img alt='our doctors image' src={OurDoctorsImage} className='ourDoctors-Img' />
