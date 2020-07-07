@@ -9,9 +9,14 @@
   border-radius: 15px;
   border: 1px solid white;
   font-weight: $bolderFont;
+  cursor: pointer;
   @media (min-width: 830px) {
     height: 50px;
   }
+}
+.book-appointment-btn :hover {
+  background: white;
+  color: $fontColor;
 }
 
 .ourDoctors-btn {
@@ -19,6 +24,14 @@
   width: 150px;
 }
 
+.ourDoctors-btn :hover {
+  background: white;
+  color: $fontColor;
+}
 .getStarted-btn {
+  @extend .ourDoctors-btn;
+}
+
+.getStarted-btn :hover {
   @extend .ourDoctors-btn;
 }

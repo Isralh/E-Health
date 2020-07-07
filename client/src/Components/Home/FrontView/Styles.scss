@@ -3,16 +3,16 @@
 
 .frontImage {
   width: 100%;
-  height: auto;
+  height: 40vh;
   border-bottom-left-radius: 120px 40px;
   border-bottom-right-radius: 120px 40px;
   @media (min-width: 470px) {
-    height: 50vh;
+    height: 45vh;
   }
-  @media (min-width: 700px) {
+  @media (min-width: 620px) {
     height: 55vh;
   }
-  @media (min-width: 830px) {
+  @media (min-width: 700px) {
     display: none;
   }
 }
@@ -24,13 +24,15 @@
     color: $fontColor;
     font-size: 26px;
   }
-}
-
-.eHealth-message {
-  text-align: center;
-  font-size: 16px;
-  color: $fontColor;
-  line-height: 25px;
+  .eHealth-message {
+    text-align: center;
+    font-size: 16px;
+    color: $fontColor;
+    line-height: 25px;
+  }
+  @media (min-width: 700px) {
+    display: none;
+  }
 }
 
 .frontView-content-flex {
@@ -40,29 +42,86 @@
 .tabletView {
   display: none;
   @include background(repeat, cover, 50% 50%, relative);
-  @media (min-width: 830px) {
+  @media (min-width: 700px) {
     display: block;
-    height: 115vh;
+    height: 90vh;
     position: relative;
-    opacity: 0.7;
-    .frontView-content-flex {
-      display: block;
+    opacity: 1;
+    .frontView-content-grid {
+      display: grid;
+      grid-template-columns: 57% 40% 3%;
       position: absolute;
       color: white;
       margin-top: 30vh;
-      width: 45%;
-      margin-left: 5%;
-      z-index: 1;
       h1 {
-        font-size: 50px;
+        grid-column: 2/3;
+        font-size: 28px;
       }
-      .eHealth-message-flex {
+      .frontView-message-grid {
+        grid-column: 2/3;
         text-align: justify;
-        font-size: 20px;
+        margin-top: -2vh;
+      }
+      .eHealth-message-grid {
+        font-size: 18px;
         color: white;
         line-height: 25px;
-        width: 90%;
+      }
+      .frontView-btn-container-grid {
+        grid-column: 2/3;
+        text-align: justify;
+      }
+    }
+  }
+  @media (min-width: 1018px) {
+    height: 95vh;
+    .frontView-content-grid {
+      margin-top: 35vh;
+    }
+  }
+  @media (min-width: 1130px) {
+    height: 100vh;
+    .frontView-content-grid {
+      margin-top: 40vh;
+    }
+  }
+  @media (min-width: 1300px) {
+    .frontView-content-grid {
+      h1 {
+        font-size: 30px;
+      }
+      .eHealth-message-grid {
+        font-size: 20px;
       }
     }
   }
 }
+
+// .tabletView {
+//     display: none;
+//     @include background(repeat, cover, 50% 50%, relative);
+//     @media (min-width: 650px) {
+//       display: block;
+//       height: 100vh;
+//       position: relative;
+//       opacity: 1;
+//       .frontView-content-flex {
+//         display: block;
+//         position: absolute;
+//         color: white;
+//         margin-top: 30vh;
+//         width: 45%;
+//         margin-left: 5%;
+//         h1 {
+//           font-size: 50px;
+//         }
+//         .eHealth-message-flex {
+//           text-align: justify;
+//           font-size: 20px;
+//           color: white;
+//           line-height: 25px;
+//           width: 90%;
+//         }
+//       }
+//     }
+//   }

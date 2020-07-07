@@ -2,18 +2,17 @@ import React from 'react'
 import { OurDoctorsImage } from '../../../Assets/Images/exports'
 import { OurDoctorsButton } from '../Buttons/Buttons'
 import './Styles.scss'
-import TabletDesktopView from './TabletDesktopView'
-const OurDoctors = () => {
+const TabletDesktopView = () => {
   return (
-    <>
-      <div className='ourDoctors-container'>
-        <div className='top-message'>
+    <div className='tabletView-container'>
+      <div className='img-container'>
+        <img alt='our doctors image' src={OurDoctorsImage} className='ourDoctors-Img' />
+      </div>
+      <div className='message-container-tabletView'>
+        <div className='message-heading'>
           <h1>Get the healthcare you deserve</h1>
         </div>
-        <div className='ourDoctors-img-container'>
-          <img alt='our doctors image' src={OurDoctorsImage} className='ourDoctors-Img' />
-        </div>
-        <div className='ourDoctors-message'>
+        <div className='message-content'>
           <p>Our doctors are graduates from the top 50 medical schools with an
         extensive experience providing high quality care to all patients. Our
         aim is to create a special relationship with all patients by taking time to listen
@@ -22,9 +21,8 @@ const OurDoctors = () => {
           <OurDoctorsButton />
         </div>
       </div>
-      <TabletDesktopView />
-    </>
+    </div>
   )
 }
 
-export default OurDoctors
+export default TabletDesktopView
