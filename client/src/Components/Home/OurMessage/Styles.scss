@@ -9,6 +9,7 @@
     grid-column: 2/3;
     h1 {
       font-size: 28px;
+      text-align: center;
     }
     p {
       margin-top: 5vh;
@@ -21,6 +22,42 @@
       text-align: center;
       button {
         width: 200px;
+      }
+    }
+  }
+  @media (min-width: 700px) {
+    margin-right: 2%;
+    .ourMessage-btn {
+      margin-top: 5vh;
+      text-align: center;
+      button {
+        width: 200px;
+        height: 50px;
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: 15% 70% 15%;
+    text-align: center;
+    .ourMessage-content {
+      grid-column: 2/3;
+      h1 {
+        font-size: 36px;
+      }
+      p {
+        margin-top: 5vh;
+        font-size: 22px;
+        line-height: 40px;
+        text-align: center;
+      }
+      .ourMessage-btn {
+        margin-top: 5vh;
+        text-align: center;
+        button {
+          width: 200px;
+          height: 55px;
+        }
       }
     }
   }

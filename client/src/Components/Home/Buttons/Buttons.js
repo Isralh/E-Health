@@ -7,7 +7,7 @@ const LinkStyle = {
 }
 export const BookAppointment = () => {
   return (
-    <Link to='/bookAppointment' style={LinkStyle}>
+    <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
       <button className='book-appointment-btn'>Book an Appointment</button>
     </Link>
   )
@@ -24,7 +24,7 @@ export const OurDoctorsButton = () => {
 
 export const GetStarted = () => {
   return (
-    <Link to='/createAccount' style={LinkStyle}>
+    <Link to='/createAccount' style={LinkStyle} className='link-container'>
       <button className='getStarted-btn'>Get Started</button>
     </Link>
   )

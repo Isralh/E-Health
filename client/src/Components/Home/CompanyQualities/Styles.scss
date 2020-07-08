@@ -6,6 +6,12 @@
   grid-template-columns: 5% 95% 5%;
   padding-bottom: 50vh;
   color: $fontColor;
+
+  @media (min-width: 700px) {
+    margin-top: 15vh;
+    display: grid;
+    grid-template-columns: 5% 42.5% 5% 42.5% 5%;
+  }
 }
 
 .companyDoctor-container {
@@ -14,23 +20,57 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  margin-bottom: 10px;
   .fontAwesome-container {
     height: 55px;
     width: 55px;
     padding: 0 15px;
     border-radius: 50%;
     background-color: rgb(88, 72, 72);
+    margin-top: 10px;
   }
-  .companyDoctor-message {
+  .quality-message {
     margin-left: 20px;
     margin-right: 5%;
     h1 {
-      font-size: 24px;
+      font-size: 26px;
     }
     p {
       text-align: justify;
       font-size: 16px;
       line-height: 25px;
     }
+  }
+
+  @media (min-width: 700px) {
+    margin-left: 10px;
+    margin-bottom: 10vh;
+  }
+  @media (min-width: 900px) {
+    .quality-message {
+      p {
+        font-size: 20px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+
+.convenient-container {
+  @extend .companyDoctor-container;
+
+  @media (min-width: 700px) {
+    grid-column: 4/5;
+  }
+}
+
+.videoChat-container {
+  @extend .companyDoctor-container;
+}
+
+.qualityService-container {
+  @extend .companyDoctor-container;
+  @media (min-width: 700px) {
+    grid-column: 4/5;
   }
 }

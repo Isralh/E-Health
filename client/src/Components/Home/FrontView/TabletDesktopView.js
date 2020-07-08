@@ -4,7 +4,7 @@ import { FrontImage, FrontBackground } from '../../../Assets/Images/exports'
 
 const TabletDesktopView = () => {
   return (
-    <div className='tabletView' style={{ backgroundImage: `url(${FrontBackground})` }}>
+    <div className='tabletDesktopView' style={{ backgroundImage: `url(${FrontBackground})` }}>
       <div className='frontView-content-grid'>
         <h1>Healthcare from the comfort of your house.</h1>
         <div className='frontView-message-grid'>

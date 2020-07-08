@@ -5,7 +5,7 @@ import NavBar from '../../NavBar/NavBar'
 import Convenient from '../Convenient/Convenient'
 import './styles.scss'
 import OurMessage from '../OurMessage/OurMessage'
-import CompanyQualities from '../CompanyQualities/CompanyQualities'
+import QualitiesContainer from '../CompanyQualities/QualitiesContainer'
 const Home = () => {
   return (
     <div className='home-container'>
@@ -14,7 +14,7 @@ const Home = () => {
       {/* <OurDoctors />
       <Convenient /> */}
       <OurMessage />
-      <CompanyQualities />
+      <QualitiesContainer />
     </div>
   )
 }

@@ -39,7 +39,8 @@
   display: none;
 }
 
-.tabletView {
+/* tablet and desktop view */
+.tabletDesktopView {
   display: none;
   @include background(repeat, cover, 50% 50%, relative);
   @media (min-width: 700px) {
@@ -70,6 +71,9 @@
       .frontView-btn-container-grid {
         grid-column: 2/3;
         text-align: justify;
+        button {
+          height: 55px;
+        }
       }
     }
   }
@@ -96,32 +100,3 @@
     }
   }
 }
-
-// .tabletView {
-//     display: none;
-//     @include background(repeat, cover, 50% 50%, relative);
-//     @media (min-width: 650px) {
-//       display: block;
-//       height: 100vh;
-//       position: relative;
-//       opacity: 1;
-//       .frontView-content-flex {
-//         display: block;
-//         position: absolute;
-//         color: white;
-//         margin-top: 30vh;
-//         width: 45%;
-//         margin-left: 5%;
-//         h1 {
-//           font-size: 50px;
-//         }
-//         .eHealth-message-flex {
-//           text-align: justify;
-//           font-size: 20px;
-//           color: white;
-//           line-height: 25px;
-//           width: 90%;
-//         }
-//       }
-//     }
-//   }
