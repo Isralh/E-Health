@@ -1,29 +1,28 @@
 import React from 'react'
-import { OurDoctorsImage } from '../../../Assets/Images/exports'
-import { OurDoctorsButton } from '../Buttons/Buttons'
+import { ErickKnight, ZachSmith } from '../../../Assets/Images/exports'
 import './Styles.scss'
-import TabletDesktopView from './TabletDesktopView'
+import { BookAppointment } from '../Buttons/Buttons'
 const OurDoctors = () => {
   return (
-    <>
-      <div className='ourDoctors-container'>
-        <div className='top-message'>
-          <h1>Healthcare you deserve</h1>
+    <div className='ourDoctors-container'>
+      <div className='OurDoctors-heading'>
+        <h1>Our experienced doctors</h1>
+      </div>
+      <div className='ourDoctors-list'>
+        <div className='ourDoctors'>
+          <img src={ErickKnight} alt='ErickKnight' className='docImg' />
+          <p className='name'>Dr. Erick Knight</p>
+          <p className='reviews'>View Profile & Reviews</p>
+          <BookAppointment />
         </div>
-        <div className='ourDoctors-img-container'>
-          <img alt='our doctors image' src={OurDoctorsImage} className='ourDoctors-Img' />
-        </div>
-        <div className='ourDoctors-message'>
-          <p>Our doctors are graduates from the top 50 medical schools with an
-        extensive experience providing high quality care to all patients. Our
-        aim is to create a special relationship with all patients by taking time to listen
-        to their problems.
-          </p>
-          <OurDoctorsButton />
+        <div className='ourDoctors'>
+          <img src={ZachSmith} alt='ErickKnight' className='docImg' />
+          <p className='name'>Dr. Erick Knight</p>
+          <p className='reviews'>View Profile & Reviews</p>
+          <BookAppointment />
         </div>
       </div>
-      <TabletDesktopView />
-    </>
+    </div>
   )
 }
 

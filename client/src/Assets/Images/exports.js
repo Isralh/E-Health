@@ -1,4 +1,5 @@
 export const FrontImage = require('./FrontImage.jpg')
-export const OurDoctorsImage = require('./OurDoctorsImage.jpg')
 export const ConvenientImage = require('./ConvenientImage.jpg')
 export const FrontBackground = require('./FrontBackground.jpg')
+export const ErickKnight = require('./Eric Knight.jpg')
+export const ZachSmith = require('./Zach Smith.jpg')

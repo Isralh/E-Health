@@ -11,10 +11,9 @@ const Home = () => {
     <div className='home-container'>
       <NavBar />
       <FrontView />
-      {/* <OurDoctors />
-      <Convenient /> */}
       <OurMessage />
       <QualitiesContainer />
+      <OurDoctors />
     </div>
   )
 }

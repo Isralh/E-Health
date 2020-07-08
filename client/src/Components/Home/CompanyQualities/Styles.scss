@@ -1,10 +1,9 @@
 @import '../../../Assets/Sass/Variables';
 
 .qualities-container {
-  margin-top: 10vh;
+  margin-top: 15vh;
   display: grid;
   grid-template-columns: 5% 95% 5%;
-  padding-bottom: 50vh;
   color: $fontColor;
 
   @media (min-width: 700px) {
@@ -20,8 +19,9 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 5vh;
   .fontAwesome-container {
+    margin-left: 10px;
     height: 55px;
     width: 55px;
     padding: 0 15px;
@@ -41,10 +41,9 @@
       line-height: 25px;
     }
   }
-
   @media (min-width: 700px) {
-    margin-left: 10px;
     margin-bottom: 10vh;
+    border: 1px solid lightgrey;
   }
   @media (min-width: 900px) {
     .quality-message {

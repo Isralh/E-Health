@@ -1,6 +1,6 @@
 import React from 'react'
-import './Styles.scss'
 import { GetStarted } from '../Buttons/Buttons'
+import './Styles.scss'
 
 const OurMessage = () => {
   return (

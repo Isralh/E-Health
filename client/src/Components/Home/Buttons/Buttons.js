@@ -8,7 +8,7 @@ const LinkStyle = {
 export const BookAppointment = () => {
   return (
     <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
-      <button className='book-appointment-btn'>Book an Appointment</button>
+      <button className='book-appointment-btn'>Book Appointment</button>
     </Link>
   )
 }
