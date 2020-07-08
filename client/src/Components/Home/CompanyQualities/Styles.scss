@@ -11,6 +11,10 @@
     display: grid;
     grid-template-columns: 5% 42.5% 5% 42.5% 5%;
   }
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: 8% 40% 4% 40% 8%;
+  }
 }
 
 .companyDoctor-container {
