@@ -1,20 +1,27 @@
-import React from 'react'
-import { ErickKnight } from '../../../Assets/Images/exports'
+import React, { useState } from 'react'
+import ReviewStars from './ReviewStars'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import Reviews from './Reviews'
+import { ErickKnight, ZachSmith, FrontImage } from '../../../Assets/Images/exports'
+
 import './Styles.scss'
 
 const ClientReviews = () => {
+
+  console.log(Reviews())
+  const handleRight = () => {
+
+  }
   return (
     <div className='clientReviews-container'>
       <div className='clientReviews-content'>
-        <div className='clientReviews'>
-          <div className='review-wrapper'>
-            <div className='reviewer-image' style={{ backgroundImage: `url(${ErickKnight})` }} />
-            <h1>Isral Hadero</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
+        <div className='review-heading'>
+          <h1>WHAT OUR CLIENTS SAY</h1>
+        </div>
+        <div className='pagination'>
+          <button><FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '18px' }} /></button>
+          <button><FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '18px' }} onClick={handleRight}/></button>
         </div>
       </div>
     </div>

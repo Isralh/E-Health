@@ -46,7 +46,8 @@
   }
   @media (min-width: 700px) {
     margin-bottom: 10vh;
-    border: 1px solid lightgrey;
+    // border: 1px solid lightgrey;
+    background: white;
   }
   @media (min-width: 900px) {
     .quality-message {
