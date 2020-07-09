@@ -13,6 +13,7 @@ const FontAwesomeWatch = {
   fontSize: '30px',
   color: 'white',
   margin: '10px 0px 0px 2px'
+
 }
 
 const FontAwesomeVideo = {
@@ -24,7 +25,7 @@ const FontAwesomeVideo = {
 const FontAwesomeSmile = {
   fontSize: '30px',
   color: 'white',
-  margin: '12px 0px 0px 2px'
+  margin: '12px 0px 0px 2px',
 }
 const Qualities = () => {
   return (

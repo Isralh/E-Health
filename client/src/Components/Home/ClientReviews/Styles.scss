@@ -1,0 +1,31 @@
+@import '../../../Assets/Sass/Variables';
+
+.clientReviews-container {
+  margin-top: 10vh;
+  padding-bottom: 50vh;
+  width: 100%;
+  color: $fontColor;
+}
+
+.clientReviews-content {
+  display: grid;
+  grid-template-columns: 5% 95% 5%;
+  height: 400px;
+
+  .clientReviews {
+    position: relative;
+    background: white;
+    grid-column: 2/3;
+    margin-right: 5%;
+  }
+  .review-wrapper {
+    text-align: center;
+    h1 {
+      font-size: 22px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+}
