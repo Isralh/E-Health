@@ -10,11 +10,10 @@
 
 .clientReviews-content {
   display: grid;
-  grid-template-columns: 5% 95% 5%;
+  grid-template-columns: 5% 90% 5%;
   .review-heading {
     grid-column: 2/3;
     text-align: center;
-    margin-right: 5%;
     h1 {
       font-size: 24px;
       font-size: 23px;
@@ -28,8 +27,11 @@
     position: relative;
     background: white;
     grid-column: 2/3;
-    margin: 15vh 5% 0 0;
+    margin: 15vh 0% 0 0;
     padding-bottom: 30px;
+  }
+  .clientReviews-tablet {
+    display: none;
   }
   .review-wrapper {
     text-align: center;
@@ -56,7 +58,6 @@
   }
   .pagination {
     grid-column: 2/3;
-    margin-right: 5%;
     margin-top: 30px;
     display: flex;
     flex-direction: row;
@@ -75,9 +76,52 @@
   }
 }
 
-// @mixin background($repeat, $cover, $position, $relative) {
-//     background-repeat: $repeat;
-//     background-size: $cover;
-//     background-position: $position;
-//     position: $relative;
-//   }
+.clientReviews-content {
+  @media (min-width: 900px) {
+    .clientReviews {
+      display: none;
+    }
+    .clientReviews-tablet {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      position: relative;
+      grid-column: 2/3;
+      margin: 15vh 0% 0 0;
+      .review-flex-first {
+        background: white;
+        padding-bottom: 30px;
+        margin-right: 3%;
+      }
+      .review-flex-second {
+        background: white;
+        padding-bottom: 30px;
+        margin-left: 3%;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 8% 84% 8%;
+    .clientReviews-tablet {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      position: relative;
+      grid-column: 2/3;
+      margin: 15vh 0% 0 0;
+      .review-flex-first {
+        background: white;
+        padding-bottom: 30px;
+        margin-right: 3%;
+      }
+      .review-flex-second {
+        background: white;
+        padding-bottom: 30px;
+        margin-left: 3%;
+      }
+    }
+  }
+}
