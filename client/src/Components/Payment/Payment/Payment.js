@@ -19,6 +19,7 @@ import validateReason from '../FormValidation/ReasonForVisit'
 import { checkErrors } from '../FormValidation/checkErrors'
 import JwtDecode from 'jwt-decode'
 import './styles.scss'
+import Footer from '../../Home/Footer/Footer'
 
 const Payment = () => {
   /* get providersId and user's information from local storage when logged in */
@@ -242,6 +243,7 @@ const Payment = () => {
             />
             </> : null}
       </div>
+      <Footer />
     </div>
   )
 }

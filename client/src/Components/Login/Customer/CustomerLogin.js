@@ -5,6 +5,7 @@ import LoginHeader from '../SharedComponent/LoginHeader'
 import { useHistory } from 'react-router-dom'
 import LoginCustomer from './Services'
 import '../SharedComponent/Styles.scss'
+import Footer from '../../Home/Footer/Footer'
 
 const CustomerLogin = () => {
   /* state to hold all of our form input */
@@ -68,6 +69,7 @@ const CustomerLogin = () => {
           providerLoginButton='none'
         />
       </div>
+      <Footer />
     </div>
   )
 }

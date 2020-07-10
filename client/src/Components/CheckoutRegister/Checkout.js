@@ -5,6 +5,7 @@ import DoctorCard from './DoctorCard'
 // import { FiveStar, FourStar } from '../Appointment/Description/Description'
 import CustomerRegister from '../Register/Customer/CustomerRegister'
 import Modal from '../Appointment/Modal/Modal'
+import Footer from '../Home/Footer/Footer'
 const Checkout = () => {
   /* modal state */
   const [modalStatus, setModalStatus] = useState(false)
@@ -68,6 +69,7 @@ const Checkout = () => {
           submitType='Continue'
         />
       </div>
+      <Footer />
     </div>
   )
 }
