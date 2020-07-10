@@ -1,12 +1,12 @@
 import React from 'react'
-import { ErickKnight, ZachSmith, FrontImage } from '../../../Assets/Images/exports'
+import { ErickKnight, ZachSmith, FrontImage, AllisonSmith, JamesMadison } from '../../../Assets/Images/exports'
 import ReviewStars from './ReviewStars'
 
 export const FirstReview = () => {
   return (
     <>
       <div className='clientImage-container'>
-        <img src={ErickKnight} className='reviewers-image' alt='reviewer image' />
+        <img src={AllisonSmith} className='reviewers-image' alt='reviewer image' />
       </div>
       <div className='review-wrapper'>
         <h1>Isral Hadero</h1>
@@ -23,7 +23,7 @@ export const SecondReview = () => {
   return (
     <>
       <div className='clientImage-container'>
-        <img src={ZachSmith} className='reviewers-image' alt='reviewer image' />
+        <img src={JamesMadison} className='reviewers-image' alt='reviewer image' />
       </div>
       <div className='review-wrapper'>
         <h1>Isral Hadero</h1>

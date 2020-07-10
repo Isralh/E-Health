@@ -64,7 +64,8 @@
   }
 
   @media (min-width: 900px) {
-    grid-template-columns: 8% 84% 8%;
+    grid-template-columns: 5% 90% 5%;
+    margin: 5vh 0% 0 0%;
     .OurDoctors-heading {
       h1 {
         font-size: 28px;
@@ -74,13 +75,30 @@
   @media (min-width: 950px) {
     .ourDoctors-list {
       grid-column: 2/3;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2%;
-      margin: 5vh 0 0 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      margin: 5vh 0% 0 0%;
+
+      // display: grid;
+      // grid-template-columns: repeat(4, 1fr);
+      // gap: 1%;
+      .ourDoctors {
+        margin-left: 10px;
+      }
       .docImg {
-        height: 330px;
-        width: 265px;
+        height: 270px;
+        width: auto;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 8% 84% 8%;
+    .ourDoctors-list {
+      .docImg {
+        height: 300px;
+        width: auto;
       }
     }
   }

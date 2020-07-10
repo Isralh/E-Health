@@ -1,7 +1,142 @@
 @import '../../../Assets/Sass/Variables';
 
 .footer-container {
-  height: 50vh;
   background: $fontColor;
   margin-top: 15vh;
+  color: white;
+  padding-bottom: 25px;
+
+  @media (min-width: 700px) {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 5% 1fr 1fr 1fr 5%;
+  }
+}
+
+.links-container {
+  padding-top: 35px;
+  text-align: center;
+  .links-heading {
+    h1 {
+      font-size: 20px;
+    }
+  }
+  .links-content {
+    p {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 700px) {
+    grid-column: 1/2;
+  }
+  @media (min-width: 900px) {
+    grid-column: 2/3;
+    margin-right: 50px;
+  }
+}
+
+.contactUs-container {
+  padding-top: 35px;
+  text-align: center;
+  .contactUs-heading {
+    h1 {
+      font-size: 20px;
+    }
+  }
+  .address {
+    p {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 700px) {
+    grid-column: 2/3;
+  }
+  @media (min-width: 900px) {
+    grid-column: 3/4;
+  }
+}
+
+.newsletter-container {
+  padding-top: 35px;
+  text-align: center;
+  .newsletter-heading {
+    h1 {
+      font-size: 20px;
+    }
+  }
+  .newsletter-content {
+    p {
+      margin: 0 5% 0 5%;
+      font-size: 18px;
+      line-height: 25px;
+    }
+    input {
+      margin-top: 10px;
+      height: 35px;
+      border-radius: 20px;
+      border: 1px solid white;
+      width: 250px;
+    }
+    .signUp-btn {
+      border-radius: 20px;
+      height: 40px;
+      width: 100px;
+      border: 1px solid white;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 360px) {
+    .newsletter-content {
+      .signUp-btn {
+        margin-left: 10px;
+      }
+    }
+  }
+  @media (min-width: 700px) {
+    grid-column: 1/3;
+    .newsletter-content {
+      input {
+        margin-left: 40px;
+      }
+    }
+  }
+  @media (min-width: 900px) {
+    grid-column: 4/5;
+  }
+  @media (min-width: 900px) and (max-width: 1484px) {
+    .newsletter-content {
+      .signUp-btn {
+        margin-left: 50px;
+      }
+    }
+  }
+}
+
+.social-container {
+  padding-top: 20px;
+  text-align: center;
+  .copyright {
+    p {
+      font-size: 16px;
+      font-weight: $bolderFont;
+    }
+  }
+  .social-icons {
+    span {
+      font-size: 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  }
+  @media (min-width: 700px) {
+    grid-column: 1/3;
+  }
+  @media (min-width: 900px) {
+    grid-column: 1/6;
+  }
 }

@@ -22,6 +22,7 @@
 }
 
 .burger-wrapper {
+  cursor: pointer;
   @include flex(column, nowrap, flex-start);
   top: 3vh;
   div {
@@ -40,6 +41,7 @@
     line-height: 30px;
     margin-left: 10px;
     color: white;
+    cursor: pointer;
   }
   .options {
     @extend .link;
