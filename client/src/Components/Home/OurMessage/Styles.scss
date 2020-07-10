@@ -8,7 +8,8 @@
   .ourMessage-content {
     grid-column: 2/3;
     h1 {
-      font-size: 28px;
+      font-size: 23px;
+      line-height: 35px;
       text-align: center;
     }
     p {
@@ -43,7 +44,7 @@
     .ourMessage-content {
       grid-column: 2/3;
       h1 {
-        font-size: 36px;
+        font-size: 28px;
       }
       p {
         margin-top: 5vh;

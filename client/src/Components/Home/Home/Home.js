@@ -5,6 +5,7 @@ import NavBar from '../../NavBar/NavBar'
 import OurMessage from '../OurMessage/OurMessage'
 import QualitiesContainer from '../CompanyQualities/QualitiesContainer'
 import ClientReviews from '../ClientReviews/ClientReviews'
+import Footer from '../Footer/Footer'
 import './styles.scss'
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <QualitiesContainer />
       <OurDoctors />
       <ClientReviews />
+      <Footer />
     </div>
   )
 }

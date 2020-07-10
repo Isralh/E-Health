@@ -9,7 +9,7 @@
     grid-column: 2/3;
     text-align: center;
     h1 {
-      font-size: 24px;
+      font-size: 23px;
       line-height: 35px;
     }
   }
@@ -63,16 +63,24 @@
     }
   }
 
+  @media (min-width: 900px) {
+    grid-template-columns: 8% 84% 8%;
+    .OurDoctors-heading {
+      h1 {
+        font-size: 28px;
+      }
+    }
+  }
   @media (min-width: 950px) {
     .ourDoctors-list {
       grid-column: 2/3;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0%;
+      gap: 2%;
       margin: 5vh 0 0 0;
       .docImg {
-        height: 275px;
-        width: auto;
+        height: 330px;
+        width: 265px;
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReviewStars from './ReviewStars'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -7,8 +7,11 @@ import './Styles.scss'
 
 const ClientReviews = () => {
   const [index, setIndex] = useState(0)
-  const [secondIndex, setSecondIndex] = useState(1)
+  const [firstFlex, setFirstFlex] = useState(0)
+  const [secondFlex, setSecondFlex] = useState(1)
   const allReviews = [<FirstReview />, <SecondReview />, <ThirdReview />]
+
+  /* pagination for view less than 900px  width */
   const handleRight = () => {
     if (index < 2) {
       setIndex(prev => { return prev + 1 })
@@ -21,6 +24,10 @@ const ClientReviews = () => {
     } else setIndex(2)
   }
 
+  useEffect(() => {
+    console.log(firstFlex)
+    console.log(secondFlex)
+  }, [firstFlex, secondFlex])
   return (
     <div className='clientReviews-container'>
       <div className='clientReviews-content'>
@@ -32,26 +39,27 @@ const ClientReviews = () => {
         </div>
         <div className='clientReviews-tablet'>
           <div className='review-flex-first'>
-            {allReviews[index]}
+            {allReviews[firstFlex]}
           </div>
           <div className='review-flex-second'>
-            {allReviews[secondIndex]}
+            {allReviews[secondFlex]}
+          </div>
+          <div className='review-flex-third'>
+            {allReviews[2]}
           </div>
         </div>
         <div className='pagination'>
-          <button>
+          <button onClick={handleLeft}>
             <FontAwesomeIcon
               icon={faArrowLeft}
               style={{ fontSize: '18px' }}
-              onClick={handleLeft}
               className='left-btn'
             />
           </button>
-          <button>
+          <button onClick={handleRight}>
             <FontAwesomeIcon
               icon={faArrowRight}
               style={{ fontSize: '18px' }}
-              onClick={handleRight}
               className='right-btn'
             />
           </button>
