@@ -4,10 +4,13 @@
 .nav-container {
   background: white;
 }
-.default-view {
+.mobile-view {
   height: 10vh;
   @media (min-width: $mobile-width) {
     @include flex(row, nowrap, space-between);
+  }
+  @media (min-width: 768px) {
+    display: none;
   }
 }
 
@@ -15,9 +18,12 @@
   top: 0;
   color: $fontColor;
   h1 {
-    margin: 3vh 0 0 20px;
-    font-size: 25 px;
+    margin: 3.5vh 0 0 20px;
+    font-size: 25px;
     cursor: pointer;
+    @media (min-width: 768px) {
+      font-size: 30px;
+    }
   }
 }
 
@@ -30,9 +36,12 @@
     border-bottom: 3px solid $fontColor;
     width: 30px;
   }
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
-.nav-dropdown {
+.nav-menu {
   background: $fontColor;
   height: auto;
   @include flex(column, nowrap, flex-start);
@@ -55,5 +64,39 @@
   }
   .customer-dropdown {
     @extend .login-dropdown;
+  }
+}
+
+.tabletDesktop-nav {
+  display: none;
+  height: 10vh;
+  width: 100%;
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  .nav-wrapper {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    .menu {
+      ul {
+        display: flex;
+        flex-direction: row nowrap;
+        justify-content: flex-end;
+        margin-right: 25px;
+        margin-top: 5vh;
+        list-style: none;
+      }
+      li {
+        text-decoration: none;
+        .menu-link {
+          font-size: 18px;
+          line-height: 30px;
+          color: $fontColor;
+          cursor: pointer;
+          margin-right: 20px;
+        }
+      }
+    }
   }
 }

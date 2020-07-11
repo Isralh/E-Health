@@ -4,10 +4,11 @@ import { LinkStyle } from './LinkStyle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 const DropDown = ({ showNavDropDown, showDropDown, handleDropDown, userStatus, userName, currentUser, handleLogOut }) => {
+
   const dropDownOptions = ('link', 'options')
 
   return (
-    <div className='nav-dropdown' style={{ display: showNavDropDown }}>
+    <div className='nav-menu' style={{ display: showNavDropDown }}>
       <Link to='/' style={LinkStyle} className='link'>Home</Link>
       <Link to='/bookAppointment' style={LinkStyle} className='link'>Book Appointment</Link>
       <Link to='/createAccount' style={LinkStyle} className='link'>Register</Link>

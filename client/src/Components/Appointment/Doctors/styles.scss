@@ -2,24 +2,22 @@
 @import '../../../Assets/Sass/Variables';
 
 .list-container {
-  @media (min-width: $mobile-width) {
-    display: block;
-    margin: 5vh 2.5% 5vh 2.5%;
+  display: block;
+  margin: 5vh 2.5% 5vh 2.5%;
+  padding-bottom: 30px;
+  .doctors-container {
+    @include flex(row, nowrap, space-evenly);
+    margin: 5vh 2vw 0 2vw;
+    height: 220px;
+    border-bottom: 0.5px solid lightgray;
+  }
 
-    .doctors-container {
-      @include flex(row, nowrap, space-evenly);
-      margin: 5vh 2vw 0 2vw;
-      height: 220px;
-      border-bottom: 0.5px solid lightgray;
-    }
+  .tablet-book-btn {
+    display: none;
+  }
 
-    .tablet-book-btn {
-      display: none;
-    }
-
-    .tablet-book-btn:hover {
-      background: $fontColor;
-    }
+  .tablet-book-btn:hover {
+    background: $fontColor;
   }
 
   @media (min-width: 600px) {

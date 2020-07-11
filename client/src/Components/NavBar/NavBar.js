@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Burger from './Burger'
 import Heading from './Heading'
-import './Styles.scss'
-import DropDown from './DropDown'
+import NavMenu from './NavMenu'
 import JwtDecode from 'jwt-decode'
+import DesktopTabletView from './DesktopTabletView'
+import './Styles.scss'
 
 const NavBar = () => {
   /* check if there is a user token to see if the user is signed in */
@@ -47,13 +48,13 @@ const NavBar = () => {
   return (
     <div className='nav-container'>
       <nav>
-        <div className='default-view'>
+        <div className='mobile-view'>
           <Heading />
           <Burger
             handleDropDown={toggleNavDropDown}
           />
         </div>
-        <DropDown
+        <NavMenu
           showNavDropDown={navDropDown}
           handleDropDown={toggleDropDown}
           showDropDown={dropDownView}
@@ -63,6 +64,12 @@ const NavBar = () => {
           handleLogOut={logOutUser}
         />
       </nav>
+      <DesktopTabletView
+        userStatus={userToken}
+        currentUser={user()}
+        userName={loggedInUser()}
+        handleLogOut={logOutUser}
+      />
     </div>
   )
 }
