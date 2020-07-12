@@ -4,9 +4,11 @@ import { FrontImage, FrontBackground } from '../../../Assets/Images/exports'
 
 import './Styles.scss'
 import TabletDesktopView from './TabletDesktopView'
+import NavBar from '../../NavBar/NavBar'
 const FrontView = () => {
   return (
     <div className='frontView-container'>
+      <NavBar />
       <div className='frontView-image'>
         <img className='frontImage' src={FrontBackground} alt='frontImage' />
       </div>

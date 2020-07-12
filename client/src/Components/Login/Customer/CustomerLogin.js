@@ -69,7 +69,6 @@ const CustomerLogin = () => {
           providerLoginButton='none'
         />
       </div>
-      <Footer />
     </div>
   )
 }

@@ -45,6 +45,8 @@ const NavBar = () => {
     }
   }
 
+  /* desktop loginOptions */
+
   return (
     <div className='nav-container'>
       <nav>
@@ -64,12 +66,6 @@ const NavBar = () => {
           handleLogOut={logOutUser}
         />
       </nav>
-      <DesktopTabletView
-        userStatus={userToken}
-        currentUser={user()}
-        userName={loggedInUser()}
-        handleLogOut={logOutUser}
-      />
     </div>
   )
 }
