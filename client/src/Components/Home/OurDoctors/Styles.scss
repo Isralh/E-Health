@@ -36,8 +36,20 @@
       cursor: pointer;
     }
     button {
+      background: $fontColor;
+      color: white;
       height: 50px;
       width: 180px;
+      font-size: 16px;
+      border-radius: 15px;
+      border: 1px solid white;
+      font-weight: $bolderFont;
+      cursor: pointer;
+      &:hover {
+        background: white;
+        color: $fontColor;
+        border: 2px solid $fontColor;
+      }
     }
   }
 
@@ -64,7 +76,7 @@
   }
 
   @media (min-width: 900px) {
-    grid-template-columns: 5% 90% 5%;
+    grid-template-columns: 6% 86% 8%;
     margin: 5vh 0% 0 0%;
     .OurDoctors-heading {
       h1 {
@@ -80,25 +92,21 @@
       flex-wrap: nowrap;
       justify-content: space-between;
       margin: 5vh 0% 0 0%;
-
-      // display: grid;
-      // grid-template-columns: repeat(4, 1fr);
-      // gap: 1%;
       .ourDoctors {
         margin-left: 10px;
       }
       .docImg {
         height: 270px;
-        width: auto;
+        width: 200px;
       }
     }
   }
   @media (min-width: 1200px) {
-    grid-template-columns: 8% 84% 8%;
+    grid-template-columns: 6% 86% 8%;
     .ourDoctors-list {
       .docImg {
         height: 300px;
-        width: auto;
+        width: 250px;
       }
     }
   }

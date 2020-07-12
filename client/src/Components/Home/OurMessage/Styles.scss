@@ -32,8 +32,20 @@
       margin-top: 5vh;
       text-align: center;
       button {
+        background: $fontColor;
+        color: white;
+        height: 55px;
         width: 200px;
-        height: 50px;
+        font-size: 16px;
+        border-radius: 15px;
+        border: 1px solid white;
+        font-weight: $bolderFont;
+        cursor: pointer;
+        &:hover {
+          background: white;
+          color: $fontColor;
+          border: 2px solid $fontColor;
+        }
       }
     }
   }
@@ -51,14 +63,6 @@
         font-size: 20px;
         line-height: 40px;
         text-align: center;
-      }
-      .ourMessage-btn {
-        margin-top: 5vh;
-        text-align: center;
-        button {
-          width: 200px;
-          height: 55px;
-        }
       }
     }
   }

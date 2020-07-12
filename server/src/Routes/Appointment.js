@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const Appointment = require('../Controller/Appointment/Appointment')
+const deleteAppointments = require('../Controller/Customers/DeleteAppointment')
 
-router.get('/session/:id', Appointment)
-
+router.delete('/delete/session/:id', deleteAppointments)
 module.exports = router

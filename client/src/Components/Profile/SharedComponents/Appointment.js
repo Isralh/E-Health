@@ -8,20 +8,20 @@ const FontAwesomeStyle = {
   marginLeft: '20px',
   fontSize: '25px'
 }
-const Appointment = ({ date, time, session, sessionId }) => {
+const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
   return (
     <div className='appointments-container'>
-      <div className='heading'>
-        <h1>UPCOMING APPOINTMENT(S)</h1>
-      </div>
       <div className='appointment-schedule'>
         <div className='fontAwesome'><span><FontAwesomeIcon icon={faCalendarAlt} style={FontAwesomeStyle} /></span>
           <span className='date'>{date}</span>
           <span className='time'>{time}</span>
         </div>
       </div>
-      <Link to={`/session/${sessionId}`}><button className='session-btn'>{session}</button>
-      </Link>
+      <div className='action-container'>
+        <button className='cancel-btn' onClick={handleCancel}>Cancel</button>
+        <button className='reschedule-btn'>Reschedule</button>
+        <button className='session-btn' onClick={handleJoin}>{session}</button>
+      </div>
     </div>
   )
 }

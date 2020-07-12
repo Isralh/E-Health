@@ -1,12 +1,16 @@
 @import '../../../../Assets/Sass/Variables';
 
-.dashboard-container {
-  height: $fullHeight;
-  width: $fullWidth;
+.noAppointments-container {
+  text-align: center;
+  margin-top: 15vh;
+  h1 {
+    font-size: 18px;
+    color: $fontColor;
+  }
 }
 
 .top-heading {
-  margin-top: 20vh;
+  margin-top: 10vh;
   h1 {
     font-size: 25px;
     color: $fontColor;
@@ -27,48 +31,73 @@
     font-weight: $bolderFont;
   }
 }
-
-.appointments-container {
-  margin-top: 10vh;
-  height: 30vh;
-  .heading {
-    border: 1px solid $fontColor;
+.appointment {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin: 10vh 5% 0 5%;
+  font-weight: $bolderFont;
+  color: $fontColor;
+  padding-bottom: 100px;
+  .appointment-heading {
     height: 40px;
-    margin-left: 5%;
-    margin-right: 5%;
-    font-weight: $bolderFont;
-    color: $fontColor;
+    border: 1px solid $fontColor;
     h1 {
       text-align: center;
       font-size: 18px;
     }
   }
-  .appointment-schedule {
-    border: 1px solid $fontColor;
-    height: 40px;
-    margin-left: 5%;
-    margin-right: 5%;
-    color: $fontColor;
-    text-align: center;
-    .fontAwesome {
-      margin-top: 10px;
-      margin-right: 40px;
+  .appointments-container {
+    .appointment-schedule {
+      // margin-top: 2vh;
+      border: 1px solid $fontColor;
+      height: 60px;
+      color: $fontColor;
+      text-align: center;
+      .fontAwesome {
+        margin-top: 20px;
+        margin-right: 40px;
+      }
+      .date {
+        margin-left: 20px;
+      }
+      .time {
+        margin-left: 10px;
+      }
     }
-    .date {
-      margin-left: 20px;
-    }
-    .time {
-      margin-left: 10px;
+    .action-container {
+      display: flex;
+      flex-direction: row nowrap;
+      justify-content: flex-start;
+      width: 100%;
+      .cancel-btn {
+        flex-basis: 33.33%;
+        height: 45px;
+        border: 1px solid lightgrey;
+        border-left: 1px solid orange;
+        background: orange;
+        color: white;
+        font-weight: $bolderFont;
+        cursor: pointer;
+      }
+      .reschedule-btn {
+        @extend .cancel-btn;
+      }
+      .session-btn {
+        @extend .cancel-btn;
+        border-right: 1px solid orange;
+      }
     }
   }
-  .session-btn {
-    width: 90%;
-    margin-left: 5%;
-    height: 40px;
-    text-align: center;
-    background: orange;
-    color: white;
-    border: 1px solid $fontColor;
-    font-weight: $bolderFont;
+}
+
+@media (min-width: 768px) {
+  .appointment {
+    margin: 10vh 15% 0 15%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .appointment {
+    margin: 10vh 20% 0 20%;
   }
 }

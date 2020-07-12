@@ -1,5 +1,4 @@
 import React from 'react'
-import { GetStarted } from '../Buttons/Buttons'
 import './Styles.scss'
 
 const OurMessage = () => {
@@ -13,7 +12,7 @@ const OurMessage = () => {
         providing high quality care to all patients.
         </p>
         <div className='ourMessage-btn'>
-          <GetStarted />
+          <button className='getStarted-btn'>Get Started</button>
         </div>
       </div>
     </div>

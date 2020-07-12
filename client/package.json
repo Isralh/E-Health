@@ -33,20 +33,20 @@
     ]
   },
   "devDependencies": {
-    "simple-peer": "^9.7.2",
-    "@fortawesome/free-brands-svg-icons": "^5.13.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@types/react-datepicker": "^3.0.1",
     "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.14.1",
-    "query-string": "^6.13.1",
     "react-calendar": "^3.1.0",
     "react-credit-cards": "^0.8.3",
     "react-datepicker": "^3.0.0",
     "react-images-upload": "^1.2.8",
+    "react-toastify": "^6.0.8",
+    "simple-peer": "^9.7.2",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.1.1",
     "uuid": "^8.2.0"
