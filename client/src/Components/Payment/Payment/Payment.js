@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
 import { getProviderById, postAppointment } from './services'
-import { customerToken } from '../../JwtDecode/JwtDecode'
-// import { DoctorRating } from '../../Appointment/Description/Description'
 import { DoctorRating } from '../../Appointment/DoctorRating/DoctorRating'
 import Modal from '../../Appointment/Modal/Modal'
 import BioCard from '../BioCard/BioCard'
@@ -18,8 +16,8 @@ import { validateDate, validateTime } from '../FormValidation/DateAndTime'
 import validateReason from '../FormValidation/ReasonForVisit'
 import { checkErrors } from '../FormValidation/checkErrors'
 import JwtDecode from 'jwt-decode'
-import './styles.scss'
 import Footer from '../../Home/Footer/Footer'
+import './styles.scss'
 
 const Payment = () => {
   /* get providersId and user's information from local storage when logged in */

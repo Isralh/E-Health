@@ -22,16 +22,6 @@
       margin-top: 5vh;
       text-align: center;
       button {
-        width: 200px;
-      }
-    }
-  }
-  @media (min-width: 700px) {
-    margin-right: 2%;
-    .ourMessage-btn {
-      margin-top: 5vh;
-      text-align: center;
-      button {
         background: $fontColor;
         color: white;
         height: 55px;
@@ -48,6 +38,9 @@
         }
       }
     }
+  }
+  @media (min-width: 700px) {
+    margin-right: 2%;
   }
 
   @media (min-width: 900px) {

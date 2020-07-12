@@ -1,39 +1,36 @@
 import React, { useState, useEffect } from 'react'
-import { ErickKnight, ZachSmith } from '../../../Assets/Images/exports'
 import Modal from '../../Appointment/Modal/Modal'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import './Styles.scss'
 
 const OurDoctors = () => {
+  /* state to hold the doctor's info */
   const [doctors, setDoctors] = useState()
 
-  const getAllDoctors = async () => {
-    const apiUrl = 'http://localhost:3002/api/get/provider/AllProviders'
-    const allProviders = await axios.get(apiUrl)
-    try {
-      if (allProviders.status === 200) {
-        setDoctors(allProviders.data)
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
+  /* on initial render get the doctor's info from the database */
   useEffect(() => {
+    const getAllDoctors = async () => {
+      const apiUrl = 'http://localhost:3002/api/get/provider/AllProviders'
+      const allProviders = await axios.get(apiUrl)
+      try {
+        if (allProviders.status === 200) {
+          setDoctors(allProviders.data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
     getAllDoctors()
   }, [])
 
-  useEffect(() => {
-    console.log(doctors)
-  }, [doctors])
-
-  /* state to toggle modal open and close */
+  /* state to hold the current state of the modal if it's open or not */
   const [modalState, setModalState] = useState(false)
 
-  /* state to hold modal data */
+  /* state to hold modal(doctor's info) data */
   const [selectedDoctor, setSelectedDoctor] = useState()
 
-  /* function to open modal */
+  /* function to open modal and get the selected doctors information */
   const handleModalOpen = (doctor) => {
     setSelectedDoctor(doctor)
     setModalState(true)
@@ -42,6 +39,24 @@ const OurDoctors = () => {
   const modalClose = () => {
     setModalState(false)
   }
+
+  /* state to hold selected doctor for appointment */
+  // const [doctorAppointment, setDoctorAppointment] = useState()
+
+  /* function to get selected doctor for appointment and redirect user to the correct page */
+  const history = useHistory()
+  const doctorAppointment = window.localStorage
+  const userToken = window.localStorage.getItem('token')
+  const handleAppointment = (doctor) => {
+    doctorAppointment.setItem('providerId', doctor.id)
+
+    /* if the user doesn't have an account yet, send them to the checkout registration page
+      else send them to the payments page */
+    if (userToken === null || userToken === undefined) {
+      history.push('/checkoutRegister')
+    } else history.push('/payment')
+  }
+
   return (
     <div className='ourDoctors-container'>
       <div className='OurDoctors-heading'>
@@ -54,7 +69,7 @@ const OurDoctors = () => {
               <img src={doctor.image} alt='doctorsImage' className='docImg' />
               <p className='name'>{`Dr. ${doctor.first_name} ${doctor.last_name}`}</p>
               <p className='reviews' onClick={handleModalOpen.bind(this, doctor)}>View Profile & Reviews</p>
-              <button className='book-appointment-btn'>Book Appointment</button>
+              <button className='book-appointment-btn' onClick={handleAppointment.bind(this, doctor)}>Book Appointment</button>
             </div>) : null}
       </div>
       <Modal

@@ -68,11 +68,9 @@ const Doctors = () => {
   }
   /* function to start the booking process */
   const doctorId = window.localStorage
-  const doctorName = window.localStorage
   const history = useHistory()
   const bookDoctor = (doctor) => {
     doctorId.setItem('providerId', doctor.id)
-    doctorName.setItem('doctorName', `${doctor.first_name}${doctor.last_name}`)
     redirectUser()
   }
 

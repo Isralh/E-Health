@@ -36,7 +36,7 @@ const Dashboard = () => {
             key={i}
             date={appointment.date}
             time={appointment.time}
-            session='START SESSION'
+            session='Start Session'
             sessionId={appointment.appointment_id}
           />
         )

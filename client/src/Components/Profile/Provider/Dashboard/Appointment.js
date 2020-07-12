@@ -18,8 +18,6 @@ const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
         </div>
       </div>
       <div className='action-container'>
-        <button className='cancel-btn' onClick={handleCancel}>Cancel</button>
-        <button className='reschedule-btn'>Reschedule</button>
         <button className='session-btn' onClick={handleJoin}>{session}</button>
       </div>
     </div>

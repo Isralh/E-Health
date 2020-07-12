@@ -87,6 +87,10 @@
       border: 1px solid white;
       margin-top: 15px;
       cursor: pointer;
+      &:hover {
+        background: $fontColor;
+        color: white;
+      }
     }
   }
 
