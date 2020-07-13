@@ -146,8 +146,8 @@ const Sessions = ({ match }) => {
           />
         </>
         : <ProviderView
+          
           calling={callingClient}
-          callStatus={callAccepted}
           users={users}
           role={user.role}
           myVideoRef={userVideoRef}

@@ -58,6 +58,13 @@
       height: 100%;
     }
   }
+  .endCallSession {
+    text-align: center;
+    button {
+      @include videoChatButton(red, 120px, 45px);
+      margin-top: 1vh;
+    }
+  }
 }
 
 .withoutPeer-view {
