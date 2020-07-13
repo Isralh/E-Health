@@ -20,6 +20,9 @@ const Sessions = ({ match }) => {
   /* state to show call has been accepted */
   const [callAccepted, setCallAccepted] = useState(false)
 
+  /* state to hold call status when customer accept call, view for provider */
+  const [customerAccepted, setCustomerAccepted] = useState(false)
+
   const [users, setUsers] = useState()
   const [myId, setMyId] = useState()
   const [peerId, setPeerId] = useState()
@@ -93,6 +96,7 @@ const Sessions = ({ match }) => {
 
     socket.on('customerAccepted', signal => {
       provider.signal(signal)
+      setCustomerAccepted(true)
     })
   }
 
@@ -144,9 +148,10 @@ const Sessions = ({ match }) => {
             calling={isCalling}
             AcceptCall={handleAnswer}
           />
-        </>
+          </>
         : <ProviderView
-          
+          callStatus={customerAccepted}
+          offer={callOffer}
           calling={callingClient}
           users={users}
           role={user.role}

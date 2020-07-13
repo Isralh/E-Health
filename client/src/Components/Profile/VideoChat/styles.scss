@@ -39,6 +39,13 @@
       @include videoChatButton(green, 120px, 45px);
       margin-right: 10px;
     }
+    .endCallSession {
+      text-align: center;
+      button {
+        @include videoChatButton(red, 120px, 45px);
+        margin-top: 1vh;
+      }
+    }
   }
   .peer-calling {
     @extend .doctor-online;

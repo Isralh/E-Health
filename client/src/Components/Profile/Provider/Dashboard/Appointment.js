@@ -8,7 +8,7 @@ const FontAwesomeStyle = {
   marginLeft: '20px',
   fontSize: '25px'
 }
-const Appointment = ({ date, time, session, handleJoin, sessionId }) => {
+const Appointment = ({ date, time, session, handleDone, sessionId }) => {
   return (
     <div className='appointments-container'>
       <div className='appointment-schedule'>
@@ -18,7 +18,7 @@ const Appointment = ({ date, time, session, handleJoin, sessionId }) => {
         </div>
       </div>
       <div className='session-controller'>
-        {/* <button className='session-btn' onClick={handleJoin}>{session}</button> */}
+        <button className='complete-btn' onClick={handleDone}>Mark as complete</button>
         <Link to={`/session/${sessionId}`} className='session-btn'><p>{session}</p></Link>
       </div>
     </div>
