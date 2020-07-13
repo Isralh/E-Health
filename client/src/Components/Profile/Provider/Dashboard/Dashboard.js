@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../../NavBar/NavBar'
 import JwtDecode from 'jwt-decode'
-import Appointment from '../../SharedComponents/Appointment'
 import Heading from '../../SharedComponents/Heading'
 import { GetAppointment } from './Services'
 import NoAppointments from '../../SharedComponents/NoAppointments'
+import Appointment from './Appointment'
+import './styles.scss'
+import Footer from '../../../Home/Footer/Footer'
 const Dashboard = () => {
   /* customer's information we got from the Jwt token saved in the local storage */
   const providerToken = window.localStorage.getItem('token')
@@ -30,17 +32,24 @@ const Dashboard = () => {
       <NavBar />
       {provider !== null || undefined
         ? <Heading name={provider.firstName.toUpperCase()} /> : null}
-      {appointments.length > 0
-        ? appointments.map((appointment, i) =>
-          <Appointment
-            key={i}
-            date={appointment.date}
-            time={appointment.time}
-            session='Start Session'
-            sessionId={appointment.appointment_id}
-          />
-        )
-        : <NoAppointments />}
+      <div className='appointment'>
+        {appointments.length > 0
+          ? <div className='appointment-heading'>
+            <h1>UPCOMING APPOINTMENT(S)</h1>
+          </div> : null}
+        {appointments.length > 0
+          ? appointments.map((appointment, i) =>
+            <Appointment
+              key={i}
+              date={appointment.date}
+              time={appointment.time}
+              session='Start Session'
+              sessionId={appointment.appointment_id}
+            />
+          )
+          : <NoAppointments />}
+      </div>
+      <Footer />
     </div>
   )
 }

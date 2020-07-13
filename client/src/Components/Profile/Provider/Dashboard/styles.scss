@@ -1,0 +1,35 @@
+@import '../../../../Assets/Sass/Variables';
+@import '../../../../Assets/Sass/Mixins';
+
+// @mixin flex($direction, $wrap, $justify) {
+//     position: relative;
+//     display: flex;
+//     flex-direction: $direction;
+//     flex-wrap: $wrap;
+//     justify-content: $justify;
+//   }
+
+.session-controller {
+  @include flex(row, nowrap, flex-start);
+  .session-btn {
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    background: orange;
+    font-weight: $bolderFont;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 22px;
+    p {
+      margin-top: 10px;
+      color: white;
+    }
+    &:hover {
+      background: white;
+      border: 1px solid orange;
+      p {
+        color: orange;
+      }
+    }
+  }
+}

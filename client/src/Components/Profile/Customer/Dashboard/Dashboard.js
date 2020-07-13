@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../../NavBar/NavBar'
 import Heading from '../../SharedComponents/Heading'
-import { BookingButton } from './Button'
-import Appointment from '../../SharedComponents/Appointment'
+import BookingButton from './Button'
+import Appointment from './Appointment'
 import JwtDecode from 'jwt-decode'
 import NoAppointments from '../../SharedComponents/NoAppointments'
 import Footer from '../../../Home/Footer/Footer'
@@ -45,12 +45,12 @@ const Dashboard = () => {
     history.push(`/session/${appointment.appointment_id}`)
   }
 
-  /* function to cancel appointment */
-
   toast.configure()
   const notify = () => toast.success('Appointment canceled successfully!', {
     autoClose: 2000
   })
+
+  /* function to cancel appointment */
   const cancelAppointment = async (appointment) => {
     const apiUrl = `http://localhost:3002/api/delete/session/${appointment.id}`
     const deletedAppointment = await axios.delete(apiUrl)
@@ -71,9 +71,10 @@ const Dashboard = () => {
       <Heading name={customer.firstName.toUpperCase()} />
       <BookingButton />
       <div className='appointment'>
-        <div className='appointment-heading'>
-          <h1>UPCOMING APPOINTMENT(S)</h1>
-        </div>
+        {appointments.length > 0
+          ? <div className='appointment-heading'>
+            <h1>UPCOMING APPOINTMENT(S)</h1>
+          </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment

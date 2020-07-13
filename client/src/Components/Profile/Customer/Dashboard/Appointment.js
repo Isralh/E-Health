@@ -1,7 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
 
 const FontAwesomeStyle = {
   color: 'rgb(88, 72, 72)',
@@ -25,3 +24,5 @@ const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
     </div>
   )
 }
+
+export default Appointment

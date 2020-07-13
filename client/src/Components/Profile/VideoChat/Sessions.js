@@ -13,7 +13,12 @@ const Sessions = ({ match }) => {
   /* user's information we get from the Jwt token saved in the local storage */
   const userToken = window.localStorage.getItem('token')
   const user = JwtDecode(userToken)
-  console.log(user)
+
+  /* state to show we're currently calling client, view only for the provider page */
+  const [callingClient, setCallingClient] = useState(false)
+
+  /* state to show call has been accepted */
+  const [callAccepted, setCallAccepted] = useState(false)
 
   const [users, setUsers] = useState()
   const [myId, setMyId] = useState()
@@ -69,6 +74,9 @@ const Sessions = ({ match }) => {
   }, [])
 
   const handleCalling = () => {
+    /* for the provider page to show we're calling client */
+    setCallingClient(true)
+
     /* create a first peer which is the doctor/provider who initiates the call */
     const provider = new Peer({ initiator: true, trickle: false, stream: userStream })
 
@@ -90,6 +98,9 @@ const Sessions = ({ match }) => {
 
   /* function to accept the call on the customer side */
   const handleAnswer = () => {
+    /* set call has been accepted to true, when call is accepted by client */
+    setCallAccepted(true)
+
     /* create a new peer customer who is not the initiator but answers the call */
     const customer = new Peer({ initiator: false, trickle: false, stream: userStream })
 
@@ -107,7 +118,7 @@ const Sessions = ({ match }) => {
     customer.signal(callOffer)
   }
 
-  /* filter out our Id from the users list so we can find the other peers Id we use to send calling and 
+  /* filter out our Id from the users list so we can find the other peers Id we use to send calling and
   accepting signals through sockets */
   useEffect(() => {
     if (users !== undefined) {
@@ -116,11 +127,15 @@ const Sessions = ({ match }) => {
     }
   }, [users])
 
+  useEffect(() => {
+    console.log(isCalling)
+  }, [isCalling])
   return (
     <div>
       {user.role === 'customer'
         ? <>
           <CustomerView
+            callStatus={callAccepted}
             users={users}
             role={user.role}
             myVideoRef={userVideoRef}
@@ -129,8 +144,10 @@ const Sessions = ({ match }) => {
             calling={isCalling}
             AcceptCall={handleAnswer}
           />
-          </>
+        </>
         : <ProviderView
+          calling={callingClient}
+          callStatus={callAccepted}
           users={users}
           role={user.role}
           myVideoRef={userVideoRef}

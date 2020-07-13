@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const BookingButton = () => {
+const BookingButton = () => {
   return (
     <div className='booking-btn'>
       <Link to='/bookAppointment'><button>Book Appointment</button></Link>
@@ -9,8 +9,4 @@ export const BookingButton = () => {
   )
 }
 
-export const JoinSession = () => {
-  return (
-    <button>Join Session</button>
-  )
-}
+export default BookingButton

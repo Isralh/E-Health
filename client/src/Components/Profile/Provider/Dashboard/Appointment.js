@@ -8,7 +8,7 @@ const FontAwesomeStyle = {
   marginLeft: '20px',
   fontSize: '25px'
 }
-const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
+const Appointment = ({ date, time, session, handleJoin, sessionId }) => {
   return (
     <div className='appointments-container'>
       <div className='appointment-schedule'>
@@ -17,9 +17,12 @@ const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
           <span className='time'>{time}</span>
         </div>
       </div>
-      <div className='action-container'>
-        <button className='session-btn' onClick={handleJoin}>{session}</button>
+      <div className='session-controller'>
+        {/* <button className='session-btn' onClick={handleJoin}>{session}</button> */}
+        <Link to={`/session/${sessionId}`} className='session-btn'><p>{session}</p></Link>
       </div>
     </div>
   )
 }
+
+export default Appointment
