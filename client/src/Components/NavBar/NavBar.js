@@ -1,60 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import Burger from './Burger'
 import Heading from './Heading'
-import NavMenu from './NavMenu'
 import JwtDecode from 'jwt-decode'
-import DesktopTabletView from './DesktopTabletView'
-import Nav from './Nav'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
+import { UserNotLoggedIn, CustomerLoggedIn, ProviderLoggedIn } from './NavView'
 
 const NavBar = () => {
   /* check if there is a user token to see if the user is signed in */
   const token = window.localStorage
   const userToken = token.getItem('token')
 
-  /* if the user is signed in decode the Jwt to get user's information */
-  const user = () => {
-    let currentUser
-    if (userToken !== null) {
-      currentUser = JwtDecode(userToken)
-    }
-    return currentUser
-  }
+  /* state to hold current user */
+  const [currentUser, setCurrentUser] = useState()
 
+  /* if the user is signed in decode the Jwt to get user's information */
   useEffect(() => {
-    user()
+    if (userToken !== null) {
+      const user = JwtDecode(userToken)
+      setCurrentUser(user)
+    } else setCurrentUser(userToken)
   }, [])
 
-  /* function to get the user's name if user() returns undefined */
-  const loggedInUser = () => {
-    let userName
-    if (user() !== undefined) {
-      userName = user().firstName
-    }
-    return userName
-  }
-
-  // const [navDropDown, setNavDropDown] = useState('none')
-  // const [dropDownView, setDropDownView] = useState('none')
-  // const toggleNavDropDown = () => {
-  //   setNavDropDown('flex')
-  // }
-  // const toggleDropDown = () => {
-  //   setDropDownView('flex')
-  // }
-
-  /* function to logout user and remove the token */
-  const history = useHistory()
-  const logOutUser = () => {
-    if (userToken !== null) {
-      token.removeItem('token')
-      history.push('/')
-    }
-  }
-
-  /* desktop loginOptions */
-
+  /* toggle drop down menu options */
   const [navMenu, setNavMenu] = useState(false)
   const [dropDownChoice, setDropDownChoice] = useState(false)
   const showNavDropDown = () => {
@@ -69,6 +37,17 @@ const NavBar = () => {
       setDropDownChoice(false)
     }
   }, [navMenu])
+
+  /* function to logout user and remove the token */
+  const history = useHistory()
+  const logOutUser = () => {
+    if (userToken !== null) {
+      token.removeItem('token')
+      history.push('/')
+      setNavMenu(false)
+    }
+  }
+
   return (
     <div className='nav-container'>
       <nav>
@@ -77,15 +56,27 @@ const NavBar = () => {
           <Burger
             handleDropDown={showNavDropDown}
           />
-          <Nav
-            showNavMenu={navMenu}
-            showDropDownChoice={dropDownChoice}
-            handleDropDown={displayDropDown}
-            userStatus={userToken}
-            currentUser={user()}
-            userName={loggedInUser()}
-            handleLogout={logOutUser()}
-          />
+          <div className='nav-menu' style={{ display: navMenu ? 'block' : 'none' }}>
+            {currentUser !== undefined && currentUser !== null
+              ? currentUser.role === 'customer'
+                ? <CustomerLoggedIn
+                  handleDropDown={displayDropDown}
+                  showDropDownChoice={dropDownChoice}
+                  userName={currentUser.firstName}
+                  handleLogout={logOutUser}
+                /> : currentUser.role === 'provider'
+                  ? <ProviderLoggedIn
+                    handleDropDown={displayDropDown}
+                    showDropDownChoice={dropDownChoice}
+                    userName={currentUser.firstName}
+                    handleLogout={logOutUser}
+                  />
+                  : null
+              : <UserNotLoggedIn
+                handleDropDown={displayDropDown}
+                showDropDownChoice={dropDownChoice}
+              />}
+          </div>
         </div>
       </nav>
     </div>
