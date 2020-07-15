@@ -7,7 +7,7 @@ import RegisterHeading from './RegisterHeading'
 import { useHistory } from 'react-router-dom'
 import './Styles.scss'
 import Footer from '../../Home/Footer/Footer'
-const CustomerRegister = ({ historyPush = '/customer/dashboard', displayNavBar = 'block', submitType = 'Register' }) => {
+const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitType = 'Register' }) => {
   /* state to hold all of our form inputs and disables/enables the submit button based on correct form
   inputs */
   const [formInput, setFormInput] = useState({

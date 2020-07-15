@@ -3,122 +3,70 @@
 
 .nav-container {
   background: white;
-  border-bottom: 1px solid $fontColor;
-}
-.mobile-view {
   height: 10vh;
-  @include flex(row, nowrap, space-between);
+  width: 100%;
 }
 
 .heading-container {
-  top: 0;
   color: $fontColor;
+  width: 120px;
   h1 {
-    margin: 4vh 0 0 20px;
+    margin: 3vh 0 0 20px;
     font-size: 25px;
     cursor: pointer;
     @media (min-width: 768px) {
       font-size: 30px;
+      width: 150px;
     }
+  }
+}
+.navigation {
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
   }
 }
 
 .burger-wrapper {
-  cursor: pointer;
-  @include flex(column, nowrap, flex-start);
-  top: 3vh;
-  div {
-    margin: 5px 25px 0 0px;
-    border-bottom: 3px solid $fontColor;
-    width: 30px;
-  }
-}
-
-.nav-menu {
-  background: $fontColor;
-  height: auto;
-  @include flex(column, nowrap, flex-start);
-  .link {
-    font-size: 18px;
-    line-height: 30px;
-    margin-left: 10px;
-    color: white;
+  @media (max-width: 768px) {
     cursor: pointer;
-  }
-  .options {
-    @extend .link;
-    margin-left: 20px;
-  }
-  .login-dropdown {
     @include flex(column, nowrap, flex-start);
-  }
-  .provider-dropdown {
-    @extend .login-dropdown;
-  }
-  .customer-dropdown {
-    @extend .login-dropdown;
+    top: 3vh;
+    div {
+      margin: 5px 25px 0 0px;
+      border-bottom: 3px solid $fontColor;
+      width: 30px;
+    }
   }
 }
-
-.tabletDesktop-nav {
+.nav-menu {
   display: none;
-  @media (min-width: 768px) {
-    display: block;
-    display: grid;
-    grid-template-columns: 30% 70%;
+  @media (max-width: 768px) {
+    z-index: 1;
+    left: 0;
+    position: fixed;
+    margin: 50px 0px 0 0;
     width: 100%;
-    height: 10vh;
-  }
-
-  .menu {
-    position: relative;
+    background: $fontColor;
     ul {
-      @include flex(row, nowrap, flex-end);
-      margin-top: 5vh;
+      margin-top: 5px;
       list-style: none;
-      margin-right: 30px;
-
-      @media (min-width: 1000px) {
-        margin-right: 40px;
-      }
+      padding-left: 10px;
     }
-    .menu-list {
-      text-decoration: none;
-      .choice-menu {
-        display: none;
-        position: absolute;
-        background: white;
-        color: $fontColor;
-        height: auto;
-        width: auto;
-        z-index: 1;
-        .login-choice {
-          display: none;
-          cursor: pointer;
-          font-size: 18px;
-          margin-top: 10px;
-          padding: 0px 10px 5px 0px;
-          &:hover {
-            background: #f1f1f1;
-          }
-        }
-      }
-      &:hover {
-        .choice-menu {
-          display: none;
-        }
-      }
-    }
-    .menu-link {
-      font-size: 18px;
-      line-height: 30px;
-      color: $fontColor;
-      cursor: pointer;
-      text-align: center;
+    li {
       margin-right: 20px;
-      @media (min-width: 1000px) {
-        margin-right: 25px;
-      }
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .link {
+      text-decoration: none;
+      line-height: 30px;
+    }
+    .dropdown-choice {
+      margin-left: 20px;
     }
   }
 }

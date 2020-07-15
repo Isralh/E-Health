@@ -11,6 +11,7 @@ import './styles.scss'
 const Home = () => {
   return (
     <div className='home-container'>
+      <NavBar />
       <FrontView />
       <OurMessage />
       <QualitiesContainer />
