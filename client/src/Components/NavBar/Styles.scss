@@ -6,6 +6,12 @@
   height: 10vh;
   width: 100%;
 }
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
 
 .heading-container {
   color: $fontColor;
@@ -20,16 +26,10 @@
     }
   }
 }
-.navigation {
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-}
 
+/* hide the burger menu at 768px width */
 .burger-wrapper {
+  display: none;
   @media (max-width: 768px) {
     cursor: pointer;
     @include flex(column, nowrap, flex-start);
@@ -41,9 +41,10 @@
     }
   }
 }
+
 .nav-menu {
-  display: none;
   @media (max-width: 768px) {
+    display: none;
     z-index: 1;
     left: 0;
     position: fixed;
@@ -65,8 +66,52 @@
       text-decoration: none;
       line-height: 30px;
     }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
     .dropdown-choice {
       margin-left: 20px;
+    }
+  }
+  @media (min-width: 769px) {
+    display: block;
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      margin-right: 20px;
+      list-style: none;
+      margin-top: 30px;
+    }
+    li {
+      margin-right: 25px;
+      cursor: pointer;
+      font-size: 18px;
+      color: $fontColor;
+    }
+    .link {
+      text-decoration: none;
+      line-height: 30px;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-choice {
+      position: absolute;
+      z-index: 1;
+      background: white;
+      width: 100%;
+      li {
+        display: block;
+        padding: 10px 0 10px 5px;
+        &:hover {
+          background-color: #ddd;
+          width: 95%;
+        }
+      }
     }
   }
 }

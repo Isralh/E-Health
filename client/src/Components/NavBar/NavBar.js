@@ -3,8 +3,8 @@ import Burger from './Burger'
 import Heading from './Heading'
 import JwtDecode from 'jwt-decode'
 import { useHistory } from 'react-router-dom'
-import './Styles.scss'
 import { UserNotLoggedIn, CustomerLoggedIn, ProviderLoggedIn } from './NavView'
+import './Styles.scss'
 
 const NavBar = () => {
   /* check if there is a user token to see if the user is signed in */
@@ -42,44 +42,48 @@ const NavBar = () => {
   const history = useHistory()
   const logOutUser = () => {
     if (userToken !== null) {
-      token.removeItem('token')
-      history.push('/')
-      setNavMenu(false)
+      if (window.location.pathname === '/') {
+        token.removeItem('token')
+        setNavMenu(false)
+        window.location.reload()
+      } else {
+        token.removeItem('token')
+        setNavMenu(false)
+        history.push('/')
+      }
     }
   }
 
   return (
-    <div className='nav-container'>
-      <nav>
-        <div className='navigation'>
-          <Heading />
-          <Burger
-            handleDropDown={showNavDropDown}
-          />
-          <div className='nav-menu' style={{ display: navMenu ? 'block' : 'none' }}>
-            {currentUser !== undefined && currentUser !== null
-              ? currentUser.role === 'customer'
-                ? <CustomerLoggedIn
+    <nav className='nav-container'>
+      <div className='navigation'>
+        <Heading />
+        <Burger
+          handleDropDown={showNavDropDown}
+        />
+        <div className='nav-menu' style={{ display: navMenu ? 'none' : 'block' }}>
+          {currentUser !== undefined && currentUser !== null
+            ? currentUser.role === 'customer'
+              ? <CustomerLoggedIn
+                handleDropDown={displayDropDown}
+                showDropDownChoice={dropDownChoice}
+                userName={currentUser.firstName}
+                handleLogout={logOutUser}
+              /> : currentUser.role === 'provider'
+                ? <ProviderLoggedIn
                   handleDropDown={displayDropDown}
                   showDropDownChoice={dropDownChoice}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
-                /> : currentUser.role === 'provider'
-                  ? <ProviderLoggedIn
-                    handleDropDown={displayDropDown}
-                    showDropDownChoice={dropDownChoice}
-                    userName={currentUser.firstName}
-                    handleLogout={logOutUser}
-                  />
-                  : null
-              : <UserNotLoggedIn
-                handleDropDown={displayDropDown}
-                showDropDownChoice={dropDownChoice}
-              />}
-          </div>
+                />
+                : null
+            : <UserNotLoggedIn
+              handleDropDown={displayDropDown}
+              showDropDownChoice={dropDownChoice}
+            />}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   )
 }
 
