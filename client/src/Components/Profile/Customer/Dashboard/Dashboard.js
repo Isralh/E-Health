@@ -9,10 +9,14 @@ import Footer from '../../../Home/Footer/Footer'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import RescheduleModal from './RescheduleModal'
 import 'react-toastify/dist/ReactToastify.css'
 import './styles.scss'
 
 const Dashboard = () => {
+  /* configure toast notification */
+  toast.configure()
+
   /* customer's information we got from the Jwt token saved in the local storage */
   const customerToken = window.localStorage.getItem('token')
   const customer = JwtDecode(customerToken)
@@ -21,7 +25,6 @@ const Dashboard = () => {
   const [appointments, setAppointments] = useState('')
 
   /* on initial render fetch the customer's appointment schedule */
-
   const getAppointmentData = async () => {
     const apiUrl = `http://localhost:3002/api/get/customer/appointments/${customer.userId}`
     const dashboardData = await axios.get(apiUrl)
@@ -45,7 +48,7 @@ const Dashboard = () => {
     history.push(`/session/${appointment.appointment_id}`)
   }
 
-  toast.configure()
+  /* notification for successful cancellation */
   const notify = () => toast.success('Appointment canceled successfully!', {
     autoClose: 2000
   })
@@ -65,6 +68,111 @@ const Dashboard = () => {
       console.log(e)
     }
   }
+
+  /* array that holds time options for reschedule */
+  const timeOption = ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST',
+    '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
+
+  /* toggle modal open and close */
+  const [modalClassName, setModalClassName] = useState(false)
+
+  /* state to hold appointment for reschedule */
+  const [appointmentReschedule, setAppointmentReschedule] = useState()
+
+  /* function to get current appointment selected for reschedule and open modal */
+  const selectedAppointment = (appointment) => {
+    setModalClassName(!modalClassName)
+    setAppointmentReschedule(appointment.id)
+  }
+
+  /* function to close modal */
+  const closeModal = () => {
+    setModalClassName(!modalClassName)
+  }
+
+  /* submit button name status */
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  /* state to hold selected appointment date */
+  const [selectedDate, setSelectedDate] = useState('')
+
+  /* function to get selected date onChange */
+  const getSelectedDate = (date) => {
+    setSelectedDate(date)
+  }
+
+  /* state to hold selected appointment time */
+  const [selectedTime, setSelectedTime] = useState('')
+
+  /* function to get selected time onChange */
+  const getSelectedTime = (e) => {
+    const time = e.target.value
+    setSelectedTime(time)
+  }
+
+  /* state to hold appointment date and time input errors */
+  const [dateAndTimeErrors, setDateAndTimeErrors] = useState({
+    date: '',
+    time: ''
+  })
+
+  /* on Submit check if there are inputs for date and length */
+  const rescheduleAppointment = () => {
+    if (selectedDate === null) {
+      setDateAndTimeErrors(prev => ({ ...prev, date: '*Please select appointment date' }))
+    } else if (selectedDate !== null && selectedDate.length < 1) {
+      setDateAndTimeErrors(prev => ({ ...prev, date: '*Please select appointment date' }))
+    } else setDateAndTimeErrors(prev => ({ ...prev, date: null }))
+
+    if (selectedTime === 'Choose Time') {
+      setDateAndTimeErrors(prev => ({ ...prev, time: '*Please select appointment time' }))
+    } else if (selectedTime.length < 1) {
+      setDateAndTimeErrors(prev => ({ ...prev, time: '*Please select appointment time' }))
+    } else setDateAndTimeErrors(prev => ({ ...prev, time: null }))
+  }
+
+  /* on Focus clear the error message if any */
+  const clearInputError = (e) => {
+    e.persist()
+    setDateAndTimeErrors(prev => ({ ...prev, [e.target.name]: '' }))
+  }
+
+  /* notification for successful reschedule */
+  const rescheduleSuccess = () => toast.success('Appointment rescheduled successfully!', {
+    autoClose: 2000
+  })
+
+  /* Post the new rescheduled appointment to the database when there's no errors
+     in the input */
+  useEffect(() => {
+    const submitAppointment = async () => {
+      if (dateAndTimeErrors.date === null && dateAndTimeErrors.time === null) {
+        setIsSubmitting(!isSubmitting)
+        const apiUrl = `http://localhost:3002/api/update/appointment${appointmentReschedule}`
+
+        const data = { date: selectedDate.toISOString().substring(0, 10), time: selectedTime }
+
+        const updateAppointment = await axios.patch(apiUrl, data)
+
+        try {
+          if (updateAppointment.status === 201) {
+            rescheduleSuccess()
+            setTimeout(() => {
+              window.location.reload()
+            }, 2500)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    }
+    submitAppointment()
+  }, [dateAndTimeErrors.date, dateAndTimeErrors.time])
+
+  useEffect(() => {
+    console.log(selectedDate)
+    console.log(selectedTime)
+  }, [selectedDate, selectedTime])
   return (
     <div className='dashboard-container'>
       <NavBar />
@@ -84,8 +192,22 @@ const Dashboard = () => {
               session='Join Session'
               handleJoin={joinSession.bind(this, appointment)}
               handleCancel={cancelAppointment.bind(this, appointment)}
+              handleReschedule={selectedAppointment.bind(this, appointment)}
             />) : <NoAppointments />}
       </div>
+      <RescheduleModal
+        time={timeOption}
+        modalClass={modalClassName === true ? 'reschedule-container' : 'reschedule-hidden'}
+        handleClose={closeModal}
+        date={selectedDate}
+        handleDate={getSelectedDate}
+        handleTime={getSelectedTime}
+        handleReschedule={rescheduleAppointment}
+        dateError={dateAndTimeErrors.date}
+        timeError={dateAndTimeErrors.time}
+        handleFocus={clearInputError}
+        submitName={isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+      />
       <Footer />
     </div>
   )

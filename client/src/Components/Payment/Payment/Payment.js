@@ -202,7 +202,7 @@ const Payment = () => {
                   startDate={new Date()}
                   time={timeOption}
                   timeError={dateAndTimeErrors.time}
-                  handleDate={getSelectedTime}
+                  handleTime={getSelectedTime}
                   handleFocus={clearInputOnFocus}
                 />
               </div>

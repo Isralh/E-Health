@@ -7,7 +7,7 @@ const FontAwesomeStyle = {
   marginLeft: '20px',
   fontSize: '25px'
 }
-const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
+const Appointment = ({ date, time, session, handleCancel, handleJoin, handleReschedule }) => {
   return (
     <div className='appointments-container'>
       <div className='appointment-schedule'>
@@ -18,7 +18,7 @@ const Appointment = ({ date, time, session, handleCancel, handleJoin }) => {
       </div>
       <div className='action-container'>
         <button className='cancel-btn' onClick={handleCancel}>Cancel</button>
-        <button className='reschedule-btn'>Reschedule</button>
+        <button className='reschedule-btn' onClick={handleReschedule}>Reschedule</button>
         <button className='session-btn' onClick={handleJoin}>{session}</button>
       </div>
     </div>

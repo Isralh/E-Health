@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import './Styles.scss'
 export const Scheduler = ({
   date, startDate, handleSelect, time = [],
-  handleDate, dateError, timeError, handleFocus
+  handleTime, dateError, timeError, handleFocus
 }) => {
   return (
     <div className='appointment-setter'>
@@ -24,7 +24,7 @@ export const Scheduler = ({
       />
       <div className='time-selector'>
         <p className='errors'>{timeError}</p>
-        <select className='time-picker' name='time' onChange={handleDate} onFocus={handleFocus}>
+        <select className='time-picker' name='time' onChange={handleTime} onFocus={handleFocus}>
           {time.map((time, i) =>
             <option key={i}>{time}</option>
           )}
