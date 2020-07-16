@@ -70,7 +70,7 @@ const Dashboard = () => {
   }
 
   /* array that holds time options for reschedule */
-  const timeOption = ['Choose Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST',
+  const timeOption = ['Select Time', '8AM EST', '9AM EST', '10AM EST', '11AM EST', '12PM EST',
     '1PM EST', '2PM EST', '3PM EST', '4PM EST', '5PM EST']
 
   /* toggle modal open and close */
@@ -124,7 +124,7 @@ const Dashboard = () => {
       setDateAndTimeErrors(prev => ({ ...prev, date: '*Please select appointment date' }))
     } else setDateAndTimeErrors(prev => ({ ...prev, date: null }))
 
-    if (selectedTime === 'Choose Time') {
+    if (selectedTime === 'Select Time') {
       setDateAndTimeErrors(prev => ({ ...prev, time: '*Please select appointment time' }))
     } else if (selectedTime.length < 1) {
       setDateAndTimeErrors(prev => ({ ...prev, time: '*Please select appointment time' }))

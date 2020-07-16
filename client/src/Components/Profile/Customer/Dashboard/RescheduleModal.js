@@ -17,9 +17,7 @@ const RescheduleModal = ({
         <div className='close'><p onClick={handleClose}><FontAwesomeIcon icon={faTimesCircle} /></p></div>
         <div className='reschedule-dateTime'>
           <div className='date-container'>
-            <div className='dateError-container'>
-              <p className='errors'>{dateError}</p>
-            </div>
+            <p className='errors'>{dateError}</p>
             <div className='date-chooser'>
               <p>Date:</p>
               <DatePicker
@@ -35,9 +33,7 @@ const RescheduleModal = ({
               />
             </div>
           </div>
-          <div className='timeError-container'>
-            <p className='errors'>{timeError}</p>
-          </div>
+          <p className='errors'>{timeError}</p>
           <div className='time-chooser'>
             <p>Time:</p>
             <div className='time-selector'>

@@ -140,9 +140,12 @@
         font-size: 20px;
       }
     }
+    .reschedule-dateTime {
+      margin-top: 40px;
+    }
     .reschedule-heading {
       text-align: center;
-      padding-top: 10px;
+      padding-top: 7px;
       margin-left: 40px;
     }
     .date-container {
@@ -151,7 +154,7 @@
     .date-chooser {
       @include flex(row, nowrap, center);
       text-align: center;
-      margin-top: -15px;
+      margin-top: -25px;
       p {
         font-size: 20px;
       }
@@ -163,7 +166,7 @@
     }
     .time-chooser {
       @extend .date-chooser;
-      margin-top: -20px;
+      margin-top: -25px;
       .time-picker {
         margin: 20px 0 0 8px;
         padding-bottom: 5px;
@@ -171,9 +174,6 @@
         color: $fontColor;
         overflow: auto;
       }
-    }
-    .timeError-container {
-      margin-top: -20px;
     }
     .errors {
       text-align: center;
