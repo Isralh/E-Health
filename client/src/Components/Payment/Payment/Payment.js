@@ -57,16 +57,6 @@ const Payment = () => {
     setCreditCard(prev => { return { ...prev, [e.target.name]: value } })
   }
 
-  /* set the doctors rating based on their rate... this is a mock rating system */
-  // const doctorsRating = () => {
-  //   return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
-  // }
-
-  /* set the doctors rating based on their rate... this is a mock rating system */
-  const numberRating = () => {
-    return doctorInfo.rating < 120 ? '4.0' : '5.0'
-  }
-
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
     getProviderById(providerId)
@@ -174,11 +164,31 @@ const Payment = () => {
     }
   }, [creditCardErrors, dateAndTimeErrors])
 
+  /* show doctor's rating in orange starts */
+  const viewRating = (doctor) => {
+    return parseInt((doctor.rating / doctor.ratingCount).toFixed(0))
+  }
+
+  /* show doctor's rating in number based on their rating */
+  const doctorRate = (doctor) => {
+    if (parseInt((doctor.rating / doctor.ratingCount).toFixed(0)) === 5) {
+      return '5.0'
+    } else if (parseInt((doctor.rating / doctor.ratingCount).toFixed(0)) === 4) {
+      return '4.0'
+    } else if (parseInt((doctor.rating / doctor.ratingCount).toFixed(0)) === 3) {
+      return '3.0'
+    } else if (parseInt((doctor.rating / doctor.ratingCount).toFixed(0)) === 2) {
+      return '2.0'
+    } else if (parseInt((doctor.rating / doctor.ratingCount).toFixed(0)) === 1) {
+      return '1.0'
+    }
+  }
+  // showRating={DoctorRating(viewRating(data))}
+  // doctorRating={doctorRate(data)}
+
   useEffect(() => {
-    console.log(creditCardErrors)
-    console.log(dateAndTimeErrors)
-    console.log(reasonsError)
-  }, [creditCardErrors, dateAndTimeErrors, reasonsError])
+    console.log(doctorInfo)
+  }, [doctorInfo])
   return (
     <div className='payment-container'>
       <NavBar />
@@ -190,8 +200,8 @@ const Payment = () => {
               <BioCard
                 firstName={doctorInfo.first_name}
                 lastName={doctorInfo.last_name}
-                rating={DoctorRating(doctorInfo.rating)}
-                ratingNumber={numberRating()}
+                rating={DoctorRating(viewRating(doctorInfo))}
+                ratingNumber={doctorRate(doctorInfo)}
                 hourlyRate={doctorInfo.rate}
                 doctorsImage={doctorInfo.image}
                 showModal={modalOpen}
@@ -244,7 +254,7 @@ const Payment = () => {
               viewModal={modalStatus}
               closeModal={modalClose}
             />
-            </> : null}
+          </> : null}
       </div>
       <Footer />
     </div>

@@ -1,7 +1,19 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import './Styles.scss'
 
 const OurMessage = () => {
+  /* check if user is signed in */
+  const userToken = window.localStorage.getItem('token')
+
+  /* redirect user to different pages when clicking on Get Started based on login status */
+  const history = useHistory()
+  const handleGetStarted = () => {
+    if (userToken === null) {
+      history.push('/createAccount')
+    } else history.push('/bookAppointment')
+  }
+
   return (
     <div className='ourMessage-container'>
       <div className='ourMessage-content'>
@@ -12,7 +24,7 @@ const OurMessage = () => {
         providing high quality care to all patients.
         </p>
         <div className='ourMessage-btn'>
-          <button className='getStarted-btn'>Get Started</button>
+          <button className='getStarted-btn' onClick={handleGetStarted}>Get Started</button>
         </div>
       </div>
     </div>

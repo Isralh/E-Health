@@ -1,8 +1,12 @@
 import React from 'react'
-import { BookAppointment } from '../Buttons/Buttons'
-import { FrontImage, FrontBackground } from '../../../Assets/Images/exports'
+import { FrontBackground } from '../../../Assets/Images/exports'
+import { Link } from 'react-router-dom'
 
-const TabletDesktopView = () => {
+const LinkStyle = {
+  textDecoration: 'none'
+}
+
+const DesktopTabletView = () => {
   return (
     <div className='tabletDesktopView' style={{ backgroundImage: `url(${FrontBackground})` }}>
       <div className='frontView-content-grid'>
@@ -14,12 +18,13 @@ const TabletDesktopView = () => {
           </p>
         </div>
         <div className='frontView-btn-container-grid'>
-          <BookAppointment />
+          <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
+            <button className='book-appointment-btn'>Book Appointment</button>
+          </Link>
         </div>
       </div>
     </div>
   )
 }
 
-export default TabletDesktopView
-{ /* <div className='tabletView' style={{ backgroundImage: `url(${FrontImage})` }}> */ }
+export default DesktopTabletView

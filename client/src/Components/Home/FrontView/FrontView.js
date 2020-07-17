@@ -1,17 +1,20 @@
 import React from 'react'
-import { BookAppointment } from '../Buttons/Buttons'
-import { FrontImage, FrontBackground } from '../../../Assets/Images/exports'
-
+import { FrontBackground } from '../../../Assets/Images/exports'
+import { Link } from 'react-router-dom'
+import DesktopTabletView from './DesktopTabletView'
 import './Styles.scss'
-import TabletDesktopView from './TabletDesktopView'
-import NavBar from '../../NavBar/NavBar'
+
+const LinkStyle = {
+  textDecoration: 'none'
+}
+
 const FrontView = () => {
   return (
     <div className='frontView-container'>
       <div className='frontView-image'>
         <img className='frontImage' src={FrontBackground} alt='frontImage' />
       </div>
-      <TabletDesktopView />
+      <DesktopTabletView />
       <div className='frontView-content'>
         <h1>Healthcare from the comfort of your house.</h1>
         <div className='frontView-message'>
@@ -21,7 +24,9 @@ const FrontView = () => {
           </p>
         </div>
         <div className='frontView-btn-container'>
-          <BookAppointment />
+          <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
+            <button className='book-appointment-btn'>Book Appointment</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -38,7 +38,28 @@
 .frontView-content-flex {
   display: none;
 }
+.link-container {
+  .book-appointment-btn {
+    background: $fontColor;
+    color: white;
+    height: 55px;
+    width: 200px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid white;
+    font-weight: $bolderFont;
+    cursor: pointer;
+  }
+  .getStarted-btn {
+    @extend .book-appointment-btn;
+  }
+}
 
+.link-container :hover {
+  background: white;
+  color: $fontColor;
+  border: 2px solid $fontColor;
+}
 /* tablet and desktop view */
 .tabletDesktopView {
   display: none;
@@ -71,9 +92,6 @@
       .frontView-btn-container-grid {
         grid-column: 2/3;
         text-align: justify;
-        button {
-          height: 55px;
-        }
       }
     }
   }

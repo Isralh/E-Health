@@ -16,7 +16,9 @@ const GetProviderByID = async (req, res) => {
         rate: provider.rate,
         summary: provider.summary,
         education: provider.education,
-        yearsOfExperience: provider.yearsOfExperience
+        yearsOfExperience: provider.yearsOfExperience,
+        rating: provider.rating,
+        ratingCount: provider.ratingCount
       }
       return res.status(200).send({ data: providerData, message: 'success' })
     }

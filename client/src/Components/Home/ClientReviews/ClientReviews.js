@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import ReviewStars from './ReviewStars'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FirstReview, SecondReview, ThirdReview } from './Reviews'
@@ -24,10 +23,6 @@ const ClientReviews = () => {
     } else setIndex(2)
   }
 
-  useEffect(() => {
-    console.log(firstFlex)
-    console.log(secondFlex)
-  }, [firstFlex, secondFlex])
   return (
     <div className='clientReviews-container'>
       <div className='clientReviews-content'>
@@ -38,13 +33,13 @@ const ClientReviews = () => {
           {allReviews[index]}
         </div>
         <div className='clientReviews-tablet'>
-          <div className='review-flex-first'>
+          <div className='review-first'>
             {allReviews[firstFlex]}
           </div>
-          <div className='review-flex-second'>
+          <div className='review-second'>
             {allReviews[secondFlex]}
           </div>
-          <div className='review-flex-third'>
+          <div className='review-third'>
             {allReviews[2]}
           </div>
         </div>
