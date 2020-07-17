@@ -15,7 +15,8 @@ const OurDoctors = () => {
       const allProviders = await axios.get(apiUrl)
       try {
         if (allProviders.status === 200) {
-          setDoctors(allProviders.data)
+          const data = allProviders.data.slice(0, 4)
+          setDoctors(data)
         }
       } catch (e) {
         console.log(e)

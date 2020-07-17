@@ -11,5 +11,5 @@ export const validateTime = (input, setError) => {
     setError(prev => ({ ...prev, time: '*Please select appointment time' }))
   } else if (input.length < 1) {
     setError(prev => ({ ...prev, time: '*Please select appointment time' }))
-  }
+  } else setError(prev => ({ ...prev, time: null }))
 }

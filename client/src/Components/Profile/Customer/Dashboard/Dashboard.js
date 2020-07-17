@@ -50,22 +50,26 @@ const Dashboard = () => {
 
   /* notification for successful cancellation */
   const notify = () => toast.success('Appointment canceled successfully!', {
-    autoClose: 2000
+    autoClose: 1500
   })
 
   /* function to cancel appointment */
   const cancelAppointment = async (appointment) => {
-    const apiUrl = `http://localhost:3002/api/delete/session/${appointment.id}`
-    const deletedAppointment = await axios.delete(apiUrl)
-    try {
-      if (deletedAppointment.status === 200) {
-        notify()
-        setTimeout(() => {
-          window.location.reload()
-        }, 2500)
+    const confirmDelete = window.confirm('Are you sure you want to cancel the appointment?')
+
+    if (confirmDelete === true) {
+      const apiUrl = `http://localhost:3002/api/delete/session/${appointment.id}`
+      const deletedAppointment = await axios.delete(apiUrl)
+      try {
+        if (deletedAppointment.status === 200) {
+          notify()
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000)
+        }
+      } catch (e) {
+        console.log(e)
       }
-    } catch (e) {
-      console.log(e)
     }
   }
 
@@ -169,10 +173,6 @@ const Dashboard = () => {
     submitAppointment()
   }, [dateAndTimeErrors.date, dateAndTimeErrors.time])
 
-  useEffect(() => {
-    console.log(selectedDate)
-    console.log(selectedTime)
-  }, [selectedDate, selectedTime])
   return (
     <div className='dashboard-container'>
       <NavBar />

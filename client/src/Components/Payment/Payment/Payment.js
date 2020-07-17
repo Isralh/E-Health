@@ -174,6 +174,11 @@ const Payment = () => {
     }
   }, [creditCardErrors, dateAndTimeErrors])
 
+  useEffect(() => {
+    console.log(creditCardErrors)
+    console.log(dateAndTimeErrors)
+    console.log(reasonsError)
+  }, [creditCardErrors, dateAndTimeErrors, reasonsError])
   return (
     <div className='payment-container'>
       <NavBar />

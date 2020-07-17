@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-export const UserNotLoggedIn = ({ handleDropDown, showDropDownChoice }) => {
+export const UserNotLoggedIn = ({ handleDropDown, showDropDownChoice, token }) => {
   return (
     <ul>
       <Link to='/' className='link'><li>Home</li></Link>
@@ -25,12 +25,10 @@ export const CustomerLoggedIn = ({ handleDropDown, showDropDownChoice, userName,
     <ul>
       <Link to='/' className='link'><li>Home</li></Link>
       <Link to='/bookAppointment' className='link'><li>Book Appointment</li></Link>
-      <Link to='/createAccount' className='link'><li>Register</li></Link>
       <div className='dropdown'>
         <li className='link' onClick={handleDropDown}>{`Welcome ${userName}`} <FontAwesomeIcon icon={faCaretDown} /></li>
         <div className='dropdown-choice' style={{ display: showDropDownChoice ? 'block' : 'none' }}>
           <Link className='link' to='/customer/dashboard'><li>Dashboard</li></Link>
-          <Link className='link' to='/customer/profile'><li>Profile</li></Link>
           <li className='link' onClick={handleLogout}>Logout</li>
         </div>
       </div>
@@ -43,12 +41,10 @@ export const ProviderLoggedIn = ({ handleDropDown, showDropDownChoice, userName,
     <ul>
       <Link to='/' className='link'><li>Home</li></Link>
       <Link to='/bookAppointment' className='link'><li>Book Appointment</li></Link>
-      <Link to='/createAccount' className='link'><li>Register</li></Link>
       <div className='dropdown'>
         <li className='link' onClick={handleDropDown}>{`Welcome ${userName}`} <FontAwesomeIcon icon={faCaretDown} /></li>
         <div className='dropdown-choice' style={{ display: showDropDownChoice ? 'block' : 'none' }}>
           <Link className='link' to='/provider/dashboard'><li>Dashboard</li></Link>
-          <Link className='link' to='/provider/profile'><li>Profile</li></Link>
           <li className='link' onClick={handleLogout}>Logout</li>
         </div>
       </div>

@@ -88,7 +88,6 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
           submitHeading={submitType}
         />
       </div>
-      <Footer />
     </div>
   )
 }

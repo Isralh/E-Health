@@ -47,6 +47,9 @@
       .top-school {
         margin-left: 5px;
       }
+      .years-experience {
+        margin-left: 5px;
+      }
     }
     .modal-doctor-image {
       @include background(repeat, cover, 50% 50%, relative);
@@ -59,9 +62,6 @@
   .main-content {
     margin: 10vh 20px 0 20px;
     .main-description {
-      .years-experience {
-        margin-left: 5px;
-      }
       h4 {
         margin-top: 25px;
       }
@@ -81,6 +81,9 @@
       height: auto;
       color: $fontColor;
       padding-bottom: 10px;
+      .main-description {
+        margin-top: -20px;
+      }
     }
   }
   @media (min-width: 500px) {
