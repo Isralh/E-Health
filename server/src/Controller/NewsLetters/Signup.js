@@ -2,7 +2,7 @@ const NewsLetters = require('../../Models/NewsLetter')
 
 /* function to create new signUps for newsletters */
 const SignUp = async (req, res) => {
-  const email = req.body
+  const { email } = req.body
   const currentEmails = await NewsLetters.findOne({ where: { email } })
 
   try {

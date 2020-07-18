@@ -29,7 +29,9 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+      />
       {provider !== null || undefined
         ? <Heading name={provider.firstName.toUpperCase()} /> : null}
       <div className='appointment'>

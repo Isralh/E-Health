@@ -54,7 +54,10 @@ const CustomerLogin = () => {
 
   return (
     <div className='login-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+
+      />
       <div className='login-wrapper'>
         <LoginHeader />
         <Form

@@ -6,11 +6,14 @@
   height: 10vh;
   width: 100%;
 }
+
+.nav-container-underlined {
+  @extend .nav-container;
+  border-bottom: 1px solid $fontColor;
+}
+
 .navigation {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  @include flex(row, nowrap, space-between);
 }
 
 .heading-container {
@@ -43,8 +46,13 @@
 }
 
 .nav-menu {
+  display: none;
+}
+
+.nav-menu-mobile {
+  display: none;
   @media (max-width: 768px) {
-    display: none;
+    display: block;
     z-index: 1;
     left: 0;
     position: absolute;
@@ -74,13 +82,14 @@
       margin-left: 20px;
     }
   }
-  @media (min-width: 769px) {
+}
+
+.nav-menu-desktop {
+  display: none;
+  @media (min-width: 768px) {
     display: block;
     ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-evenly;
+      @include flex(row, nowrap, space-evenly);
       margin-right: 20px;
       list-style: none;
       margin-top: 30px;

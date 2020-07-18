@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { UserNotLoggedIn, CustomerLoggedIn, ProviderLoggedIn } from './NavView'
 import './Styles.scss'
 
-const NavBar = () => {
+const NavBar = ({ navContainerClass = 'nav-container' }) => {
   /* check if there is a user token to see if the user is signed in */
   const token = window.localStorage
   const userToken = token.getItem('token')
@@ -23,20 +23,20 @@ const NavBar = () => {
   }, [])
 
   /* toggle drop down menu options */
-  const [navMenu, setNavMenu] = useState(false)
+  const [navMenuClass, setNavMenuClass] = useState('nav-menu')
+  const [desktopClass, setDesktopClass] = useState('nav-menu-desktop')
   const [dropDownChoice, setDropDownChoice] = useState(false)
   const showNavDropDown = () => {
-    setNavMenu(!navMenu)
+    if (navMenuClass === 'nav-menu') {
+      setNavMenuClass('nav-menu-mobile')
+    } else if (navMenuClass === 'nav-menu-mobile') {
+      setNavMenuClass('nav-menu')
+    }
   }
+
   const displayDropDown = () => {
     setDropDownChoice(!dropDownChoice)
   }
-
-  useEffect(() => {
-    if (navMenu === false) {
-      setDropDownChoice(false)
-    }
-  }, [navMenu])
 
   /* function to logout user and remove the token */
   const history = useHistory()
@@ -44,24 +44,43 @@ const NavBar = () => {
     if (userToken !== null) {
       if (window.location.pathname === '/') {
         token.removeItem('token')
-        setNavMenu(false)
         window.location.reload()
       } else {
         token.removeItem('token')
-        setNavMenu(false)
         history.push('/')
       }
     }
   }
 
   return (
-    <nav className='nav-container'>
+    <nav className={navContainerClass}>
       <div className='navigation'>
         <Heading />
         <Burger
           handleDropDown={showNavDropDown}
         />
-        <div className='nav-menu' style={{ display: navMenu ? 'none' : 'block' }}>
+        <div className={navMenuClass}>
+          {currentUser !== undefined && currentUser !== null
+            ? currentUser.role === 'customer'
+              ? <CustomerLoggedIn
+                handleDropDown={displayDropDown}
+                showDropDownChoice={dropDownChoice}
+                userName={currentUser.firstName}
+                handleLogout={logOutUser}
+              /> : currentUser.role === 'provider'
+                ? <ProviderLoggedIn
+                  handleDropDown={displayDropDown}
+                  showDropDownChoice={dropDownChoice}
+                  userName={currentUser.firstName}
+                  handleLogout={logOutUser}
+                />
+                : null
+            : <UserNotLoggedIn
+              handleDropDown={displayDropDown}
+              showDropDownChoice={dropDownChoice}
+            />}
+        </div>
+        <div className={desktopClass}>
           {currentUser !== undefined && currentUser !== null
             ? currentUser.role === 'customer'
               ? <CustomerLoggedIn

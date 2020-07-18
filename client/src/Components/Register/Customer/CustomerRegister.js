@@ -68,7 +68,9 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
   return (
     <div className='registration-container'>
       <div style={{ display: displayNavBar }}>
-        <NavBar />
+        <NavBar
+          navContainerClass='nav-container-underlined'
+        />
       </div>
       <div className='registration-wrapper'>
         <RegisterHeading />

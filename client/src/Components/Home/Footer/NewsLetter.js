@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewsLetter = () => {
+const NewsLetter = ({ handleChange, handleSignUp }) => {
   return (
     <div className='newsletter-container'>
       <header className='newsletter-heading'>
@@ -12,8 +12,10 @@ const NewsLetter = () => {
           className='news-input'
           placeholder='Your Email Address'
           type='text'
+          name='newsletter'
+          onChange={handleChange}
         />
-        <button className='signUp-btn'>Sign Up</button>
+        <button className='signUp-btn' onClick={handleSignUp} type='submit'>Sign Up</button>
       </div>
     </div>
   )

@@ -175,7 +175,9 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+      />
       <Heading name={customer.firstName.toUpperCase()} />
       <BookingButton />
       <div className='appointment'>

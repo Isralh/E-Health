@@ -191,7 +191,9 @@ const Payment = () => {
   }, [doctorInfo])
   return (
     <div className='payment-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+      />
       <TopHeader />
       <div className='payment-wrapper'>
         {doctorInfo !== undefined
@@ -254,7 +256,7 @@ const Payment = () => {
               viewModal={modalStatus}
               closeModal={modalClose}
             />
-          </> : null}
+            </> : null}
       </div>
       <Footer />
     </div>

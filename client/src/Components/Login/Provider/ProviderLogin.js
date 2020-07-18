@@ -53,7 +53,9 @@ const ProviderLogin = () => {
 
   return (
     <div className='provider-login-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+      />
       <div className='login-wrapper'>
         <LoginHeader />
         <Form

@@ -7,6 +7,7 @@
   justify-content: $justify;
 }
 
+/* Background Image mixin */
 @mixin background($repeat, $cover, $position, $relative) {
   background-repeat: $repeat;
   background-size: $cover;
@@ -14,17 +15,20 @@
   position: $relative;
 }
 
+/* profile image mixin */
 @mixin profileImage($alignMiddle, $radius) {
   vertical-align: $alignMiddle;
   border-radius: $radius;
 }
 
+/* select mixin */
 @mixin select($width, $height, $marginTop) {
   width: $width;
   height: $height;
   margin-top: $marginTop;
 }
 
+/* login button mixin */
 @mixin loginBtn($background, $width) {
   background: $background;
   color: white;
@@ -40,6 +44,7 @@
   font-weight: bolder;
 }
 
+/* book button mixin */
 @mixin bookButton($bolderFont, $padding, $width, $radius) {
   color: white;
   font-weight: $bolderFont;
@@ -51,6 +56,7 @@
   cursor: pointer;
 }
 
+/* video chat button mixin */
 @mixin videoChatButton($background, $width, $height) {
   background: $background;
   color: white;
