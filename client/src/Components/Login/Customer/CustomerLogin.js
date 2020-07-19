@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
 import Form from '../SharedComponent/Form'
 import LoginHeader from '../SharedComponent/LoginHeader'
@@ -52,6 +52,9 @@ const CustomerLogin = () => {
       .catch(e => console.log(e))
   }
 
+  useEffect(() => {
+    console.log(formInput)
+  }, [formInput])
   return (
     <div className='login-container'>
       <NavBar

@@ -135,6 +135,9 @@ const Sessions = ({ match }) => {
     }
   }, [users])
 
+  useEffect(() => {
+    console.log(users)
+  }, [users])
   return (
     <div>
       {user.role === 'customer'
