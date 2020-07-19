@@ -42,29 +42,12 @@
     p {
       color: red;
     }
-  }
-
-  input {
-    height: 50px;
-    width: 98%;
-  }
-
-  @media (max-width: 420px) {
     input {
-      width: 97%;
+      height: 50px;
+      width: 98%;
     }
   }
 }
-
-@mixin loginButton($width, $fontColor) {
-  background: $fontColor;
-  color: white;
-  font-size: 18px;
-  width: $width;
-  height: 45px;
-  cursor: pointer;
-}
-
 .loginBtn-customer {
   margin-top: 5vh;
   width: 100%;

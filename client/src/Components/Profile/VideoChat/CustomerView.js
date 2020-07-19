@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, calling, offer, callStatus }) => {
+const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, calling, callStatus }) => {
   /* when provider is not online render the below */
   const providerOffline = () => {
     return (

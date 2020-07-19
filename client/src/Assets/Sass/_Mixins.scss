@@ -36,12 +36,14 @@
   width: $width;
   height: 50px;
   cursor: pointer;
+  border: 1px solid white;
 }
 
 @mixin loginBtnHover($color) {
   color: $color;
   background: white;
   font-weight: bolder;
+  border: 1px solid $fontColor;
 }
 
 /* book button mixin */

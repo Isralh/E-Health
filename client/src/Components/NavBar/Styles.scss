@@ -30,7 +30,6 @@
   }
 }
 
-/* hide the burger menu at 768px width */
 .burger-wrapper {
   display: none;
   @media (max-width: 768px) {
@@ -51,7 +50,7 @@
 
 .nav-menu-mobile {
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     display: block;
     z-index: 1;
     left: 0;
@@ -86,7 +85,7 @@
 
 .nav-menu-desktop {
   display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: block;
     ul {
       @include flex(row, nowrap, space-evenly);
@@ -111,14 +110,16 @@
     .dropdown-choice {
       position: absolute;
       z-index: 1;
-      background: white;
+      background: $fontColor;
       width: 100%;
       li {
         display: block;
         padding: 10px 0 10px 5px;
+        color: white;
         &:hover {
-          background-color: #ddd;
-          width: 95%;
+          background-color: white;
+          width: 97%;
+          color: $fontColor;
         }
       }
     }

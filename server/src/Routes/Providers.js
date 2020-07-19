@@ -6,6 +6,7 @@ const getProviderByID = require('../Controller/Providers/GetProviderByID')
 const login = require('../Controller/Providers/Login')
 const getAppointments = require('../Controller/Providers/getAppointment')
 const postRating = require('../Controller/Providers/postRating')
+const markAppointmentComplete = require('../Controller/Providers/AppComplete')
 
 router.post('/post/provider/uploadImageResume', imageUpload)
 router.post('/post/provider/register', registration)
@@ -14,4 +15,6 @@ router.get('/get/provider/:id', getProviderByID)
 router.post('/post/login/provider', login)
 router.get('/get/provider/appointments/:id', getAppointments)
 router.post('/post/provider/rating', postRating)
+router.delete('/delete/appointment:id', markAppointmentComplete)
+
 module.exports = router

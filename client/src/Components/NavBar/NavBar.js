@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Burger from './Burger'
 import Heading from './Heading'
 import JwtDecode from 'jwt-decode'
@@ -25,7 +25,10 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
   /* toggle drop down menu options */
   const [navMenuClass, setNavMenuClass] = useState('nav-menu')
   const [desktopClass, setDesktopClass] = useState('nav-menu-desktop')
+  const [burgerClassName, setBurgerClassName] = useState('burger-wrapper')
   const [dropDownChoice, setDropDownChoice] = useState(false)
+
+  /* on mobile view when click on the burger menu open the nav menu */
   const showNavDropDown = () => {
     if (navMenuClass === 'nav-menu') {
       setNavMenuClass('nav-menu-mobile')
@@ -34,6 +37,7 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
     }
   }
 
+  /* open menu options on mobile views */
   const displayDropDown = () => {
     setDropDownChoice(!dropDownChoice)
   }
@@ -52,12 +56,30 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
     }
   }
 
+  /* on click outside close the nav menu options */
+  const refMenu = useRef(null)
+  useEffect(() => {
+    const closeLoginOption = (event) => {
+      if (refMenu.current && !refMenu.current.contains(event.target)) {
+        if (dropDownChoice === true) {
+          setDropDownChoice(!dropDownChoice)
+        }
+      }
+    }
+
+    document.addEventListener('mousedown', closeLoginOption)
+    return () => {
+      document.removeEventListener('mousedown', closeLoginOption)
+    }
+  }, [refMenu, dropDownChoice])
+
   return (
     <nav className={navContainerClass}>
       <div className='navigation'>
         <Heading />
         <Burger
           handleDropDown={showNavDropDown}
+          hamburgerClass={burgerClassName}
         />
         <div className={navMenuClass}>
           {currentUser !== undefined && currentUser !== null
@@ -67,17 +89,20 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
                 showDropDownChoice={dropDownChoice}
                 userName={currentUser.firstName}
                 handleLogout={logOutUser}
+                menuRef={refMenu}
               /> : currentUser.role === 'provider'
                 ? <ProviderLoggedIn
                   handleDropDown={displayDropDown}
                   showDropDownChoice={dropDownChoice}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
+                  menuRef={refMenu}
                 />
                 : null
             : <UserNotLoggedIn
               handleDropDown={displayDropDown}
               showDropDownChoice={dropDownChoice}
+              menuRef={refMenu}
             />}
         </div>
         <div className={desktopClass}>
@@ -88,17 +113,20 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
                 showDropDownChoice={dropDownChoice}
                 userName={currentUser.firstName}
                 handleLogout={logOutUser}
+                menuRef={refMenu}
               /> : currentUser.role === 'provider'
                 ? <ProviderLoggedIn
                   handleDropDown={displayDropDown}
                   showDropDownChoice={dropDownChoice}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
+                  menuRef={refMenu}
                 />
                 : null
             : <UserNotLoggedIn
               handleDropDown={displayDropDown}
               showDropDownChoice={dropDownChoice}
+              menuRef={refMenu}
             />}
         </div>
       </div>

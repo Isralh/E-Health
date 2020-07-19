@@ -62,6 +62,10 @@ const Sessions = ({ match }) => {
       setIsCalling(true)
       setCallOffer(data)
     })
+
+    socket.on('disconnect', data => {
+      console.log(data)
+    })
   }, [])
 
   /* peer connection */
@@ -131,9 +135,6 @@ const Sessions = ({ match }) => {
     }
   }, [users])
 
-  useEffect(() => {
-    console.log(isCalling)
-  }, [isCalling])
   return (
     <div>
       {user.role === 'customer'

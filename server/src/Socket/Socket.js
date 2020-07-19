@@ -1,15 +1,11 @@
 
-const roomUsers = {}
 const users = {}
 
 const socket = (server) => {
-  // /* io listen to our server */
+  /* io listen to our server */
   const io = require('socket.io')(server)
 
   io.on('connection', socket => {
-
-
-    // console.log(roomUsers)
     /* when they first connect we will send them their user id */
     socket.emit('socketId', socket.id)
 

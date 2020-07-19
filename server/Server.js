@@ -3,7 +3,6 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const providers = require('./src/Routes/Providers')
 const customers = require('./src/Routes/Customers')
-const appointment = require('./src/Routes/Appointment')
 const newsLetters = require('./src/Routes/NewsLetters')
 const socket = require('./src/Socket/Socket')
 const app = express()
@@ -17,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api', providers)
 app.use('/api', customers)
-app.use('/api', appointment)
 app.use('/api', newsLetters)
 
 const PORT = 3002

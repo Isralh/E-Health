@@ -43,11 +43,10 @@
     p {
       color: red;
     }
-  }
-
-  input {
-    height: 45px;
-    width: 98%;
+    input {
+      height: 45px;
+      width: 98%;
+    }
   }
 }
 
@@ -73,13 +72,14 @@
     font-size: 18px;
     width: 90px;
     height: 45px;
-    // border-radius: 5px;
     cursor: pointer;
+    border: 1px solid white;
   }
 
   button:hover {
     color: $fontColor;
     background: white;
     font-weight: bolder;
+    border: 1px solid $fontColor;
   }
 }

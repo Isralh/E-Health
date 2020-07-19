@@ -13,7 +13,9 @@ import ProviderDashboard from './Components/Profile/Provider/Dashboard/Dashboard
 import CustomerDashboard from './Components/Profile/Customer/Dashboard/Dashboard'
 import Sessions from './Components/Profile/VideoChat/Sessions'
 import PageNotFound from './Components/PageNotFound/PageNotFound'
+import InternalServerError from './Components/PageNotFound/InternalServerError'
 import { ProtectByRole, ProtectUnAuthorized } from './Components/ProtectedRoute/ProtectedRoute'
+
 const App = () => {
   return (
     <Router>
@@ -29,6 +31,7 @@ const App = () => {
         <Route path='/provider/login' component={ProviderLogin} />
         <Route path='/provider/dashboard' component={ProviderDashboard} />
         <ProtectUnAuthorized path='/session/:id' component={Sessions} />
+        <Route path='/500' component={InternalServerError} />
         <Route path='*' component={PageNotFound} />
       </Switch>
     </Router>

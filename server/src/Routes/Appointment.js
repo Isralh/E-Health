@@ -1,8 +1,6 @@
-const router = require('express').Router()
-const deleteAppointments = require('../Controller/Customers/DeleteAppointment')
-const rescheduleAppointments = require('../Controller/Customers/RescheduleAppointment')
+// const router = require('express').Router()
 
-router.delete('/delete/session/:id', deleteAppointments)
-router.patch('/update/appointment:id', rescheduleAppointments)
 
-module.exports = router
+
+
+// module.exports = router

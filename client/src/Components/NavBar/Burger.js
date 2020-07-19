@@ -1,8 +1,8 @@
 import React from 'react'
 import './Styles.scss'
-const Burger = ({ handleDropDown }) => {
+const Burger = ({ handleDropDown, hamburgerClass }) => {
   return (
-    <div onClick={handleDropDown} className='burger-wrapper'>
+    <div onClick={handleDropDown} className={hamburgerClass}>
       <div />
       <div />
       <div />
