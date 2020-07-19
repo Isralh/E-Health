@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, calling, callStatus }) => {
+const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, calling, callStatus, handleEndSession }) => {
   /* when provider is not online render the below */
   const providerOffline = () => {
     return (
@@ -11,7 +11,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
         </div>
         <div className='peer-container'>
           <h1>Waiting for doctor to start session...</h1>
-          <Link to='/customer/dashboard' className='end-session'><button>End Session</button></Link>
+          <button className='end-session' onClick={handleEndSession}>End Session</button>
         </div>
       </div>
     )
@@ -28,7 +28,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
           <div className='peer-calling'>
             <h1>Doctor is calling, please answer call to start session...</h1>
             <button onClick={AcceptCall} className='answer-call'>Answer Call</button>
-            <Link to='/customer/dashboard' className='end-session'><button>End Session</button></Link>
+            <button onClick={handleEndSession}>End Session</button>
           </div>
         </div>
       )
@@ -40,7 +40,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
           </div>
           <div className='doctor-online'>
             <h1>Doctor is on the line and will call shortly...</h1>
-            <Link to='/customer/dashboard' className='end-session'><button>End Session</button></Link>
+            <button onClick={handleEndSession}>End Session</button>
           </div>
         </div>
       )
@@ -58,7 +58,7 @@ const CustomerView = ({ users = [], myVideoRef, AcceptCall, doctorVideoRef, call
           <video className='peer-video' ref={doctorVideoRef} autoPlay playsInline />
         </div>
         <div className='endCallSession'>
-          <Link to='/customer/dashboard' className='end-session'><button>End Session</button></Link>
+          <button onClick={handleEndSession}>End Session</button>
         </div>
       </div>
     )

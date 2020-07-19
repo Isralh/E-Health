@@ -1,6 +1,4 @@
 
-const users = {}
-
 const socket = (server) => {
   /* io listen to our server */
   const io = require('socket.io')(server)
@@ -23,9 +21,17 @@ const socket = (server) => {
       socket.on('accepted', data => {
         io.to(data.provider).emit('customerAccepted', data.accept)
       })
+
+      socket.on('done', () => {
+        socket.disconnect()
+        io.in(room).clients((err, id) => {
+          if (err) console.log(err)
+          io.to(room).emit('allId', id)
+        })
+        io.to(room).emit('done')
+      })
       /* when they disconnect delete the socket id from all users */
       socket.on('disconnect', () => {
-        delete users[socket.id]
         io.to(room).emit('disconnect', { message: `${name} has left the chat!` })
         io.in(room).clients((err, id) => {
           if (err) console.log(err)

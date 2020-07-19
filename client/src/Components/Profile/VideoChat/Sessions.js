@@ -4,6 +4,7 @@ import io from 'socket.io-client'
 import JwtDecode from 'jwt-decode'
 import CustomerView from './CustomerView'
 import ProviderView from './ProviderView'
+import { useHistory } from 'react-router-dom'
 import './styles.scss'
 
 /* socket to send and receive message to the server */
@@ -63,8 +64,9 @@ const Sessions = ({ match }) => {
       setCallOffer(data)
     })
 
-    socket.on('disconnect', data => {
-      console.log(data)
+    socket.on('done', () =>{
+      setCallingClient(false)
+      setCustomerAccepted(false)
     })
   }, [])
 
@@ -87,12 +89,10 @@ const Sessions = ({ match }) => {
     /* create a first peer which is the doctor/provider who initiates the call */
     const provider = new Peer({ initiator: true, trickle: false, stream: userStream })
 
-    /* the call offer which is the data and we're trying to call the customer
-     */
+    /* the call offer which is the data and we're trying to call the customer */
     provider.on('signal', data => {
       socket.emit('doctorCalling', { customer: peerId, offer: data })
     })
-
     /* when they accept make the customerVideo ref srcObject the customer's media stream */
     provider.on('stream', stream => {
       customerVideo.current.srcObject = stream
@@ -138,6 +138,17 @@ const Sessions = ({ match }) => {
   useEffect(() => {
     console.log(users)
   }, [users])
+
+  const history = useHistory()
+  const endSession = () => {
+    socket.emit('done')
+    history.push('/customer/dashboard')
+  }
+
+  useEffect(() => {
+    console.log(callOffer)
+    console.log(callingClient)
+  }, [callOffer, callingClient])
   return (
     <div>
       {user.role === 'customer'
@@ -151,8 +162,9 @@ const Sessions = ({ match }) => {
             offer={callOffer}
             calling={isCalling}
             AcceptCall={handleAnswer}
+            handleEndSession={endSession}
           />
-          </>
+        </>
         : <ProviderView
           callStatus={customerAccepted}
           offer={callOffer}
@@ -162,7 +174,7 @@ const Sessions = ({ match }) => {
           myVideoRef={userVideoRef}
           customerVideoRef={customerVideo}
           callClient={handleCalling}
-        />}
+          />}
     </div>
   )
 }

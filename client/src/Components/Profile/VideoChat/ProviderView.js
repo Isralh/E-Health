@@ -18,7 +18,7 @@ const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, ca
 
   /* when calling client render the below */
   const callingClient = () => {
-    if (calling === false && offer === null) {
+    if (calling === false) {
       return (
         <div className='withPeer-view'>
           <div className='my-video-container'>
