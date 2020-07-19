@@ -64,7 +64,7 @@ const Sessions = ({ match }) => {
       setCallOffer(data)
     })
 
-    socket.on('done', () =>{
+    socket.on('done', () => {
       setCallingClient(false)
       setCustomerAccepted(false)
     })
@@ -141,8 +141,11 @@ const Sessions = ({ match }) => {
 
   const history = useHistory()
   const endSession = () => {
-    socket.emit('done')
-    history.push('/customer/dashboard')
+    const confirmEndSession = window.confirm('Are you sure you want to end session?')
+    if (confirmEndSession === true) {
+      socket.emit('done')
+      history.push('/customer/dashboard')
+    }
   }
 
   useEffect(() => {

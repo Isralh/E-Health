@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
-import { getProviderById, postAppointment } from './services'
+import { getProviderById } from './services'
 import { DoctorRating } from '../../Appointment/DoctorRating/DoctorRating'
 import Modal from '../../Appointment/Modal/Modal'
 import BioCard from '../BioCard/BioCard'
@@ -18,6 +18,7 @@ import { checkErrors } from '../FormValidation/checkErrors'
 import JwtDecode from 'jwt-decode'
 import Footer from '../../Home/Footer/Footer'
 import './styles.scss'
+import Axios from 'axios'
 
 const Payment = () => {
   /* get providersId and user's information from local storage when logged in */
@@ -142,26 +143,34 @@ const Payment = () => {
       creditCardErrors.cvc, creditCardErrors.zip, dateAndTimeErrors.date, dateAndTimeErrors.time, reasonsError)
 
     /* if no errors post to database */
-    if (errorCheck === false) {
-      const data = {
-        customerId: user.userId,
-        providerId,
-        selectedDate: selectedDate.toISOString().substring(0, 10),
-        selectedTime,
-        appointmentId: uuid()
-      }
-      postAppointment(data)
-        .then(res => {
-          if (res.status === 201) {
+    const postAppointment = async () => {
+      if (errorCheck === false) {
+        const data = {
+          customerId: user.userId,
+          providerId,
+          selectedDate: selectedDate.toISOString().substring(0, 10),
+          selectedTime,
+          appointmentId: uuid()
+        }
+        const apiUrl = 'http://localhost:3002/api/post/appointment'
+
+        const postAppointment = await Axios.post(apiUrl, data)
+
+        try {
+          console.log(postAppointment.status)
+          if (postAppointment.status === 200) {
+            window.alert(postAppointment.data.message)
+          } else if (postAppointment.status === 201) {
             providerChoice.removeItem('providerId')
-            return history.push('/customer/dashboard')
+            history.push('/customer/dashboard')
           }
-          if (res.status === 200) {
-            window.alert(res.data.message)
-          }
-        })
-        .catch(e => console.log(e))
+        } catch (e) {
+          history.push('/500')
+        }
+      }
     }
+
+    postAppointment()
   }, [creditCardErrors, dateAndTimeErrors])
 
   /* show doctor's rating in orange starts */
@@ -183,12 +192,7 @@ const Payment = () => {
       return '1.0'
     }
   }
-  // showRating={DoctorRating(viewRating(data))}
-  // doctorRating={doctorRate(data)}
 
-  useEffect(() => {
-    console.log(doctorInfo)
-  }, [doctorInfo])
   return (
     <div className='payment-container'>
       <NavBar
