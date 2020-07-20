@@ -1,5 +1,6 @@
 import React from 'react'
 import './Styles.scss'
+
 const BioCard = ({
   firstName, lastName, rating, ratingNumber, hourlyRate, showModal, doctorsImage
 }) => {

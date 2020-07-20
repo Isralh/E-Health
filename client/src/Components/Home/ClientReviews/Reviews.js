@@ -1,5 +1,5 @@
 import React from 'react'
-import { ErickKnight, ZachSmith, FrontImage, AllisonSmith, JamesMadison } from '../../../Assets/Images/exports'
+import { FrontImage, AllisonSmith, JamesMadison } from '../../../Assets/Images/exports'
 import ReviewStars from './ReviewStars'
 
 export const FirstReview = () => {

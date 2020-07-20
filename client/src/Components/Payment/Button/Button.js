@@ -1,5 +1,6 @@
 import React from 'react'
 import './Styles.scss'
+
 const Button = ({ handleAppointment, book }) => {
   return (
     <div className='button-conatainer'>

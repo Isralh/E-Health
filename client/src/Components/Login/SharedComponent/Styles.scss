@@ -64,6 +64,10 @@
     }
   }
 
+  .account-link {
+    text-decoration: none;
+    color: $fontColor;
+  }
   button {
     @include loginBtn($fontColor, 90px);
   }

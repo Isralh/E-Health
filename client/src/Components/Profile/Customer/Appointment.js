@@ -2,16 +2,11 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
-const FontAwesomeStyle = {
-  color: 'rgb(88, 72, 72)',
-  marginLeft: '20px',
-  fontSize: '25px'
-}
 const Appointment = ({ date, time, session, handleCancel, handleJoin, handleReschedule }) => {
   return (
     <div className='appointments-container'>
       <div className='appointment-schedule'>
-        <div className='fontAwesome'><span><FontAwesomeIcon icon={faCalendarAlt} style={FontAwesomeStyle} /></span>
+        <div className='fontAwesome'><span><FontAwesomeIcon icon={faCalendarAlt} className='calender' /></span>
           <span className='date'>{date}</span>
           <span className='time'>{time}</span>
         </div>

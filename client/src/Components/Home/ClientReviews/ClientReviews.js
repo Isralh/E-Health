@@ -47,15 +47,13 @@ const ClientReviews = () => {
           <button onClick={handleLeft}>
             <FontAwesomeIcon
               icon={faArrowLeft}
-              style={{ fontSize: '18px' }}
-              className='left-btn'
+              className='btn'
             />
           </button>
           <button onClick={handleRight}>
             <FontAwesomeIcon
               icon={faArrowRight}
-              style={{ fontSize: '18px' }}
-              className='right-btn'
+              className='btn'
             />
           </button>
         </div>

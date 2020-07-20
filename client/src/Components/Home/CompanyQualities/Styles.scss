@@ -32,6 +32,23 @@
     background-color: rgb(88, 72, 72);
     margin-top: 10px;
   }
+  .fontawesome-doctors {
+    font-size: 30px;
+    color: white;
+    margin: 10px 0px 0px 2px;
+  }
+  .fontawesome-watch {
+    @extend .fontawesome-doctors;
+  }
+  .fontawesome-video {
+    @extend .fontawesome-doctors;
+    font-size: 25px;
+    margin: 13px 0px 0px 2px;
+  }
+  .fontawesome-smile {
+    @extend .fontawesome-doctors;
+    margin: 12px 0px 0px 2px;
+  }
   .quality-message {
     margin-left: 20px;
     margin-right: 5%;

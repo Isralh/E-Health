@@ -17,8 +17,8 @@ import validateReason from '../FormValidation/ReasonForVisit'
 import { checkErrors } from '../FormValidation/checkErrors'
 import JwtDecode from 'jwt-decode'
 import Footer from '../../Home/Footer/Footer'
+import axios from 'axios'
 import './styles.scss'
-import Axios from 'axios'
 
 const Payment = () => {
   /* get providersId and user's information from local storage when logged in */
@@ -154,7 +154,7 @@ const Payment = () => {
         }
         const apiUrl = 'http://localhost:3002/api/post/appointment'
 
-        const postAppointment = await Axios.post(apiUrl, data)
+        const postAppointment = await axios.post(apiUrl, data)
 
         try {
           console.log(postAppointment.status)

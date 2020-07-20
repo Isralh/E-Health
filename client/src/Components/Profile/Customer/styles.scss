@@ -59,6 +59,11 @@
       .fontAwesome {
         margin-top: 20px;
         margin-right: 40px;
+        .calender {
+          color: $fontColor;
+          margin-left: 20px;
+          font-size: 25px;
+        }
       }
       .date {
         margin-left: 20px;

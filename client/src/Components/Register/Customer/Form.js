@@ -1,13 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/* Link inline-styling */
-
-const LinkStyle = {
-  textDecoration: 'none',
-  color: 'rgb(88, 72, 72)'
-}
-
 const Form = ({
   firstName, firstNameError, handleChange, lastNameError, lastName, handleSubmit, handleLogin,
   emailError, email, password, passwordError, confirmPassword, confirmPasswordError, submitHeading
@@ -71,7 +64,7 @@ const Form = ({
           />
         </div>
         <div className='button-container'>
-          <p>Existing user? <Link to='/customer/login' style={LinkStyle}><span>Login</span></Link></p>
+          <p>Existing user? <Link to='/customer/login' className='login-link'><span>Login</span></Link></p>
           <button
             onClick={handleSubmit}
             type='submit'

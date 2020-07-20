@@ -1,5 +1,6 @@
 import React from 'react'
 import './Styles.scss'
+
 const ReasonForVisit = ({ handleChange, handleFocus, reason, reasonError }) => {
   return (
     <div className='visit-container'>

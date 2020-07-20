@@ -2,6 +2,7 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import './Styles.scss'
+
 export const Scheduler = ({
   date, startDate, handleSelect, time = [],
   handleTime, dateError, timeError, handleFocus

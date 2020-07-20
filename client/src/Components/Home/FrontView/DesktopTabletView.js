@@ -2,10 +2,6 @@ import React from 'react'
 import { FrontBackground } from '../../../Assets/Images/exports'
 import { Link } from 'react-router-dom'
 
-const LinkStyle = {
-  textDecoration: 'none'
-}
-
 const DesktopTabletView = () => {
   return (
     <div className='tabletDesktopView' style={{ backgroundImage: `url(${FrontBackground})` }}>
@@ -18,7 +14,7 @@ const DesktopTabletView = () => {
           </p>
         </div>
         <div className='frontView-btn-container-grid'>
-          <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
+          <Link to='/bookAppointment' className='link-container'>
             <button className='book-appointment-btn'>Book Appointment</button>
           </Link>
         </div>

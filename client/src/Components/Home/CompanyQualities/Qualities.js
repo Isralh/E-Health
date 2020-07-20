@@ -3,36 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserMd, faVideo, faStopwatch, faSmile } from '@fortawesome/free-solid-svg-icons'
 import './Styles.scss'
 
-const FontAwesomeDoctors = {
-  fontSize: '30px',
-  color: 'white',
-  margin: '10px 0px 0px 2px'
-}
-
-const FontAwesomeWatch = {
-  fontSize: '30px',
-  color: 'white',
-  margin: '10px 0px 0px 2px'
-
-}
-
-const FontAwesomeVideo = {
-  fontSize: '25px',
-  color: 'white',
-  margin: '13px 0px 0px 2px'
-}
-
-const FontAwesomeSmile = {
-  fontSize: '30px',
-  color: 'white',
-  margin: '12px 0px 0px 2px'
-}
 const Qualities = () => {
   return (
     <>
       <div className='companyDoctor-container'>
         <div className='fontAwesome-container'>
-          <FontAwesomeIcon icon={faUserMd} style={FontAwesomeDoctors} />
+          <FontAwesomeIcon icon={faUserMd} className='fontawesome-doctors' />
         </div>
         <div className='quality-message'>
           <h1>The Best Doctors</h1>
@@ -44,7 +20,7 @@ const Qualities = () => {
       </div>
       <div className='convenient-container'>
         <div className='fontAwesome-container'>
-          <FontAwesomeIcon icon={faStopwatch} style={FontAwesomeWatch} />
+          <FontAwesomeIcon icon={faStopwatch} className='fontawesome-watch' />
         </div>
         <div className='quality-message'>
           <h1>Convenient</h1>
@@ -56,7 +32,7 @@ const Qualities = () => {
       </div>
       <div className='videoChat-container'>
         <div className='fontAwesome-container'>
-          <FontAwesomeIcon icon={faVideo} style={FontAwesomeVideo} />
+          <FontAwesomeIcon icon={faVideo} className='fontawesome-video' />
         </div>
         <div className='quality-message'>
           <h1>Video Chat</h1>
@@ -68,7 +44,7 @@ const Qualities = () => {
       </div>
       <div className='qualityService-container'>
         <div className='fontAwesome-container'>
-          <FontAwesomeIcon icon={faSmile} style={FontAwesomeSmile} />
+          <FontAwesomeIcon icon={faSmile} className='fontawesome-smile' />
         </div>
         <div className='quality-message'>
           <h1>Quality Service</h1>

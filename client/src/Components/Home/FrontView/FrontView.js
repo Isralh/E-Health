@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 import DesktopTabletView from './DesktopTabletView'
 import './Styles.scss'
 
-const LinkStyle = {
-  textDecoration: 'none'
-}
-
 const FrontView = () => {
   return (
     <div className='frontView-container'>
@@ -24,7 +20,7 @@ const FrontView = () => {
           </p>
         </div>
         <div className='frontView-btn-container'>
-          <Link to='/bookAppointment' style={LinkStyle} className='link-container'>
+          <Link to='/bookAppointment' className='link-container'>
             <button className='book-appointment-btn'>Book Appointment</button>
           </Link>
         </div>

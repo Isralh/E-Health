@@ -1,5 +1,6 @@
 import React from 'react'
 import './Styles.scss'
+
 const InternalServerError = () => {
   const handleReload = () => {
     window.location.reload()

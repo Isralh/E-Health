@@ -65,7 +65,10 @@
       font-weight: bolder;
     }
   }
-
+  .login-link {
+    text-decoration: none;
+    color: $fontColor;
+  }
   button {
     background: $fontColor;
     color: white;

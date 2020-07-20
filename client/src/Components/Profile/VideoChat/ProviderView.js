@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, calling, callStatus, handleEndSession }) => {
   /* when customer/client is not online render the below */
   const clientOffline = () => {
