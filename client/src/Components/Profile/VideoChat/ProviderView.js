@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, calling, callStatus, offer }) => {
+const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, calling, callStatus, handleEndSession }) => {
   /* when customer/client is not online render the below */
   const clientOffline = () => {
     return (
@@ -10,7 +10,7 @@ const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, ca
         </div>
         <div className='peer-container'>
           <h1>Waiting for client to start session...</h1>
-          <Link to='/provider/dashboard' className='end-session'><button>End Session</button></Link>
+          <button className='end-session' onClick={handleEndSession}>End Session</button>
         </div>
       </div>
     )
@@ -28,7 +28,7 @@ const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, ca
             <h1>Client in online, call client to start session...</h1>
             <div className='option-control'>
               <button className='call-client' onClick={callClient}>Call Client</button>
-              <Link to='/provider/dashboard' className='end-session'><button>End Session</button></Link>
+              <button className='end-session' onClick={handleEndSession}>End Session</button>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, ca
           <div className='client-online'>
             <h1>Calling client, waiting for response...</h1>
             <div className='option-control'>
-              <Link to='/provider/dashboard' className='end-session'><button>End Session</button></Link>
+              <button className='end-session' onClick={handleEndSession}>End Session</button>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ const ProviderView = ({ users = [], myVideoRef, customerVideoRef, callClient, ca
           <video className='peer-video' ref={customerVideoRef} autoPlay playsInline />
         </div>
         <div className='endCallSession'>
-          <Link to='/provider/dashboard' className='end-session'><button>End Session</button></Link>
+          <button className='end-session' onClick={handleEndSession}>End Session</button>
         </div>
       </div>
     )

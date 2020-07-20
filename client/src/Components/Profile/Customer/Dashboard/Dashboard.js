@@ -184,7 +184,7 @@ const Dashboard = () => {
         {appointments.length > 0
           ? <div className='appointment-heading'>
             <h1>UPCOMING APPOINTMENT(S)</h1>
-          </div> : null}
+            </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment

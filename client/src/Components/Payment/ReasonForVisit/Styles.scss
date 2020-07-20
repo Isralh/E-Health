@@ -1,3 +1,5 @@
+@import '../../../Assets/Sass/Variables';
+
 .visit-container {
   margin-top: 3vh;
 
@@ -10,8 +12,9 @@
     color: red;
     font-size: 16px;
   }
-  input {
+  .reason {
     padding-bottom: 150px;
     width: 97%;
+    color: $fontColor;
   }
 }

@@ -26,11 +26,8 @@
       color: $fontColor;
     }
     .end-session {
-      text-decoration: none;
-      button {
-        @include videoChatButton(red, 120px, 45px);
-        margin-top: 10vh;
-      }
+      @include videoChatButton(red, 120px, 45px);
+      margin-top: 10vh;
     }
   }
   .client-online {
@@ -102,11 +99,8 @@
       color: $fontColor;
     }
     .end-session {
-      text-decoration: none;
-      button {
-        @include videoChatButton(red, 120px, 45px);
-        margin-top: 10vh;
-      }
+      @include videoChatButton(red, 120px, 45px);
+      margin-top: 10vh;
     }
   }
 }

@@ -99,7 +99,7 @@ const Payment = () => {
   })
 
   /* state to hold appointment reason */
-  const [visitReason, setVisitReason] = useState(' ')
+  const [visitReason, setVisitReason] = useState('Reason for visit...')
 
   const getReason = (e) => {
     const value = e.target.value

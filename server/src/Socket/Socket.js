@@ -30,6 +30,9 @@ const socket = (server) => {
         })
         io.to(room).emit('done')
       })
+      socket.on('refresh', () => {
+        io.to(room).emit('refresh')
+      })
       /* when they disconnect delete the socket id from all users */
       socket.on('disconnect', () => {
         io.to(room).emit('disconnect', { message: `${name} has left the chat!` })
