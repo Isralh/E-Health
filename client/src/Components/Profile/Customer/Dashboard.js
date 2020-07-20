@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from '../../../NavBar/NavBar'
-import Heading from '../../SharedComponents/Heading'
+import NavBar from '../../NavBar/NavBar'
+import Heading from '../SharedComponents/Heading'
 import BookingButton from './Button'
 import Appointment from './Appointment'
 import JwtDecode from 'jwt-decode'
-import NoAppointments from '../../SharedComponents/NoAppointments'
-import Footer from '../../../Home/Footer/Footer'
+import NoAppointments from '../SharedComponents/NoAppointments'
+import Footer from '../../Home/Footer/Footer'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -192,7 +192,7 @@ const Dashboard = () => {
         {appointments.length > 0
           ? <div className='appointment-heading'>
             <h1>UPCOMING APPOINTMENT(S)</h1>
-            </div> : null}
+          </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment
