@@ -34,6 +34,9 @@
   }
 }
 
+.burger-wrapper-none {
+  display: none;
+}
 .burger-wrapper {
   display: none;
   @media (max-width: 768px) {
@@ -41,13 +44,26 @@
     @include flex(column, nowrap, flex-start);
     top: 3vh;
     div {
-      margin: 5px 25px 0 0px;
+      margin: 5px 15px 0 0px;
       border-bottom: 3px solid $fontColor;
       width: 30px;
     }
   }
 }
 
+.close-menu-none {
+  display: none;
+}
+.close-menu {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    cursor: pointer;
+    margin: 15px 15px 0 0;
+    font-size: 33px;
+    color: $fontColor;
+  }
+}
 .nav-menu {
   display: none;
 }

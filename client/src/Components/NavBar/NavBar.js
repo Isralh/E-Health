@@ -26,15 +26,21 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
   const [navMenuClass, setNavMenuClass] = useState('nav-menu')
   const [desktopClass, setDesktopClass] = useState('nav-menu-desktop')
   const [burgerClassName, setBurgerClassName] = useState('burger-wrapper')
+  const [closeClassName, setCloseClassName] = useState('close-menu-none')
   const [dropDownChoice, setDropDownChoice] = useState(false)
 
   /* on mobile view when click on the burger menu open the nav menu */
   const showNavDropDown = () => {
-    if (navMenuClass === 'nav-menu') {
-      setNavMenuClass('nav-menu-mobile')
-    } else if (navMenuClass === 'nav-menu-mobile') {
-      setNavMenuClass('nav-menu')
-    }
+    setNavMenuClass('nav-menu-mobile')
+    setBurgerClassName('burger-wrapper-none')
+    setCloseClassName('close-menu')
+  }
+
+  /* function to show the burger menu and close the X */
+  const showDefaultMenu = () => {
+    setNavMenuClass('nav-menu')
+    setBurgerClassName('burger-wrapper')
+    setCloseClassName('close-menu-none')
   }
 
   /* open menu options on mobile views */
@@ -59,8 +65,8 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
   /* on click outside close the nav menu options */
   const refMenu = useRef(null)
   useEffect(() => {
-    const closeLoginOption = (event) => {
-      if (refMenu.current && !refMenu.current.contains(event.target)) {
+    const closeLoginOption = (e) => {
+      if (refMenu.current && !refMenu.current.contains(e.target)) {
         if (dropDownChoice === true) {
           setDropDownChoice(!dropDownChoice)
         }
@@ -80,6 +86,8 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
         <Burger
           handleDropDown={showNavDropDown}
           hamburgerClass={burgerClassName}
+          closeClass={closeClassName}
+          handleDefaultmenu={showDefaultMenu}
         />
         <div className={navMenuClass}>
           {currentUser !== undefined && currentUser !== null
@@ -90,20 +98,20 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
                 userName={currentUser.firstName}
                 handleLogout={logOutUser}
                 menuRef={refMenu}
-              /> : currentUser.role === 'provider'
+                /> : currentUser.role === 'provider'
                 ? <ProviderLoggedIn
                   handleDropDown={displayDropDown}
                   showDropDownChoice={dropDownChoice}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
                   menuRef={refMenu}
-                />
+                  />
                 : null
             : <UserNotLoggedIn
               handleDropDown={displayDropDown}
               showDropDownChoice={dropDownChoice}
               menuRef={refMenu}
-            />}
+              />}
         </div>
         <div className={desktopClass}>
           {currentUser !== undefined && currentUser !== null
@@ -114,20 +122,20 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
                 userName={currentUser.firstName}
                 handleLogout={logOutUser}
                 menuRef={refMenu}
-              /> : currentUser.role === 'provider'
+                /> : currentUser.role === 'provider'
                 ? <ProviderLoggedIn
                   handleDropDown={displayDropDown}
                   showDropDownChoice={dropDownChoice}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
                   menuRef={refMenu}
-                />
+                  />
                 : null
             : <UserNotLoggedIn
               handleDropDown={displayDropDown}
               showDropDownChoice={dropDownChoice}
               menuRef={refMenu}
-            />}
+              />}
         </div>
       </div>
     </nav>
