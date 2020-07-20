@@ -62,6 +62,15 @@ const Dashboard = () => {
     }
   }
 
+  /* refresh page if we're coming from video chat session to get rid of the video */
+  useEffect(() => {
+    const videoSession = window.sessionStorage.getItem('session')
+    if (videoSession !== null) {
+      window.sessionStorage.clear('session')
+      window.location.reload()
+    }
+  }, [])
+
   return (
     <div className='dashboard-container'>
       <NavBar

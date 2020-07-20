@@ -18,9 +18,6 @@ const Sessions = ({ match }) => {
   /* state to show we're currently calling client, view only for the provider page */
   const [callingClient, setCallingClient] = useState(false)
 
-  /* state to show call has been accepted */
-  const [callAccepted, setCallAccepted] = useState(false)
-
   /* state to hold call status when customer accept call, view for provider */
   const [customerAccepted, setCustomerAccepted] = useState(false)
 
@@ -28,7 +25,6 @@ const Sessions = ({ match }) => {
   const [myId, setMyId] = useState()
   const [peerId, setPeerId] = useState()
   const [userStream, setUserStream] = useState()
-  const [isCalling, setIsCalling] = useState(false)
   const [callOffer, setCallOffer] = useState(null)
   /* ref to user's video */
   const userVideoRef = useRef()
@@ -41,9 +37,7 @@ const Sessions = ({ match }) => {
   /* the video chat room name */
   const room = match.params.id
 
-  const [refresh, setRefresh] = useState(false)
-  /* on initial load connect to the socket in the server */
-
+  /* on initial render connect to the socket in the server */
   useEffect(() => {
     /* connection to the socket in the server */
     socket = io('http://localhost:3002')
@@ -61,32 +55,16 @@ const Sessions = ({ match }) => {
     })
 
     socket.on('answerCall', data => {
-      setIsCalling(true)
+      setCallingClient(true)
       setCallOffer(data)
     })
 
-    socket.on('done', () => {
-      setCallingClient(false)
-      setCustomerAccepted(false)
-    })
-
-    socket.on('refresh', () => {
-      if (!window.location.hash) {
-        window.location = window.location + '#loaded'
-        setCallingClient(false)
-        setCustomerAccepted(false)
-        window.location.reload()
-      }
+    /* on peer refresh, refresh and start new connection */
+    socket.on('peerRefresh', () => {
+      window.location.reload()
     })
   }, [])
 
-  useEffect(() => {
-    window.beforeunload = (e) => {
-      console.log('Stop this')
-      e.preventDefault()
-      e.returnValue = ''
-    }
-  }, [window.beforeunload])
   /* peer connection */
   useEffect(() => {
     /* get user's media stream on initial render */
@@ -124,7 +102,7 @@ const Sessions = ({ match }) => {
   /* function to accept the call on the customer side */
   const handleAnswer = () => {
     /* set call has been accepted to true, when call is accepted by client */
-    setCallAccepted(true)
+    setCustomerAccepted(true)
 
     /* create a new peer customer who is not the initiator but answers the call */
     const customer = new Peer({ initiator: false, trickle: false, stream: userStream })
@@ -152,16 +130,11 @@ const Sessions = ({ match }) => {
     }
   }, [users])
 
-  useEffect(() => {
-    console.log(users)
-  }, [users])
-
+  /* when clicking on end session redirect to dashboard */
   const history = useHistory()
   const endCustomerSession = () => {
     const confirmEndSession = window.confirm('Are you sure you want to end session?')
     if (confirmEndSession === true) {
-      window.sessionStorage.clear('session')
-      socket.emit('done')
       history.push('/customer/dashboard')
     }
   }
@@ -169,42 +142,35 @@ const Sessions = ({ match }) => {
   const endProviderSession = () => {
     const confirmEndSession = window.confirm('Are you sure you want to end session?')
     if (confirmEndSession === true) {
-      window.sessionStorage.clear('session')
-      socket.emit('done')
       history.push('/provider/dashboard')
     }
   }
-  /* session storage */
+
+  /* session storage used to get rid of video when redirecting to the dashboard page */
   useEffect(() => {
     const sessionStorage = window.sessionStorage.getItem('session')
     console.log(sessionStorage)
     if (sessionStorage === null) {
       window.sessionStorage.setItem('session', 'initial session')
-    } else if (sessionStorage !== null) {
-      socket.emit('refresh')
     }
   }, [])
 
-  useEffect(() => {
-    console.log(callingClient)
-    console.log(customerAccepted)
-  }, [callingClient, customerAccepted])
   return (
     <div>
       {user.role === 'customer'
         ? <>
           <CustomerView
-            callStatus={callAccepted}
+            callStatus={customerAccepted}
             users={users}
             role={user.role}
             myVideoRef={userVideoRef}
             doctorVideoRef={doctorVideo}
             offer={callOffer}
-            calling={isCalling}
+            calling={callingClient}
             AcceptCall={handleAnswer}
             handleEndSession={endCustomerSession}
           />
-        </>
+          </>
         : <ProviderView
           callStatus={customerAccepted}
           offer={callOffer}
@@ -215,7 +181,7 @@ const Sessions = ({ match }) => {
           customerVideoRef={customerVideo}
           callClient={handleCalling}
           handleEndSession={endProviderSession}
-          />}
+        />}
     </div>
   )
 }

@@ -21,21 +21,9 @@ const socket = (server) => {
       socket.on('accepted', data => {
         io.to(data.provider).emit('customerAccepted', data.accept)
       })
-
-      socket.on('done', () => {
-        socket.disconnect()
-        io.in(room).clients((err, id) => {
-          if (err) console.log(err)
-          io.to(room).emit('allId', id)
-        })
-        io.to(room).emit('done')
-      })
-      socket.on('refresh', () => {
-        io.to(room).emit('refresh')
-      })
       /* when they disconnect delete the socket id from all users */
       socket.on('disconnect', () => {
-        io.to(room).emit('disconnect', { message: `${name} has left the chat!` })
+        io.to(room).emit('peerRefresh')
         io.in(room).clients((err, id) => {
           if (err) console.log(err)
           io.to(room).emit('allId', id)
