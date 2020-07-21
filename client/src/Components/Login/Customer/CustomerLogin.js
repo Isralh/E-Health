@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import NavBar from '../../NavBar/NavBar'
 import Form from '../SharedComponent/Form'
 import LoginHeader from '../SharedComponent/LoginHeader'
 import { useHistory } from 'react-router-dom'
-import LoginCustomer from './Services'
+import axios from 'axios'
 import '../SharedComponent/Styles.scss'
 
 const CustomerLogin = () => {
@@ -33,27 +33,27 @@ const CustomerLogin = () => {
   /* function to submit the form and login customer */
   const token = window.localStorage
   const history = useHistory()
-  const submitLogin = (e) => {
+  const submitLogin = async (e) => {
     e.preventDefault()
-    LoginCustomer(formInput)
-      .then(res => {
-        if (res.data.message === 'Email account does not exist') {
-          setError(prev => { return { ...prev, email: res.data.message } })
-        }
-        if (res.data.message === 'Incorrect password') {
-          setError(prev => { return { ...prev, password: res.data.message } })
-        }
-        if (res.status === 202) {
-          token.setItem('token', res.data.token)
-          history.push('/customer/dashboard')
-        }
-      })
-      .catch(e => console.log(e))
+
+    const apiUrl = 'http://localhost:3002/api/post/login/customers'
+
+    const loginCustomer = await axios.post(apiUrl, formInput)
+
+    try {
+      if (loginCustomer.data.message === 'Email account does not exist') {
+        setError(prev => { return { ...prev, email: loginCustomer.data.message } })
+      } else if (loginCustomer.data.message === 'Incorrect password') {
+        setError(prev => { return { ...prev, password: loginCustomer.data.message } })
+      } else if (loginCustomer.status === 202) {
+        token.setItem('token', loginCustomer.data.token)
+        history.push('/customer/dashboard')
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
-  useEffect(() => {
-    console.log(formInput)
-  }, [formInput])
   return (
     <div className='login-container'>
       <NavBar

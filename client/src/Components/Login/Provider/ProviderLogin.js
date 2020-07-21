@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import NavBar from '../../NavBar/NavBar'
 import Form from '../SharedComponent/Form'
-import LoginProvider from './Services'
 import { useHistory } from 'react-router-dom'
 import LoginHeader from '../SharedComponent/LoginHeader'
+import axios from 'axios'
 
 const ProviderLogin = () => {
   /* state to hold all of our form input */
@@ -32,23 +32,24 @@ const ProviderLogin = () => {
   /* function to submit the form and login provider */
   const token = window.localStorage
   const history = useHistory()
-  const submitLogin = (e) => {
+  const submitLogin = async (e) => {
     e.preventDefault()
+    const apiUrl = 'http://localhost:3002/api/post/login/provider'
 
-    LoginProvider(formInput)
-      .then(res => {
-        if (res.data.message === 'Email account does not exist') {
-          setError(prev => { return { ...prev, email: res.data.message } })
-        }
-        if (res.data.message === 'Incorrect password') {
-          setError(prev => { return { ...prev, password: res.data.message } })
-        }
-        if (res.status === 202) {
-          token.setItem('token', res.data.token)
-          history.push('/provider/dashboard')
-        }
-      })
-      .catch(e => console.log(e))
+    const loginProvider = await axios.post(apiUrl, formInput)
+
+    try {
+      if (loginProvider.data.message === 'Email account does not exist') {
+        setError(prev => { return { ...prev, email: loginProvider.data.message } })
+      } else if (loginProvider.data.message === 'Incorrect password') {
+        setError(prev => { return { ...prev, password: loginProvider.data.message } })
+      } else if (loginProvider.status === 202) {
+        token.setItem('token', loginProvider.data.token)
+        history.push('/provider/dashboard')
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (

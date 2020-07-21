@@ -1,67 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import NavBar from '../NavBar/NavBar'
-import GetProvider from './Services'
-import DoctorCard from './DoctorCard'
 import CustomerRegister from '../Register/Customer/CustomerRegister'
-import Modal from '../Appointment/Modal/Modal'
-import Footer from '../Home/Footer/Footer'
+
 const Checkout = () => {
-  /* modal state */
-  const [modalStatus, setModalStatus] = useState(false)
-
-  /* selected doctor information to book appointment */
-  const [doctorInfo, setDoctorInfo] = useState()
-
-  /* show the doctor's rating */
-  // const doctorsRating = () => {
-  //   return doctorInfo.rating < 120 ? <FourStar /> : <FiveStar />
-  // }
-
-  /* show the doctor's number rating */
-  // const numberRating = () => {
-  //   return doctorInfo.rating < 120 ? '4.0' : '5.0'
-  // }
-
-  /* on page load fetch the selected doctor from the database */
-  useEffect(() => {
-    GetProvider()
-      .then(res => {
-        if (res.status === 200) {
-          setDoctorInfo(res.data.data)
-        }
-      })
-  }, [])
-
-  /* onClick open modal */
-  const modalOpen = () => {
-    setModalStatus(true)
-  }
-
-  /* onClick close Modal */
-  const modalClose = () => {
-    setModalStatus(false)
-  }
   return (
     <div className='checkout-container'>
-      <NavBar />
+      <NavBar
+        navContainerClass='nav-container-underlined'
+      />
       <div className='content-wrapper'>
-        {/*    {doctorInfo !== undefined
-          ? <>
-            <DoctorCard
-              firstName={doctorInfo.first_name}
-              lastName={doctorInfo.last_name}
-              rating={doctorsRating()}
-              ratingNumber={numberRating()}
-              hourlyRate={doctorInfo.rate}
-              doctorsImage={doctorInfo.image}
-              showModal={modalOpen}
-            /> <Modal
-              data={doctorInfo}
-              viewModal={modalStatus}
-              closeModal={modalClose}
-            />
-          </>
-          : null} */}
         <CustomerRegister
           displayNavBar='none'
           historyPush='/payment'
