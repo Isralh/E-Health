@@ -11,7 +11,7 @@ router.post('/post/register/customers', registration)
 router.post('/post/login/customers', login)
 router.post('/post/appointment', jwtVerify, postAppointments)
 router.get('/get/customer/appointments/:id', jwtVerify, getAppointments)
-router.delete('/delete/session/:id', jwtVerify, deleteAppointments)
+router.delete('/delete/appointment/:id', jwtVerify, deleteAppointments)
 router.patch('/update/appointment:id', jwtVerify, rescheduleAppointments)
 
 module.exports = router

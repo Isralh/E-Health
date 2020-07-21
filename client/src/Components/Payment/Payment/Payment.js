@@ -23,9 +23,9 @@ import './styles.scss'
 const Payment = () => {
   /* get providersId and user's information from local storage when logged in */
   const providerChoice = window.localStorage
-  const token = window.localStorage.getItem('token')
+  const customerToken = window.localStorage.getItem('token')
   const providerId = providerChoice.getItem('providerId')
-  const user = JwtDecode(token)
+  const user = JwtDecode(customerToken)
 
   /* initial modal status is false, on view profile click it will be true and modal will be open */
   const [modalStatus, setModalStatus] = useState(false)
@@ -154,7 +154,8 @@ const Payment = () => {
         }
         const apiUrl = 'http://localhost:3002/api/post/appointment'
 
-        const postAppointment = await axios.post(apiUrl, data)
+        const postAppointment = await axios.post(apiUrl, data,
+          { headers: { Authorization: `Bearer ${customerToken}` } })
 
         try {
           console.log(postAppointment.status)

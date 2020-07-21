@@ -58,8 +58,8 @@ const Dashboard = () => {
     const confirmDelete = window.confirm('Are you sure you want to cancel the appointment?')
 
     if (confirmDelete === true) {
-      const apiUrl = `http://localhost:3002/api/delete/session/${appointment.id}`
-      const deletedAppointment = await axios.delete(apiUrl)
+      const apiUrl = `http://localhost:3002/api/delete/appointment/${appointment.id}`
+      const deletedAppointment = await axios.delete(apiUrl, { headers: { Authorization: `Bearer ${customerToken}` } })
       try {
         if (deletedAppointment.status === 200) {
           notify()
@@ -156,7 +156,8 @@ const Dashboard = () => {
 
         const data = { date: selectedDate.toISOString().substring(0, 10), time: selectedTime }
 
-        const updateAppointment = await axios.patch(apiUrl, data)
+        const updateAppointment = await axios.patch(apiUrl, data,
+          { headers: { Authorization: `Bearer ${customerToken}` } })
 
         try {
           if (updateAppointment.status === 201) {
@@ -192,7 +193,7 @@ const Dashboard = () => {
         {appointments.length > 0
           ? <div className='appointment-heading'>
             <h1>UPCOMING APPOINTMENT(S)</h1>
-            </div> : null}
+          </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment

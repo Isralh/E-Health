@@ -24,7 +24,7 @@ const Dashboard = () => {
     const getAppointments = async () => {
       if (provider !== null || undefined) {
         const apiUrl = `http://localhost:3002/api/get/provider/appointments/${provider.userId}`
-        const appointments = await axios.get(apiUrl)
+        const appointments = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${providerToken}` } })
         try {
           if (appointments.status === 200) {
             setAppointments(appointments.data)
@@ -47,7 +47,7 @@ const Dashboard = () => {
     const confirmComplete = window.confirm('Are you sure you want to mark as complete?')
 
     if (confirmComplete === true) {
-      const markComplete = await axios.delete(apiUrl)
+      const markComplete = await axios.delete(apiUrl, { headers: { Authorization: `Bearer ${providerToken}` } })
 
       try {
         if (markComplete.status === 200) {
@@ -82,7 +82,7 @@ const Dashboard = () => {
         {appointments.length > 0
           ? <div className='appointment-heading'>
             <h1>UPCOMING APPOINTMENT(S)</h1>
-            </div> : null}
+          </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment

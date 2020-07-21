@@ -7,14 +7,15 @@ const login = require('../Controller/Providers/Login')
 const getAppointments = require('../Controller/Providers/getAppointment')
 const postRating = require('../Controller/Providers/postRating')
 const markAppointmentComplete = require('../Controller/Providers/AppComplete')
+const jwtVerify = require('../Controller/JwtVerify/JwtVerify')
 
 router.post('/post/provider/uploadImageResume', imageUpload)
 router.post('/post/provider/register', registration)
 router.get('/get/provider/AllProviders', allProviders)
 router.get('/get/provider/:id', getProviderByID)
 router.post('/post/login/provider', login)
-router.get('/get/provider/appointments/:id', getAppointments)
+router.get('/get/provider/appointments/:id', jwtVerify, getAppointments)
 router.post('/post/provider/rating', postRating)
-router.delete('/delete/appointment:id', markAppointmentComplete)
+router.delete('/delete/appointment:id', jwtVerify, markAppointmentComplete)
 
 module.exports = router
