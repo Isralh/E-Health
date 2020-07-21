@@ -14,7 +14,7 @@ import CustomerDashboard from './Components/Profile/Customer/Dashboard'
 import Sessions from './Components/Profile/VideoChat/Sessions'
 import PageNotFound from './Components/PageNotFound/PageNotFound'
 import InternalServerError from './Components/PageNotFound/InternalServerError'
-import { ProtectByRole, ProtectUnAuthorized } from './Components/ProtectedRoute/ProtectedRoute'
+import { ProtectPayment, ProtectCustomerDashboard, ProtectProviderLogin } from './Components/ProtectedRoute/ProtectedRoute'
 
 const App = () => {
   return (
@@ -24,13 +24,13 @@ const App = () => {
         <Route path='/providerRegister' component={ProviderRegister} />
         <Route path='/createAccount' component={CustomerRegister} />
         <Route path='/customer/login' component={CustomerLogin} />
-        <Route path='/customer/dashboard' component={CustomerDashboard} />
+        <ProtectCustomerDashboard path='/customer/dashboard' component={CustomerDashboard} />
         <Route path='/bookAppointment' component={Appointment} />
         <Route path='/checkoutRegister' component={Checkout} />
-        <Route path='/payment' component={Payment} />
+        <ProtectPayment path='/payment' component={Payment} />
         <Route path='/provider/login' component={ProviderLogin} />
-        <Route path='/provider/dashboard' component={ProviderDashboard} />
-        <ProtectUnAuthorized path='/session/:id' component={Sessions} />
+        <ProtectProviderLogin path='/provider/dashboard' component={ProviderDashboard} />
+        <ProtectCustomerDashboard path='/session/:id' component={Sessions} />
         <Route path='/500' component={InternalServerError} />
         <Route path='*' component={PageNotFound} />
       </Switch>
