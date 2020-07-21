@@ -36,7 +36,7 @@ const Registration = async (req, res) => {
         userId: provider.id,
         firstName: provider.first_name,
         credential: provider.userType
-      }, jwtSecret, {
+      }, jwtSecret.secret, {
         expiresIn: '5hr'
       })
       return res.status(201).send({ message: 'success', userToken: token })

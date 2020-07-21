@@ -27,7 +27,7 @@ const Dashboard = () => {
   /* on initial render fetch the customer's appointment schedule */
   const getAppointmentData = async () => {
     const apiUrl = `http://localhost:3002/api/get/customer/appointments/${customer.userId}`
-    const dashboardData = await axios.get(apiUrl)
+    const dashboardData = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${customerToken}` } })
     try {
       if (dashboardData.status === 200) {
         setAppointments(dashboardData.data)
@@ -192,7 +192,7 @@ const Dashboard = () => {
         {appointments.length > 0
           ? <div className='appointment-heading'>
             <h1>UPCOMING APPOINTMENT(S)</h1>
-          </div> : null}
+            </div> : null}
         {appointments.length > 0
           ? appointments.map((appointment, i) =>
             <Appointment
