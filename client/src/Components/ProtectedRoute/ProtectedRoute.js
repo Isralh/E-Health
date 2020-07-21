@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode'
 
 export const ProtectPayment = ({ component: Component, ...rest }) => {
   /* check if token is available to signal signed in user */
+  const providerId = window.localStorage.getItem('providerId')
   const token = window.localStorage.getItem('token')
 
   /* if user's not signed in redirect them to the location they came from else
@@ -13,7 +14,7 @@ export const ProtectPayment = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props => {
-        if (token !== null || undefined) {
+        if (token !== null && providerId !== null) {
           return <Component {...props} />
         } else {
           return <Redirect to={{

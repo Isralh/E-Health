@@ -21,6 +21,7 @@ const CreditCard = ({
               value={number}
               onChange={handleChange}
               onFocus={handleFocus}
+              autoComplete='cc-csc'
             />
           </div>
           <div className='input-wrapper'>
@@ -33,6 +34,7 @@ const CreditCard = ({
               value={name}
               onChange={handleChange}
               onFocus={handleFocus}
+              autoComplete='cc-csc'
             />
           </div>
           <div className='input-wrapper'>
@@ -47,6 +49,7 @@ const CreditCard = ({
               value={expiry}
               onChange={handleChange}
               onFocus={handleFocus}
+              autoComplete='cc-csc'
             />
           </div>
           <div className='input-wrapper'>

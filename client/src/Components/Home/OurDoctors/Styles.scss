@@ -1,4 +1,5 @@
 @import '../../../Assets/Sass/Variables';
+@import '../../../Assets/Sass/Mixins';
 
 .ourDoctors-container {
   display: grid;
@@ -101,9 +102,9 @@
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      justify-content: space-between;
+      justify-content: space-around;
       margin: 5vh 0% 0 0%;
-      margin-left: 2px;
+      margin-left: 25px;
       .docImg {
         height: 220px;
         width: 170px;
@@ -111,12 +112,10 @@
     }
   }
   @media (min-width: 1200px) {
-    grid-template-columns: 6.5% 85.5% 8%;
     .ourDoctors-list {
-      margin-left: 20px;
       .docImg {
-        height: 300px;
-        width: 240px;
+        height: 255px;
+        width: 205px;
       }
     }
   }

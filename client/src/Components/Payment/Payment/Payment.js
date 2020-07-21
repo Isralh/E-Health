@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../NavBar/NavBar'
-import { getProviderById } from './services'
 import { DoctorRating } from '../../Appointment/DoctorRating/DoctorRating'
 import Modal from '../../Appointment/Modal/Modal'
 import BioCard from '../BioCard/BioCard'
@@ -60,9 +59,20 @@ const Payment = () => {
 
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
-    getProviderById(providerId)
-      .then(res => { if (res.status === 200) setDoctorInfo(res.data.data) })
-      .catch(e => console.log(e))
+    const getProvider = async () => {
+      const apiUrl = `http://localhost:3002/api/get/provider/${providerId}`
+
+      const provider = await axios.get(apiUrl)
+
+      try {
+        if (provider.status === 200) {
+          setDoctorInfo(provider.data.data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getProvider()
   }, [])
 
   /* onClick open modal */
