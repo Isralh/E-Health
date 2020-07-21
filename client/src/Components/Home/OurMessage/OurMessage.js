@@ -20,7 +20,7 @@ const OurMessage = () => {
         <h1>GET THE HEALTHCARE YOU DESERVE</h1>
         <p>At E-Health our aim is to create a special relationship will all our patients by
         taking the time to listen to them and provide them with top of the class healthcare. Our
-        psychologists are graduates from the top 50 medical schools with an extensive experience
+        psychiatrists are graduates from the top 50 medical schools with an extensive experience
         providing high quality care to all patients.
         </p>
         <div className='ourMessage-btn'>
