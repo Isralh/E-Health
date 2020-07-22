@@ -10,9 +10,9 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import RescheduleModal from './RescheduleModal'
+import Loading from '../SharedComponents/Loading'
 import 'react-toastify/dist/ReactToastify.css'
 import './styles.scss'
-import Loading from '../../Appointment/Doctors/Loading'
 
 const Dashboard = () => {
   /* configure toast notification */

@@ -7,6 +7,7 @@ import Appointment from './Appointment'
 import Footer from '../../Home/Footer/Footer'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import Loading from '../SharedComponents/Loading'
 import './styles.scss'
 
 const Dashboard = () => {
@@ -19,6 +20,12 @@ const Dashboard = () => {
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState('')
 
+  /* state to hold loading state */
+  const [loading, setLoading] = useState({
+    view: true,
+    class: 'loading-state'
+  })
+
   /* on initial render fetch the customer's appointment schedule */
   useEffect(() => {
     const getAppointments = async () => {
@@ -27,6 +34,7 @@ const Dashboard = () => {
         const appointments = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${providerToken}` } })
         try {
           if (appointments.status === 200) {
+            setLoading({ view: false, class: 'loading-state-none' })
             setAppointments(appointments.data)
           }
           if (appointments.status === 500) {
@@ -78,24 +86,25 @@ const Dashboard = () => {
       />
       {provider !== null || undefined
         ? <Heading name={provider.firstName.toUpperCase()} /> : null}
-      <div className='appointment'>
-        {appointments.length > 0
-          ? <div className='appointment-heading'>
-            <h1>UPCOMING APPOINTMENT(S)</h1>
-          </div> : null}
-        {appointments.length > 0
-          ? appointments.map((appointment, i) =>
-            <Appointment
-              key={i}
-              date={appointment.date}
-              time={appointment.time}
-              session='Start Session'
-              sessionId={appointment.appointment_id}
-              handleDone={markAppointmentComplete.bind(this, appointment)}
-            />
-          )
-          : <NoAppointments />}
-      </div>
+      {loading.view === true ? <Loading loadingState={loading.view} loadingClass={loading.class} />
+        : <div className='appointment'>
+          {appointments.length > 0
+            ? <div className='appointment-heading'>
+              <h1>UPCOMING APPOINTMENT(S)</h1>
+            </div> : null}
+          {appointments.length > 0
+            ? appointments.map((appointment, i) =>
+              <Appointment
+                key={i}
+                date={appointment.date}
+                time={appointment.time}
+                session='Start Session'
+                sessionId={appointment.appointment_id}
+                handleDone={markAppointmentComplete.bind(this, appointment)}
+              />
+            )
+            : <NoAppointments />}
+        </div>}
       <Footer />
     </div>
   )

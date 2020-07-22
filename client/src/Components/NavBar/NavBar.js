@@ -28,7 +28,7 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
   const [burgerClassName, setBurgerClassName] = useState('burger-wrapper')
   const [closeClassName, setCloseClassName] = useState('close-menu-none')
   const [dropDownChoice, setDropDownChoice] = useState(false)
-
+  const [mobileDropDown, setMobileDropDown] = useState(false)
   /* on mobile view when click on the burger menu open the nav menu */
   const showNavDropDown = () => {
     setNavMenuClass('nav-menu-mobile')
@@ -44,6 +44,11 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
   }
 
   /* open menu options on mobile views */
+  const displayMobileDropdown = () => {
+    setMobileDropDown(!mobileDropDown)
+  }
+
+  /* open menu options on desktop views */
   const displayDropDown = () => {
     setDropDownChoice(!dropDownChoice)
   }
@@ -93,24 +98,21 @@ const NavBar = ({ navContainerClass = 'nav-container' }) => {
           {currentUser !== undefined && currentUser !== null
             ? currentUser.role === 'customer'
               ? <CustomerLoggedIn
-                handleDropDown={displayDropDown}
-                showDropDownChoice={dropDownChoice}
+                handleDropDown={displayMobileDropdown}
+                showDropDownChoice={mobileDropDown}
                 userName={currentUser.firstName}
                 handleLogout={logOutUser}
-                menuRef={refMenu}
                 /> : currentUser.role === 'provider'
                 ? <ProviderLoggedIn
-                  handleDropDown={displayDropDown}
-                  showDropDownChoice={dropDownChoice}
+                  handleDropDown={displayMobileDropdown}
+                  showDropDownChoice={mobileDropDown}
                   userName={currentUser.firstName}
                   handleLogout={logOutUser}
-                  menuRef={refMenu}
                   />
                 : null
             : <UserNotLoggedIn
-              handleDropDown={displayDropDown}
-              showDropDownChoice={dropDownChoice}
-              menuRef={refMenu}
+              handleDropDown={displayMobileDropdown}
+              showDropDownChoice={mobileDropDown}
               />}
         </div>
         <div className={desktopClass}>
