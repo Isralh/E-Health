@@ -39,9 +39,9 @@ const Dashboard = () => {
       if (dashboardData.status === 200) {
         setLoading({ view: false, class: 'loading-state-none' })
         setAppointments(dashboardData.data)
-      }
+      } else if (dashboardData.status === 500) return history.push('/500')
     } catch (e) {
-      console.log(e)
+      return history.push('/500')
     }
   }
   useEffect(() => {
@@ -74,9 +74,9 @@ const Dashboard = () => {
           setTimeout(() => {
             window.location.reload()
           }, 2000)
-        }
+        } else if (deletedAppointment.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
   }
@@ -174,9 +174,9 @@ const Dashboard = () => {
             setTimeout(() => {
               window.location.reload()
             }, 2500)
-          }
+          } else if (updateAppointment.status === 500) return history.push('/500')
         } catch (e) {
-          console.log(e)
+          return history.push('/500')
         }
       }
     }

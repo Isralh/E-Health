@@ -5,6 +5,7 @@ import NewsLetter from './NewsLetter'
 import Social from './Social'
 import axios from 'axios'
 import './Styles.scss'
+import { useHistory } from 'react-router-dom'
 
 const Footer = () => {
   /* state to hold newsletter email input */
@@ -16,6 +17,7 @@ const Footer = () => {
     setEmail(value)
   }
 
+  const history = useHistory()
   /* function to save email to the database */
   const signUp = async (e) => {
     e.preventDefault()
@@ -31,10 +33,11 @@ const Footer = () => {
       const postEmail = await axios.post(apiUrl, { email })
 
       try {
-        if (postEmail.status === 200) window.alert(postEmail.data.message)
-        if (postEmail.status === 201) window.alert(postEmail.data.message)
+        if (postEmail.status === 200) return window.alert(postEmail.data.message)
+        if (postEmail.status === 201) return window.alert(postEmail.data.message)
+        if (postEmail.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
   }

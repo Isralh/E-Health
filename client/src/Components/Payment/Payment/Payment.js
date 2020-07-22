@@ -67,9 +67,9 @@ const Payment = () => {
       try {
         if (provider.status === 200) {
           setDoctorInfo(provider.data.data)
-        }
+        } else if (provider.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
     getProvider()
@@ -176,7 +176,7 @@ const Payment = () => {
             history.push('/customer/dashboard')
           }
         } catch (e) {
-          history.push('/500')
+          return history.push('/500')
         }
       }
     }

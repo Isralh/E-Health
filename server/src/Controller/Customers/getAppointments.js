@@ -11,7 +11,7 @@ const getAppointments = async (req, res) => {
     if (appointment) return res.status(200).send(appointment)
     return res.status(204).send('No Appointment found')
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 

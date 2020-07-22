@@ -24,10 +24,10 @@ const loginProvider = async (req, res) => {
           }, jwtSecret.secret, { expiresIn: '5hrs' })
           return res.status(202).send({ message: 'success', token: token })
         }
-      }).catch(e => { return res.status(500) })
+      }).catch(e => { return res.status(500).send({ message: 'server error' }) })
     }
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 

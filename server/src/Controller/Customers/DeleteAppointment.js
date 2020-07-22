@@ -12,7 +12,7 @@ const deleteAppointment = async (req, res) => {
       return res.status(200).send({ message: 'successfully deleted appointment' })
     }
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 

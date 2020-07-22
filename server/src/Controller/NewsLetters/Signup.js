@@ -12,11 +12,11 @@ const SignUp = async (req, res) => {
       try {
         if (newEmail) return res.status(201).send({ message: 'Successfully added to newsletters' })
       } catch (e) {
-        return res.status(500)
+        return res.status(500).send({ message: 'server error' })
       }
     }
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 

@@ -26,9 +26,9 @@ const Registration = async (req, res) => {
         role: 'customer'
       }, jwtSecret.secret, { expiresIn: '5hr' })
       return res.status(201).send({ message: 'success', token: token })
-    }).catch(e => { return res.status(500) })
+    }).catch(e => { return res.status(500).send({ message: 'server error' }) })
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 module.exports = Registration

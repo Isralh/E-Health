@@ -46,9 +46,9 @@ const ProviderLogin = () => {
       } else if (loginProvider.status === 202) {
         token.setItem('token', loginProvider.data.token)
         history.push('/provider/dashboard')
-      }
+      } else if (loginProvider.status === 500) return history.push('/500')
     } catch (e) {
-      console.log(e)
+      return history.push('/500')
     }
   }
 

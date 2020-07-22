@@ -18,8 +18,9 @@ const OurDoctors = () => {
           const data = allProviders.data.slice(0, 4)
           setDoctors(data)
         }
+        if (allProviders.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
     getAllDoctors()

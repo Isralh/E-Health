@@ -53,12 +53,12 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
       const response = await axios.post(apiUrl, formInput)
       try {
         if (response.status === 200) return window.alert(response.data.message)
-        if (response.status === 201) {
+        else if (response.status === 201) {
           token.setItem('token', response.data.token)
           history.push(historyPush)
-        }
+        } else if (response.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
   }

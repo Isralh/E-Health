@@ -6,7 +6,7 @@ const AllProviders = async (req, res) => {
   try {
     if (providers) return res.status(200).send(providers)
   } catch (e) {
-    if (e) return res.status(500)
+    if (e) return res.status(500).send({ message: 'server error' })
   }
 }
 

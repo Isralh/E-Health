@@ -36,12 +36,9 @@ const Dashboard = () => {
           if (appointments.status === 200) {
             setLoading({ view: false, class: 'loading-state-none' })
             setAppointments(appointments.data)
-          }
-          if (appointments.status === 500) {
-            history.push('/500')
-          }
+          } else if (appointments.status === 500) return history.push('/500')
         } catch (e) {
-          history.push('/500')
+          return history.push('/500')
         }
       }
     }
@@ -61,11 +58,9 @@ const Dashboard = () => {
         if (markComplete.status === 200) {
           window.alert(markComplete.data.message)
           window.location.reload()
-        } if (markComplete.status === 500) {
-          history.push('/500')
-        }
+        } else if (appointments.status === 500) return history.push('/500')
       } catch (e) {
-        history.push('/500')
+        return history.push('/500')
       }
     }
   }

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import ModalImage from './ModalImage'
 import { TopDescription, MainDescription } from './ModalDescription'
-// import { DoctorRating } from '../Description/Description'
 import { DoctorRating } from '../DoctorRating/DoctorRating'
 import './styles.scss'
 

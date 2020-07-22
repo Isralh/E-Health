@@ -75,8 +75,9 @@ const Doctors = () => {
           setDoctorsClassName('doctors-container')
           setDoctors(allProviders.data)
         }
+        if (allProviders.status === 500) return history.push('/500')
       } catch (e) {
-        console.log(e)
+        return history.push('/500')
       }
     }
     getProviders()
@@ -127,9 +128,10 @@ const Doctors = () => {
         const response = await axios.post(apiUrl, data,
           { headers: { Authorization: `Bearer ${customerToken}` } })
         try {
-          if (response.status === 200) window.alert(response.data.message)
+          if (response.status === 200) return window.alert(response.data.message)
+          if (response.status === 500) return history.push('/500')
         } catch (e) {
-          console.log(e)
+          return history.push('/500')
         }
       }
     }

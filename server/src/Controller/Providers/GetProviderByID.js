@@ -22,9 +22,9 @@ const GetProviderByID = async (req, res) => {
       }
       return res.status(200).send({ data: providerData, message: 'success' })
     }
-    return res.status(404)
+    return res.status(404).send({ message: 'no doctors found' })
   } catch (e) {
-    return res.status(500)
+    return res.status(500).send({ message: 'server error' })
   }
 }
 
