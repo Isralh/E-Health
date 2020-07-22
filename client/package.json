@@ -45,6 +45,7 @@
     "react-credit-cards": "^0.8.3",
     "react-datepicker": "^3.0.0",
     "react-images-upload": "^1.2.8",
+    "react-spinners": "^0.9.0",
     "react-toastify": "^6.0.8",
     "simple-peer": "^9.7.2",
     "socket.io-client": "^2.3.0",

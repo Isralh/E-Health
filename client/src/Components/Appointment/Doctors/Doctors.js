@@ -5,6 +5,8 @@ import Description from '../Description/Description'
 import Modal from '../Modal/Modal'
 import { useHistory } from 'react-router-dom'
 import { DoctorRating } from '../DoctorRating/DoctorRating'
+import Loading from './Loading'
+import axios from 'axios'
 import './styles.scss'
 
 export const doctorContext = createContext()
@@ -17,6 +19,15 @@ const Doctors = () => {
 
   /* state to hold the selected doctor on view profile */
   const [selectedDoctor, setSelectedDoctor] = useState()
+
+  /* state to hold loading status */
+  const [loading, setLoading] = useState({
+    class: 'loading-container',
+    view: true
+  })
+
+  /* state to hold doctor's container class */
+  const [doctorsClassName, setDoctorsClassName] = useState('doctors-container-none')
 
   /* fetch the rating data from the database and show doctor's rating in orange starts */
   const viewRating = (doctor) => {
@@ -49,11 +60,24 @@ const Doctors = () => {
     setModalState(false)
   }
 
-  /* on page load get all of the doctors from our database */
+  /* on initial render get all of the doctors from our database */
   useEffect(() => {
+    const getProviders = async () => {
+      const apiUrl = 'http://localhost:3002/api/get/provider/AllProviders'
+
+      const allProviders = await axios.get(apiUrl)
+
+      try {
+        if (allProviders.status === 200) {
+          setLoading({ view: false, class: 'loading-container-none' })
+          setDoctorsClassName('doctors-container')
+          setDoctors(allProviders.data)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
     getProviders()
-      .then(data => { if (data.status === 200) setDoctors(data.data) })
-      .catch(e => console.log(e))
   }, [])
 
   /* check to see if users is signed in */
@@ -108,24 +132,25 @@ const Doctors = () => {
   }, [givenRating, ratedDoctorId])
   return (
     <div className='list-container'>
-      {doctors !== undefined ? doctors.map(doctor =>
-        <div key={doctor.id} className='doctors-container'>
-          <Image
-            doctorsImage={doctor.image}
-          />
-          <Description
-            firstName={doctor.first_name}
-            lastName={doctor.last_name}
-            rates={doctor.rate}
-            showRating={DoctorRating(viewRating(doctor), getRating)}
-            doctorRating={doctorRate(doctor)}
-            showModal={openModal.bind(this, doctor)}
-            handleBooking={bookDoctor.bind(this, doctor)}
-            handleDoctorInfo={getDoctorId.bind(this, doctor)}
-          />
-          <button onClick={bookDoctor.bind(this, doctor)} className='tablet-book-btn'>Book</button>
-        </div>
-      ) : null}
+      {loading.view === true ? <Loading loadingState={loading} loadingClass={loading.class} />
+        : doctors !== undefined ? doctors.map(doctor =>
+          <div key={doctor.id} className={doctorsClassName}>
+            <Image
+              doctorsImage={doctor.image}
+            />
+            <Description
+              firstName={doctor.first_name}
+              lastName={doctor.last_name}
+              rates={doctor.rate}
+              showRating={DoctorRating(viewRating(doctor), getRating)}
+              doctorRating={doctorRate(doctor)}
+              showModal={openModal.bind(this, doctor)}
+              handleBooking={bookDoctor.bind(this, doctor)}
+              handleDoctorInfo={getDoctorId.bind(this, doctor)}
+            />
+            <button onClick={bookDoctor.bind(this, doctor)} className='tablet-book-btn'>Book</button>
+          </div>
+        ) : null}
       <doctorContext.Provider value={selectedDoctor}>
         <Modal
           viewModal={modalState}

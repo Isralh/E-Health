@@ -12,6 +12,7 @@ import { toast } from 'react-toastify'
 import RescheduleModal from './RescheduleModal'
 import 'react-toastify/dist/ReactToastify.css'
 import './styles.scss'
+import Loading from '../../Appointment/Doctors/Loading'
 
 const Dashboard = () => {
   /* configure toast notification */
@@ -24,12 +25,19 @@ const Dashboard = () => {
   /* state to hold customer's appointment schedule */
   const [appointments, setAppointments] = useState('')
 
+  /* state to hold loading state */
+  const [loading, setLoading] = useState({
+    view: true,
+    class: 'loading-state'
+  })
+
   /* on initial render fetch the customer's appointment schedule */
   const getAppointmentData = async () => {
     const apiUrl = `http://localhost:3002/api/get/customer/appointments/${customer.userId}`
     const dashboardData = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${customerToken}` } })
     try {
       if (dashboardData.status === 200) {
+        setLoading({ view: false, class: 'loading-state-none' })
         setAppointments(dashboardData.data)
       }
     } catch (e) {
@@ -95,7 +103,7 @@ const Dashboard = () => {
   }
 
   /* submit button name status */
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState('Submit')
 
   /* state to hold selected appointment date */
   const [selectedDate, setSelectedDate] = useState('')
@@ -151,7 +159,7 @@ const Dashboard = () => {
   useEffect(() => {
     const submitAppointment = async () => {
       if (dateAndTimeErrors.date === null && dateAndTimeErrors.time === null) {
-        setIsSubmitting(!isSubmitting)
+        setIsSubmitting('Submitting...')
         const apiUrl = `http://localhost:3002/api/update/appointment${appointmentReschedule}`
 
         const data = { date: selectedDate.toISOString().substring(0, 10), time: selectedTime }
@@ -162,6 +170,7 @@ const Dashboard = () => {
         try {
           if (updateAppointment.status === 201) {
             rescheduleSuccess()
+            setIsSubmitting('Success')
             setTimeout(() => {
               window.location.reload()
             }, 2500)
@@ -189,23 +198,24 @@ const Dashboard = () => {
       />
       <Heading name={customer.firstName.toUpperCase()} />
       <BookingButton />
-      <div className='appointment'>
-        {appointments.length > 0
-          ? <div className='appointment-heading'>
-            <h1>UPCOMING APPOINTMENT(S)</h1>
-          </div> : null}
-        {appointments.length > 0
-          ? appointments.map((appointment, i) =>
-            <Appointment
-              key={i}
-              date={appointment.date}
-              time={appointment.time}
-              session='Join Session'
-              handleJoin={joinSession.bind(this, appointment)}
-              handleCancel={cancelAppointment.bind(this, appointment)}
-              handleReschedule={selectedAppointment.bind(this, appointment)}
-            />) : <NoAppointments />}
-      </div>
+      {loading.view === true ? <Loading loadingState={loading.view} loadingClass={loading.class} />
+        : <div className='appointment'>
+          {appointments.length > 0
+            ? <div className='appointment-heading'>
+              <h1>UPCOMING APPOINTMENT(S)</h1>
+            </div> : null}
+          {appointments.length > 0
+            ? appointments.map((appointment, i) =>
+              <Appointment
+                key={i}
+                date={appointment.date}
+                time={appointment.time}
+                session='Join Session'
+                handleJoin={joinSession.bind(this, appointment)}
+                handleCancel={cancelAppointment.bind(this, appointment)}
+                handleReschedule={selectedAppointment.bind(this, appointment)}
+              />) : <NoAppointments />}
+        </div>}
       <RescheduleModal
         time={timeOption}
         modalClass={modalClassName === true ? 'reschedule-container' : 'reschedule-hidden'}
@@ -217,7 +227,7 @@ const Dashboard = () => {
         dateError={dateAndTimeErrors.date}
         timeError={dateAndTimeErrors.time}
         handleFocus={clearInputError}
-        submitName={isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+        submitName={isSubmitting}
       />
       <Footer />
     </div>

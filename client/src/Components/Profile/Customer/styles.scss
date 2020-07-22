@@ -1,6 +1,17 @@
 @import '../../../Assets/Sass/Variables';
 @import '../../../Assets/Sass/Mixins';
 
+/* Loading styling */
+
+.loading-state-none {
+  display: none;
+}
+
+.loading-state {
+  text-align: center;
+  margin-top: 15vh;
+}
+/* No appointment styling */
 .noAppointments-container {
   text-align: center;
   margin-top: 15vh;
@@ -10,6 +21,7 @@
   }
 }
 
+/* Top heading styling */
 .top-heading {
   margin-top: 10vh;
   h1 {
@@ -19,6 +31,7 @@
   }
 }
 
+/* Booking button styling */
 .booking-btn {
   margin-top: 5vh;
   text-align: center;
@@ -35,6 +48,8 @@
     }
   }
 }
+
+/* Appointment styling */
 .appointment {
   margin-left: 5%;
   margin-right: 5%;

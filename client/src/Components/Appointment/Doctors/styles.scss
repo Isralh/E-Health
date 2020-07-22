@@ -5,6 +5,9 @@
   display: block;
   margin: 5vh 2.5% 5vh 2.5%;
   padding-bottom: 30px;
+  .doctors-container-none {
+    display: none;
+  }
   .doctors-container {
     @include flex(row, nowrap, space-evenly);
     margin: 5vh 2vw 0 2vw;
@@ -12,6 +15,13 @@
     border-bottom: 0.5px solid lightgray;
   }
 
+  .loading-container-none {
+    display: none;
+  }
+  .loading-container {
+    text-align: center;
+    margin-top: 20vh;
+  }
   .tablet-book-btn {
     display: none;
   }
