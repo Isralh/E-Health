@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext } from 'react'
-import { getProviders, postRating } from './Services'
 import Image from '../Image/Image'
 import Description from '../Description/Description'
 import Modal from '../Modal/Modal'
@@ -11,6 +10,9 @@ import './styles.scss'
 
 export const doctorContext = createContext()
 const Doctors = () => {
+  /* customer token */
+  const customerToken = window.localStorage.getItem('token')
+
   /* state to toggle modal open and close */
   const [modalState, setModalState] = useState(false)
 
@@ -98,14 +100,6 @@ const Doctors = () => {
     redirectUser()
   }
 
-  useEffect(() => {
-    if (doctors !== undefined) {
-      doctors.map(doctor => {
-        console.log(parseInt((doctor.rating / doctor.ratingCount).toFixed(0)))
-      })
-    }
-  }, [doctors])
-
   /* state to hold user's doctor rating and Id, data used to post rating to the database */
   const [givenRating, setGivenRating] = useState()
   const [ratedDoctorId, setRatedDoctorId] = useState()
@@ -124,12 +118,25 @@ const Doctors = () => {
 
   /* post rating to the database */
   useEffect(() => {
-    if (givenRating !== undefined && ratedDoctorId !== undefined) {
-      postRating(givenRating, ratedDoctorId)
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
+    const apiUrl = 'http://localhost:3002/api/post/provider/rating'
+
+    const postRating = async () => {
+      if (givenRating !== undefined && ratedDoctorId !== undefined) {
+        const data = { rating: givenRating, doctorId: ratedDoctorId }
+
+        const response = await axios.post(apiUrl, data,
+          { headers: { Authorization: `Bearer ${customerToken}` } })
+        try {
+          if (response.status === 200) window.alert(response.data.message)
+        } catch (e) {
+          console.log(e)
+        }
+      }
     }
+
+    postRating()
   }, [givenRating, ratedDoctorId])
+
   return (
     <div className='list-container'>
       {loading.view === true ? <Loading loadingState={loading} loadingClass={loading.class} />

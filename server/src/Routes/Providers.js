@@ -15,7 +15,7 @@ router.get('/get/provider/AllProviders', allProviders)
 router.get('/get/provider/:id', getProviderByID)
 router.post('/post/login/provider', login)
 router.get('/get/provider/appointments/:id', jwtVerify, getAppointments)
-router.post('/post/provider/rating', postRating)
+router.post('/post/provider/rating', jwtVerify, postRating)
 router.delete('/delete/appointment:id', jwtVerify, markAppointmentComplete)
 
 module.exports = router
