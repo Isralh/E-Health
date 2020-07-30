@@ -1,7 +1,8 @@
 const customers = require('../../Models/Customers')
 const jwtToken = require('jsonwebtoken')
-const jwtSecret = require('../../Config/JwtSecret')
 const bcrypt = require('bcrypt')
+require('dotenv').config()
+
 const loginCustomer = async (req, res) => {
   const { email, password } = req.body
   const existingCustomer = await customers.findOne({
@@ -19,7 +20,7 @@ const loginCustomer = async (req, res) => {
             firstName: existingCustomer.first_name,
             lastName: existingCustomer.last_name,
             role: 'customer'
-          }, jwtSecret.secret, { expiresIn: '5hrs' })
+          }, process.env.JWTSECRET, { expiresIn: '5hrs' })
           return res.status(202).send({ message: 'success', token: token })
         }
       }).catch(e => { return res.status(500).send({ message: 'server error' }) })

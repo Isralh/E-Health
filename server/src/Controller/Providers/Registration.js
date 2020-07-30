@@ -1,7 +1,7 @@
 const Providers = require('../../Models/Providers')
 const Bcrypt = require('bcrypt')
 const jwtToken = require('jsonwebtoken')
-const jwtSecret = require('../../Config/JwtSecret')
+require('dotenv').config()
 
 const Registration = async (req, res) => {
   const clientData = req.body
@@ -36,7 +36,7 @@ const Registration = async (req, res) => {
         userId: provider.id,
         firstName: provider.first_name,
         credential: provider.userType
-      }, jwtSecret.secret, {
+      }, process.env.JWTSECRET, {
         expiresIn: '5hr'
       })
       return res.status(201).send({ message: 'success', userToken: token })

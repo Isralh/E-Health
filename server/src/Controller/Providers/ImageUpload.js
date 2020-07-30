@@ -1,20 +1,20 @@
 const aws = require('aws-sdk')
 const multer = require('multer')
 const multerS3 = require('multer-s3')
-const awsConfig = require('../../Config/AwsConfig')
+require('dotenv').config()
 
 // configuration to handle image uploading to amazon web services
 aws.config.update({
-  secretAccessKey: awsConfig.secretAccessKey,
-  accessKeyId: awsConfig.accessKeyId,
-  region: awsConfig.region
+  secretAccessKey: process.env.SECRETACCESSKEY,
+  accessKeyId: process.env.ACCESSKEYID,
+  region: process.env.REGION
 })
 const s3 = new aws.S3()
 
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: awsConfig.bucketName,
+    bucket: process.env.BUCKETNAME,
     acl: 'public-read',
     metadata: function (req, file, cb) {
       cb(null, { fieldName: file.fieldname })

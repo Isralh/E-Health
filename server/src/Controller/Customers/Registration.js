@@ -1,7 +1,7 @@
 const customers = require('../../Models/Customers')
 const Bcrypt = require('bcrypt')
 const jwtToken = require('jsonwebtoken')
-const jwtSecret = require('../../Config/JwtSecret')
+require('dotenv').config()
 
 /* function to handle the registration process */
 const Registration = async (req, res) => {
@@ -24,7 +24,7 @@ const Registration = async (req, res) => {
         firstName: customer.first_name,
         lastName: customer.last_name,
         role: 'customer'
-      }, jwtSecret.secret, { expiresIn: '5hr' })
+      }, process.env.JWTSECRET, { expiresIn: '5hr' })
       return res.status(201).send({ message: 'success', token: token })
     }).catch(e => { return res.status(500).send({ message: 'server error' }) })
   } catch (e) {

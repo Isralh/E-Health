@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const jwtSecret = require('../../Config/JwtSecret')
+require('dotenv').config()
+
 const jwtVerify = (req, res, next) => {
 
   const authHeader = req.headers.authorization
@@ -9,7 +10,7 @@ const jwtVerify = (req, res, next) => {
   } else {
     const token = authHeader.split(' ')[1]
 
-    jwt.verify(token, jwtSecret.secret, (err, user) => {
+    jwt.verify(token, process.env.JWTSECRET, (err, user) => {
       if (err) return res.status(403).send({ message: 'forbidden' })
       req.user = user
       next()
