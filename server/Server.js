@@ -5,6 +5,8 @@ const providers = require('./src/Routes/Providers')
 const customers = require('./src/Routes/Customers')
 const newsLetters = require('./src/Routes/NewsLetters')
 const socket = require('./src/Socket/Socket')
+require('dotenv').config()
+
 const app = express()
 
 const server = require('http').createServer(app)
@@ -18,11 +20,11 @@ app.use('/api', providers)
 app.use('/api', customers)
 app.use('/api', newsLetters)
 
-const PORT = 3002
+const PORT = process.env.PORT
 
 socket(server)
 
-server.listen(3002, (e) => {
+server.listen(PORT, (e) => {
   if (e) console.log(e)
 
   console.log(`listening to PORT ${PORT}`)

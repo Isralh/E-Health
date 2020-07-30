@@ -3,7 +3,6 @@ const jwtToken = require('jsonwebtoken')
 const jwtSecret = require('../../Config/JwtSecret')
 const bcrypt = require('bcrypt')
 const loginCustomer = async (req, res) => {
-  console.log(req.body)
   const { email, password } = req.body
   const existingCustomer = await customers.findOne({
     where: { email: email }
