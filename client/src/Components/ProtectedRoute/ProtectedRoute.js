@@ -88,3 +88,25 @@ export const ProtectProviderDashboard = ({ component: Component, ...rest }) => {
     />
   )
 }
+
+export const ProtectSession = ({ component: Component, ...rest }) => {
+  /* check if token is available to signal signed in user */
+  const token = window.localStorage.getItem('token')
+
+  /* if user's not signed in redirect them to the login page */
+  return (
+    <Route
+      {...rest}
+      render={props => {
+        if (token !== null) {
+          return <Component {...props} />
+        } else {
+          return <Redirect to={{
+            pathname: '/customer/Login'
+          }}
+          />
+        }
+      }}
+    />
+  )
+}

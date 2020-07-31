@@ -37,6 +37,8 @@ const Sessions = ({ match }) => {
   /* the video chat room name */
   const room = match.params.id
 
+  // const getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia || navigator.mediaDevices.mozGetUserMedia
+
   /* on initial render connect to the socket in the server */
   useEffect(() => {
     /* connection to the socket in the server */
