@@ -34,7 +34,7 @@ const ProviderLogin = () => {
   const history = useHistory()
   const submitLogin = async (e) => {
     e.preventDefault()
-    const apiUrl = 'http://localhost:3002/api/post/login/provider'
+    const apiUrl = 'http://206.189.187.231/api/post/login/provider'
 
     const loginProvider = await axios.post(apiUrl, formInput)
 

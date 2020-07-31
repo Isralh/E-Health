@@ -33,7 +33,7 @@ const Dashboard = () => {
 
   /* on initial render fetch the customer's appointment schedule */
   const getAppointmentData = async () => {
-    const apiUrl = `http://localhost:3002/api/get/customer/appointments/${customer.userId}`
+    const apiUrl = `http://206.189.187.231/api/get/customer/appointments/${customer.userId}`
     const dashboardData = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${customerToken}` } })
     try {
       if (dashboardData.status === 200) {
@@ -66,7 +66,7 @@ const Dashboard = () => {
     const confirmDelete = window.confirm('Are you sure you want to cancel the appointment?')
 
     if (confirmDelete === true) {
-      const apiUrl = `http://localhost:3002/api/delete/appointment/${appointment.id}`
+      const apiUrl = `http://206.189.187.231/api/delete/appointment/${appointment.id}`
       const deletedAppointment = await axios.delete(apiUrl, { headers: { Authorization: `Bearer ${customerToken}` } })
       try {
         if (deletedAppointment.status === 200) {
@@ -160,7 +160,7 @@ const Dashboard = () => {
     const submitAppointment = async () => {
       if (dateAndTimeErrors.date === null && dateAndTimeErrors.time === null) {
         setIsSubmitting('Submitting...')
-        const apiUrl = `http://localhost:3002/api/update/appointment${appointmentReschedule}`
+        const apiUrl = `http://206.189.187.231/api/update/appointment${appointmentReschedule}`
 
         const data = { date: selectedDate.toISOString().substring(0, 10), time: selectedTime }
 

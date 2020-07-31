@@ -40,7 +40,7 @@ const Sessions = ({ match }) => {
   /* on initial render connect to the socket in the server */
   useEffect(() => {
     /* connection to the socket in the server */
-    socket = io('http://localhost:3002')
+    socket = io('http://206.189.187.231')
 
     /* get the individuals socket Id */
     socket.on('socketId', data => {

@@ -60,7 +60,7 @@ const Payment = () => {
   /* fetch the doctor's info on initial load to show in the doctor's card */
   useEffect(() => {
     const getProvider = async () => {
-      const apiUrl = `http://localhost:3002/api/get/provider/${providerId}`
+      const apiUrl = `http://206.189.187.231/api/get/provider/${providerId}`
 
       const provider = await axios.get(apiUrl)
 
@@ -162,7 +162,7 @@ const Payment = () => {
           selectedTime,
           appointmentId: uuid()
         }
-        const apiUrl = 'http://localhost:3002/api/post/appointment'
+        const apiUrl = 'http://206.189.187.231/api/post/appointment'
 
         const postAppointment = await axios.post(apiUrl, data,
           { headers: { Authorization: `Bearer ${customerToken}` } })

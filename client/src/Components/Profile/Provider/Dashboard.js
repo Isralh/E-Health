@@ -30,7 +30,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getAppointments = async () => {
       if (provider !== null || undefined) {
-        const apiUrl = `http://localhost:3002/api/get/provider/appointments/${provider.userId}`
+        const apiUrl = `http://206.189.187.231/api/get/provider/appointments/${provider.userId}`
         const appointments = await axios.get(apiUrl, { headers: { Authorization: `Bearer ${providerToken}` } })
         try {
           if (appointments.status === 200) {
@@ -48,7 +48,7 @@ const Dashboard = () => {
   /* function to mark session complete and update the database */
   const markAppointmentComplete = async (appointment) => {
     const id = appointment.id
-    const apiUrl = `http://localhost:3002/api/delete/appointment${id}`
+    const apiUrl = `http://206.189.187.231/api/delete/appointment${id}`
     const confirmComplete = window.confirm('Are you sure you want to mark as complete?')
 
     if (confirmComplete === true) {
