@@ -20,7 +20,7 @@ app.use('/api', providers)
 app.use('/api', customers)
 app.use('/api', newsLetters)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 
 socket(server)
 
