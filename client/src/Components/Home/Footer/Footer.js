@@ -22,7 +22,7 @@ const Footer = () => {
   const signUp = async (e) => {
     e.preventDefault()
 
-    const apiUrl = 'http://206.189.187.231/api/signup/newsletters'
+    const apiUrl = 'https://e-health.work/api/signup/newsletters'
 
     const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const value = expression.test(email)

@@ -49,7 +49,7 @@ const CustomerRegister = ({ historyPush = '/', displayNavBar = 'block', submitTy
   /* submit the form if there are no errors in the input error state */
   const submitForm = async () => {
     if (!errors.firstName && !errors.lastName && !errors.email && !errors.password && !errors.confirmPassword) {
-      const apiUrl = 'http://206.189.187.231/api/post/register/customers'
+      const apiUrl = 'https://e-health.work/api/post/register/customers'
       const response = await axios.post(apiUrl, formInput)
       try {
         if (response.status === 200) return window.alert(response.data.message)

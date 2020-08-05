@@ -11,7 +11,7 @@ const OurDoctors = () => {
   /* on initial render get the doctor's info from the database */
   useEffect(() => {
     const getAllDoctors = async () => {
-      const apiUrl = 'http://206.189.187.231/api/get/provider/AllProviders'
+      const apiUrl = 'https://e-health.work/api/get/provider/AllProviders'
       const allProviders = await axios.get(apiUrl)
       try {
         if (allProviders.status === 200) {

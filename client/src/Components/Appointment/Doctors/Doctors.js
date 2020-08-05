@@ -65,7 +65,7 @@ const Doctors = () => {
   /* on initial render get all of the doctors from our database */
   useEffect(() => {
     const getProviders = async () => {
-      const apiUrl = 'http://206.189.187.231/api/get/provider/AllProviders'
+      const apiUrl = 'https://e-health.work/api/get/provider/AllProviders'
 
       const allProviders = await axios.get(apiUrl)
 
@@ -119,7 +119,7 @@ const Doctors = () => {
 
   /* post rating to the database */
   useEffect(() => {
-    const apiUrl = 'http://206.189.187.231/api/post/provider/rating'
+    const apiUrl = 'https://e-health.work/api/post/provider/rating'
 
     const postRating = async () => {
       if (givenRating !== undefined && ratedDoctorId !== undefined) {

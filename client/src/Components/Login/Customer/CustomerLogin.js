@@ -36,7 +36,7 @@ const CustomerLogin = () => {
   const submitLogin = async (e) => {
     e.preventDefault()
 
-    const apiUrl = 'http://206.189.187.231/api/post/login/customers'
+    const apiUrl = 'https://e-health.work/api/post/login/customers'
 
     const loginCustomer = await axios.post(apiUrl, formInput)
 
