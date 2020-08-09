@@ -44,10 +44,11 @@ const Form = ({
         <div className='input-wrapper'>
           <p>{passwordError}</p>
           <input
-            type='text'
+            type='password'
             name='password'
             placeholder='Password'
             required
+            minLength={6}
             value={password}
             onChange={handleChange}
           />
@@ -55,10 +56,11 @@ const Form = ({
         <div className='input-wrapper'>
           <p>{confirmPasswordError}</p>
           <input
-            type='text'
+            type='password'
             name='confirmPassword'
             placeholder='Confirm Password'
             required
+            minLength={6}
             value={confirmPassword}
             onChange={handleChange}
           />
