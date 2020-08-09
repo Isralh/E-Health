@@ -23,7 +23,7 @@ const Form = ({
         <div className='input-wrapper'>
           <p>{passwordError}</p>
           <input
-            type='text'
+            type='password'
             name='password'
             placeholder='Password'
             required
