@@ -1,8 +1,6 @@
 @import '../../../Assets/Sass/Variables';
 @import '../../../Assets/Sass/Mixins';
 
-/* Loading styling */
-
 .loading-state-none {
   display: none;
 }
@@ -23,7 +21,7 @@
     font-weight: normal;
     cursor: pointer;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 20px;
     p {
       margin-top: 10px;
       color: white;
@@ -41,7 +39,7 @@
     color: white;
     border: 1px solid red;
     border-right: 1px solid white;
-    font-size: 20px;
+    font-size: 18px;
     background: red;
     &:hover {
       color: red;
