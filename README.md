@@ -1,7 +1,7 @@
-## SmartLister
+## E-Health
 
-SmartLister is a web app for property sellers who want to avoid real estate agents and directly market their property to potential buyers. The site lets property sellers post ads to potential buyers about their property with options to upload unlimited images and google maps geocoding. An important feature implemented in this platform using nodemailer is email alerts sent to the property lister whenever a potential buyer inquires about their property. User's of the app also have the ability to add and delete properties they're closely following to their favorites list and check their status. Link to the actual
-deployed site is www.smartLister.website
+Due to the Covid-19 outbreak and social distancing rules hospitals that didn't have virtual services have missed out on providing some key services to patients. E-health is a web app that aims to tackle this problem. E-Health is a virtual Psychiatric hospital where patients can sign up and make an appointment with the doctor of their choice and start a video psychotherapy sessions with their doctors. The web app lets patients create, update and cancel appointments, also chat with their doctors through high quality video chat. Link to the actual
+deployed site is www.Ehealth.work
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ install all the required npm packages for the backend express server.
 
 ### `npm install`
 
-After installing all the required backend packages, you can start the express server on port :3001.
+After installing all the required backend packages, you can start the express server on port :5000.
 
 ### `npm run server`
 
@@ -32,11 +32,12 @@ After that you're all set!
 ## Built With
 
 - React Js
-- Styled Components
+- SCSS
 - Node Js
 - Express
 - Mysql
-- AWS S3
+- Socket.io
+- Simple Peer Library
 
 ## Contributors
 
